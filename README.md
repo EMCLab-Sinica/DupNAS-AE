@@ -75,7 +75,9 @@ intermittent-inference-library contains the intermittent inference runtime libra
 5. catch the solution to fill `spec_model.txt`
 6. generate the onnx for solution networks by `\TiNAS\NASBase\spec_onnx_gen.py`
 
-### ✂️ Model Splitting
+### ✂️ Tensor Splitter
+
+For more information, please refer to [tensor-splitter/README.md](tflm-template/README.md).
 
 
 ### ⚙️ Inference
