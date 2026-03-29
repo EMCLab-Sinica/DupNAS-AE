@@ -204,7 +204,7 @@ class Settings(object): ##default settintgs & discription
 
         #NEW  "shuffle", "incept", "mbv2"  #no use: "mobile",
         'ARC': 'shuffle',
-        'MODE': 'pdq',  #pdq,tinyts, tinynas
+        'MODE': 'dupnas', # "dupnas", "tinyts", "patchts", "nots"
         'GOAL': 'bal',  #bal, mem
         'VMSIZE': 128,
         'EXP_FILE': False,
@@ -255,8 +255,8 @@ class Settings(object): ##default settintgs & discription
         'GEN_ONNX_FILE_PATH': CURRENT_HOME_PATH + "/DupNAS/genonnx/"+ NAS_SETTINGS_GENERAL['ARC']+'/',
 
 
-        'LATENCY_RATIO' : 2,
-        'LATENCY_PROXY' : 98418272,
+        # 'LATENCY_RATIO' : 2,
+        # 'LATENCY_PROXY' : 98418272,
 
              
     }

@@ -119,7 +119,7 @@ class PlatformCostModel:
         "E_OP_PSUM_OVHD" : (E_ADD * (4+3)) + (E_MUL * (2+3)),               # according to asm: (E_ADD * (4+3)) + (E_MUL * (2+3)),  
         "E_OP_ACUM_OVHD" : (E_ADD * (3)) + (E_MUL * (3)),                   # according to asm: (E_ADD * (3)) + (E_MUL * (3)),  
 
-        # updated for TINAS
+        # updated for 
         "E_OP_COMP_ADD_OVHD" : (E_ADD * 4) + (E_MUL * 2),
         "E_OP_COMP_BN_OVHD" : (E_ADD * 4) + (E_MUL * 2),                    # according to asm: (E_ADD * 7) + (E_MUL * 2),
         # combined psum+acum (cost slightly higher for IFM reuse, so we take that case)
@@ -167,7 +167,7 @@ class PlatformCostModel:
         "L_OP_PSUM_OVHD" : (L_ADD * (4+3)) + (L_MUL * (4+6)),
         "L_OP_ACUM_OVHD" : (L_ADD * (3)) + (L_MUL * (3)),
         
-        # updated for TINAS
+        # updated for 
         "L_OP_COMP_ADD_OVHD" : (L_ADD * 4) + (L_MUL * 2),
         "L_OP_COMP_BN_OVHD" : (L_ADD * 4) + (L_MUL * 2),                    # according to asm: (E_ADD * 7) + (E_MUL * 2),
         # combined psum+acum (cost slightly higher for IFM reuse, so we take that case)

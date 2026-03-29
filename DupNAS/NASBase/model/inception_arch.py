@@ -164,7 +164,7 @@ class MNASSuperNet(nn.Module):
             
             cb_list = nn.ModuleList([])
             
-            #if global_settings.TINAS['BLOCK_TYPE'] == 0: #mobilenet block
+            #if global_settings.DupNAS['BLOCK_TYPE'] == 0: #mobilenet block
             for cix, each_choice in enumerate(self.blk_choices): # here each choice is a list of different blk_choices per block
                 # get parms for this subnet
                 stride_factor = each_choice[0]
@@ -192,7 +192,7 @@ class MNASSuperNet(nn.Module):
                               stride_first=stride_factor, affine=True, name=block_name)
                 cb_list.append(block)   
 
-            # elif global_settings.TINAS['BLOCK_TYPE'] == 1: #inception block
+            # elif global_settings.DupNAS['BLOCK_TYPE'] == 1: #inception block
             #     for cix, each_choice in enumerate(self.blk_choices): # here each choice is a list of different blk_choices per block
             #         kernum_p1 = each_choice[0]
             #         kernum_p2 = each_choice[1]
@@ -415,7 +415,7 @@ class MNASSubNet(nn.Module):
             
             
             # get parms for this subnet            
-            #if global_settings.TINAS['BLOCK_TYPE'] == 0: #mobilenet block
+            #if global_settings.DupNAS['BLOCK_TYPE'] == 0: #mobilenet block
             stride_factor = single_choice_per_block[bix][0]
             kernel_size = single_choice_per_block[bix][1]
             num_layers = single_choice_per_block[bix][2]

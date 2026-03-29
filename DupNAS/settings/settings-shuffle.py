@@ -55,31 +55,6 @@ from NASBase.model.inception_ss import (
 
     INCEPT_NUM_OUT_CHANNELS_CIFAR10,
 )
-from NASBase.model.mnas_ss import (
-   
-    # IMAGE100    
-    EXP_FACTORS_IMAGE100,
-    KERNEL_SIZES_IMAGE100,
-    MOBILENET_NUM_LAYERS_EXPLICIT_IMAGE100,
-    SUPPORT_SKIP_IMAGE100,
-    
-    WIDTH_MULTIPLIER_IMAGE100,
-    INPUT_RESOLUTION_IMAGE100,
-    
-    MOBILENET_V2_NUM_OUT_CHANNELS_IMAGE100,
-
-    # CIFAR 10
-    EXP_FACTORS_CIFAR10,
-    KERNEL_SIZES_CIFAR10,
-    MOBILENET_NUM_LAYERS_EXPLICIT_CIFAR10,
-    SUPPORT_SKIP_CIFAR10,
-
-    WIDTH_MULTIPLIER_CIFAR10,
-    INPUT_RESOLUTION_CIFAR10,
-
-    MOBILENET_V2_NUM_OUT_CHANNELS_CIFAR10,
-
-)
 
 from NASBase.model.mbv2_ss import (
    
@@ -131,7 +106,7 @@ SETTINGS_CATEGORIES = (
     'NAS_SETTINGS_GENERAL',
     'NAS_SSOPTIMIZER_SETTINGS',
     'NAS_EVOSEARCH_SETTINGS',
-    'TINAS',
+    'DupNAS',
     'NAS_SETTINGS_PER_DATASET',
     'DUMPER_SETTINGS',
     'LOG_SETTINGS',
@@ -214,7 +189,7 @@ class Settings(object): ##default settintgs & discription
         'STAGES': '1,2,3,4',  # run all stages by default [1: ss_opt, 2: train_supernet, 3: evo_search, 4: fine_tune_best_sol]
                
         # related to training        
-        'CHECKPOINT_DIR' : CURRENT_HOME_PATH + '/TiNAS/NASBase/checkpoints/', 
+        'CHECKPOINT_DIR' : CURRENT_HOME_PATH + '/DupNAS/NASBase/checkpoints/', 
         'DATASET' : 'IMAGE100',
         
         # optimizer settings        
@@ -228,7 +203,7 @@ class Settings(object): ##default settintgs & discription
 
         #NEW  "shuffle", "incept", "mbv2"  #no use: "mobile",
         'ARC': 'shuffle',
-        'MODE': 'pdq',  #pdq,tinyts, tinynas
+        'MODE': 'dupnas', # "dupnas", "tinyts", "patchts", "nots"
         'GOAL': 'bal',  #bal, mem
         'VMSIZE': 128,
         'EXP_FILE': False,
@@ -246,8 +221,8 @@ class Settings(object): ##default settintgs & discription
         # specify which constraints to consider
         # VM, NVM, ENERGY should be always checked
         'SSOPT_CONSTRAINTS': 'CHK_PASS_STORAGE,CHK_PASS_SPATIAL,CHK_PASS_ATOMICITY',   #-> REMOVE CHK_PASS_IMC',,CHK_PASS_RESPONSIVENESS
-        'SSOPT_RESULTS_FNAME' : CURRENT_HOME_PATH + "/TiNAS/NASBase/train_log/" + GLOBAL_SETTINGS['EXP_SUFFIX'] + '_ssoptlog.json',
-        'SSOPT_TRAINED_SUPERNET_FNAME' : CURRENT_HOME_PATH + "/TiNAS/NASBase/train_log/" + GLOBAL_SETTINGS['EXP_SUFFIX'] + '_trsupnetresults.json'        
+        'SSOPT_RESULTS_FNAME' : CURRENT_HOME_PATH + "/DupNAS/NASBase/train_log/" + GLOBAL_SETTINGS['EXP_SUFFIX'] + '_ssoptlog.json',
+        'SSOPT_TRAINED_SUPERNET_FNAME' : CURRENT_HOME_PATH + "/DupNAS/NASBase/train_log/" + GLOBAL_SETTINGS['EXP_SUFFIX'] + '_trsupnetresults.json'        
     }
     
     # Evolutionary search default settings
@@ -259,7 +234,7 @@ class Settings(object): ##default settintgs & discription
         'PARENT_RATIO' : 0.2,    #kept how many parents      
         'MUT_PROB': 0.05,    # probability
         'MUT_RATIO': 0.5,    #
-        'EVOSEARCH_LOGFNAME' : CURRENT_HOME_PATH + "/TiNAS/NASBase/train_log/" + GLOBAL_SETTINGS['EXP_SUFFIX'] + "_evosearchlog.json",   
+        'EVOSEARCH_LOGFNAME' : CURRENT_HOME_PATH + "/DupNAS/NASBase/train_log/" + GLOBAL_SETTINGS['EXP_SUFFIX'] + "_evosearchlog.json",   
         'EVOSEARCH_SCORE_TYPE' : 'ACC',  # please see evolution_finder.py: ACC | ACC_IMC | ACC_IMO_LREQ | ACC_LREQ  #-> ACC
         'EVOSEARCH_TRIALS': 10,   # different seeds  # final test need to do more
         
@@ -275,38 +250,11 @@ class Settings(object): ##default settintgs & discription
         'FIXED_NUM_CPU_WORKERS': 4,
         
         'DEBUG_ENABLED' : False,
-        'ONNX_FILE_PATH': CURRENT_HOME_PATH + "/TiNAS/NASBase/onnx_model/",
-        'GEN_ALL_ONNX_FILE_PATH': CURRENT_HOME_PATH + "/genonnx/"+ NAS_SETTINGS_GENERAL['ARC']+'/',
+        'ONNX_FILE_PATH': CURRENT_HOME_PATH + "/DupNAS/NASBase/onnx_model/",
+        'GEN_ONNX_FILE_PATH': CURRENT_HOME_PATH + "/DupNAS/genonnx/"+ NAS_SETTINGS_GENERAL['ARC']+'/',
 
-        'LATENCY_RATIO' : 2,
-        'LATENCY_PROXY' : 98418272,
-
-        # LC based on analysis in S3-min (without Nots)
-        # [mbv2-vm128]     # LC_N/2 = 102338472  LC_N = 204676944
-        # [shuffle-vm128]  # LC_N/2 = 49209136  LC_N = 98418272
-        # [incept-vm128]   # LC_N/2 = 26247984  LC_N = 52495968
-
-
-        # LC based on analysis in S1-min
-        # [mbv2-vm128]     # LC_N = 89149488 LC_0.8N = 71319590 LC_0.5N = 44574744 
-        # [shuffle-vm128]  # LC_N = 97828448 LC_0.8N = 78262758  LC_0.5N = 48914224 
-        # [incept-vm128]   # LC_N = 34130700 LC_0.8N = 27304560  LC_0.5N = 17065350 
-
-
-        # LC based on analysis in S1
-        # [mbv2-vm128]     # LC_N = 717800000 LC_1.5N = 1076700000 LC_2N = 1435600000 LC_2.5N = 1794500000
-        # [shuffle-vm128]  # LC_N = 218300000 LC_1.5N = 327450000  LC_2N = 436600000  LC_2.5N = 545750000
-        # [incept-vm128]   # LC_N = 146200000 LC_1.5N = 219300000  LC_2N = 292400000  LC_2.5N = 365500000
-
-        # LC based on NoneTS
-        # [mbv2-vm128]     # 5N = 445747440   2N = 178298976  # N = 89149488
-        # [shuffle-vm128]  # 5N = 611949600    2N = 244779840  # N = 122389920
-        # [incept-vm128]   # 5N = 170653500    2N = 68261400  # N = 34130700
-
-        # [shuffle-vm128] # LCours = 155906656  # LCtts = 261479072  # LCnas = 97828448
-        # [mbv2-vm128]  # LCours = 1767840432 # LCtts = 652823472  # LCtnas = 204676944
-        # [incept-vm128]  # LCours = 212169984  # LCtts = 33375456   # LCtnas = 54485136
-
+        # 'LATENCY_RATIO' : 2,
+        # 'LATENCY_PROXY' : 98418272,
 
 
              
@@ -315,7 +263,7 @@ class Settings(object): ##default settintgs & discription
 
 
     # should also be per-dataset - override them in settings/xxx-har.json
-    TINAS = {
+    DupNAS = {
         'STAGE1_SETTINGS': {},
         'STAGE2_SETTINGS': {
             # default: not dropping (the default NN search space for the specified dataset)
@@ -342,7 +290,7 @@ class Settings(object): ##default settintgs & discription
     arc = NAS_SETTINGS_GENERAL['ARC']
 
     if arc == 'shuffle':
-        TINAS['STAGE1_SETTINGS'] = {
+        DupNAS['STAGE1_SETTINGS'] = {
             'DROPPING_BLOCK_LEVEL': {
                 'STRIDE_FACTORS': [],
                 'KERNEL_SIZES': [],
@@ -356,7 +304,7 @@ class Settings(object): ##default settintgs & discription
         }
 
     elif arc == 'incept':
-        TINAS['STAGE1_SETTINGS'] = {
+        DupNAS['STAGE1_SETTINGS'] = {
             'DROPPING_BLOCK_LEVEL': {
                 'STRIDE_FACTORS': [],
                 'KERNEL_SIZES': [],
@@ -370,22 +318,9 @@ class Settings(object): ##default settintgs & discription
             'DROPPING_ENABLED': False,
         }
 
-    elif arc == 'mobile':
-        TINAS['STAGE1_SETTINGS'] = {
-            'DROPPING_BLOCK_LEVEL': {
-                'EXP_FACTORS': [],
-                'KERNEL_SIZES': [],
-                'NUM_LAYERS_EXPLICIT': [],
-                'SUPPORT_SKIP': [],
-            },
-            'DROPPING_NET_LEVEL': {
-                'WIDTH_MULTIPLIER': [],
-                'INPUT_RESOLUTION': [],
-            },
-            'DROPPING_ENABLED': False,
-        }
+    
     elif arc == 'mbv2':
-        TINAS['STAGE1_SETTINGS'] = {
+        DupNAS['STAGE1_SETTINGS'] = {
             'DROPPING_BLOCK_LEVEL': {
                 'EXP_FACTORS': [],
                 'KERNEL_SIZES': [],
@@ -425,7 +360,7 @@ class Settings(object): ##default settintgs & discription
         'USE_1D_CONV': False,
 
         # Training-related
-        'TRAIN_DATADIR': CURRENT_HOME_PATH + '/TiNAS/NASBase/dataset/CIFAR10',
+        'TRAIN_DATADIR': CURRENT_HOME_PATH + '/DupNAS/NASBase/dataset/CIFAR10',
         'TRAIN_OPT_LR': 0.025,
         'TRAIN_SUPERNET_BATCHSIZE': 16,
         'TRAIN_SUBNET_BATCHSIZE': 16,
@@ -449,7 +384,7 @@ class Settings(object): ##default settintgs & discription
         'USE_1D_CONV': False,
 
         # Training-related
-        'TRAIN_DATADIR': CURRENT_HOME_PATH + '/TiNAS/NASBase/dataset/IMAGE100',
+        'TRAIN_DATADIR': CURRENT_HOME_PATH + '/DupNAS/NASBase/dataset/IMAGE100',
         'TRAIN_OPT_LR': 0.08,
         'TRAIN_SUPERNET_BATCHSIZE': 128,
         'TRAIN_SUBNET_BATCHSIZE': 128,
@@ -502,25 +437,7 @@ class Settings(object): ##default settintgs & discription
             'INPUT_RESOLUTION': INCEPT_INPUT_RESOLUTION_IMAGE100,
         })
 
-    elif arc == 'mobile':
-        cifar10_base.update({
-            'OUT_CH_PER_BLK': MOBILENET_V2_NUM_OUT_CHANNELS_CIFAR10,
-            'EXP_FACTORS': EXP_FACTORS_CIFAR10,
-            'KERNEL_SIZES': KERNEL_SIZES_CIFAR10,
-            'NUM_LAYERS_EXPLICIT': MOBILENET_NUM_LAYERS_EXPLICIT_CIFAR10,
-            'SUPPORT_SKIP': SUPPORT_SKIP_CIFAR10,
-            'WIDTH_MULTIPLIER': WIDTH_MULTIPLIER_CIFAR10,
-            'INPUT_RESOLUTION': INPUT_RESOLUTION_CIFAR10,
-        })
-        image100_base.update({
-            'OUT_CH_PER_BLK': MOBILENET_V2_NUM_OUT_CHANNELS_IMAGE100,
-            'EXP_FACTORS': EXP_FACTORS_IMAGE100,
-            'KERNEL_SIZES': KERNEL_SIZES_IMAGE100,
-            'NUM_LAYERS_EXPLICIT': MOBILENET_NUM_LAYERS_EXPLICIT_IMAGE100,
-            'SUPPORT_SKIP': SUPPORT_SKIP_IMAGE100,
-            'WIDTH_MULTIPLIER': WIDTH_MULTIPLIER_IMAGE100,
-            'INPUT_RESOLUTION': INPUT_RESOLUTION_IMAGE100,
-        })
+    
     elif arc == 'mbv2':
         cifar10_base.update({
             'OUT_CH_PER_BLK': MOBILENET_V2_NUM_OUT_CHANNELS_CIFAR10,
@@ -559,10 +476,10 @@ class Settings(object): ##default settintgs & discription
     # DNN DUMPER SETTINGS
     # ----------------------------------------------------
     LOG_SETTINGS = {    
-        'TRAIN_LOG_DIR' : CURRENT_HOME_PATH + '/TiNAS/NASBase/train_log/', 
+        'TRAIN_LOG_DIR' : CURRENT_HOME_PATH + '/DupNAS/NASBase/train_log/', 
         'TRAIN_LOG_FNAME' : "train_info.csv", 
         'LOG_LEVEL' : 1, 
-        'REMOTE_LOGGING_SYNC_DIR' : CURRENT_HOME_PATH + '/TiNAS/wandb_dir/'
+        'REMOTE_LOGGING_SYNC_DIR' : CURRENT_HOME_PATH + '/DupNAS/wandb_dir/'
     }
 
     def get_dict(self):
@@ -662,15 +579,15 @@ def arg_parser(test_settings):
     parser.add_argument('--rlogger-proj-name', type=str, default=argparse.SUPPRESS, help='Project name for the remote logger')
 
     #----new for TS
-    parser.add_argument("--arc", type=str, default="mobile", choices=["mobile", "shuffle", "incept", "mbv2"],  #none: no any TS
+    parser.add_argument("--arc", type=str, default="mobile", choices=["mobile", "shuffle", "incept", "mbv2"], 
                     help="Choose one of: mobile, shuffle, incept")
-    parser.add_argument("--mode", type=str, default="none", choices=["pdq", "tinyts", "tinynas", "none"],  #none: no any TS
-                    help="Choose one of: pdq, tinyts, tinynas, none (none means no any TS)")
-    parser.add_argument("--priority", type=str, default="bal", choices=["bal", "mem"],  #none: no any TS
+    parser.add_argument("--mode", type=str, default="dupnas", choices=["dupnas", "tinyts", "patchts", "nots"],
+                    help="Choose one of: dupnas, tinyts, patchts, nots")
+    parser.add_argument("--priority", type=str, default="bal", choices=["bal", "mem"], 
                     help="Choose one of: pdq, bal, mem (goal)")
     parser.add_argument("--export_file", action='store_true',
                     help="Enable exporting reports and figures")
-    parser.add_argument("--vmsize", type=int, default=512,
+    parser.add_argument("--vmsize", type=int, default=128,
                     help="Set memory constraint in KB (e.g., 32 for 32KB)")
     
     # [ADDED] Stage-2 distributed knobs (used only in TRAIN_SUPERNET)
@@ -757,9 +674,9 @@ def arg_parser(test_settings):
     test_settings.GLOBAL_SETTINGS['AMP'] = args.amp
     test_settings.GLOBAL_SETTINGS['BATCH_SCOPE'] = args.batch_scope
 
-    test_settings.NAS_SSOPTIMIZER_SETTINGS['SSOPT_RESULTS_FNAME'] = CURRENT_HOME_PATH + "/TiNAS/NASBase/train_log/" + test_settings.GLOBAL_SETTINGS['EXP_SUFFIX'] + '_ssoptlog.json'
-    test_settings.NAS_SSOPTIMIZER_SETTINGS['SSOPT_TRAINED_SUPERNET_FNAME'] = CURRENT_HOME_PATH + "/TiNAS/NASBase/train_log/" + test_settings.GLOBAL_SETTINGS['EXP_SUFFIX'] + '_trsupnetresults.json'
-    test_settings.NAS_EVOSEARCH_SETTINGS['EVOSEARCH_LOGFNAME'] = CURRENT_HOME_PATH + "/TiNAS/NASBase/train_log/" + test_settings.GLOBAL_SETTINGS['EXP_SUFFIX'] + "_evosearchlog.json"
+    test_settings.NAS_SSOPTIMIZER_SETTINGS['SSOPT_RESULTS_FNAME'] = CURRENT_HOME_PATH + "/DupNAS/NASBase/train_log/" + test_settings.GLOBAL_SETTINGS['EXP_SUFFIX'] + '_ssoptlog.json'
+    test_settings.NAS_SSOPTIMIZER_SETTINGS['SSOPT_TRAINED_SUPERNET_FNAME'] = CURRENT_HOME_PATH + "/DupNAS/NASBase/train_log/" + test_settings.GLOBAL_SETTINGS['EXP_SUFFIX'] + '_trsupnetresults.json'
+    test_settings.NAS_EVOSEARCH_SETTINGS['EVOSEARCH_LOGFNAME'] = CURRENT_HOME_PATH + "/DupNAS/NASBase/train_log/" + test_settings.GLOBAL_SETTINGS['EXP_SUFFIX'] + "_evosearchlog.json"
 
     if 'rehm' not in args:
         cap_str = str(test_settings.PLATFORM_SETTINGS['CCAP'])

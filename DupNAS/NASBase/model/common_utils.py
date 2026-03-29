@@ -821,8 +821,8 @@ def parametric_supernet_choices(global_settings: Settings):
     lst_widthmult = net_search_options['WIDTH_MULTIPLIER']
     lst_inputres = net_search_options['INPUT_RESOLUTION']
 
-    if global_settings.TINAS['STAGE1_SETTINGS']['DROPPING_ENABLED']:
-        net_level_dropped_choices = global_settings.TINAS['STAGE1_SETTINGS']['DROPPING_NET_LEVEL']
+    if global_settings.DupNAS['STAGE1_SETTINGS']['DROPPING_ENABLED']:
+        net_level_dropped_choices = global_settings.DupNAS['STAGE1_SETTINGS']['DROPPING_NET_LEVEL']
         lst_widthmult = drop_choices(lst_widthmult, net_level_dropped_choices['WIDTH_MULTIPLIER'])
         lst_inputres = drop_choices(lst_inputres, net_level_dropped_choices['INPUT_RESOLUTION'])
 
@@ -870,8 +870,8 @@ def parametric_supernet_blk_choices(global_settings: Settings, search_options=No
             k_num_layers_explicit   = search_options['NUM_LAYERS_EXPLICIT']
 
 
-    if global_settings.TINAS['STAGE1_SETTINGS']['DROPPING_ENABLED']:
-        block_level_dropped_choices = global_settings.TINAS['STAGE1_SETTINGS']['DROPPING_BLOCK_LEVEL']
+    if global_settings.DupNAS['STAGE1_SETTINGS']['DROPPING_ENABLED']:
+        block_level_dropped_choices = global_settings.DupNAS['STAGE1_SETTINGS']['DROPPING_BLOCK_LEVEL']
         if global_settings.NAS_SETTINGS_GENERAL['ARC'] == 'shuffle':
             k_stride            = drop_choices(k_stride,            block_level_dropped_choices['STRIDE_FACTORS'])
             k_kernelsizes           = drop_choices(k_kernelsizes,           block_level_dropped_choices['KERNEL_SIZES'])

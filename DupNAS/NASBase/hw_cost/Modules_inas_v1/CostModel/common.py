@@ -507,7 +507,7 @@ def filter_legal_tilesizes(lst_Tr, lst_Tc, lst_Tm, lst_Tn, H, W, R, C, M, N, lay
  
 
 
-# Unused for TINAS, as preSz=1 is always used
+# Unused, as preSz=1 is always used
 def filter_legal_pressizes(lst_S, H, W, R, C, M, N, Tr, Tc, Tm, Tn, inter_lo, layer_type = 'CONV'):
     if (layer_type == 'CONV') or (layer_type == 'FC'):
         if inter_lo == "reuse_I":        
