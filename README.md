@@ -86,10 +86,10 @@ Below is a brief description of the main directories and files in this repositor
 
 ### ✂️ Tensor Splitter
 1. Copy the ONNX model and its corresponding split-configuration JSON file from `/DupNAS/genonnx/` to `/Inference/Tensor-splitter/`
-2. For more information, please refer to [Inference/Tensor-splitter/README.md](Tensor-splitter/README.md).
+2. For more information, please refer to [Tensor-splitter/README.md](Inference/Tensor-splitter/README.md).
 
 
-### ⚙️ Inference
+### ⚙️ Tflm-engine
 
 To deploy models with [TensorFlow Lite Micro](https://github.com/tensorflow/tflite-micro) on STM32, follow the steps below:
 
