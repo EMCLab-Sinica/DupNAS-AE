@@ -26,7 +26,7 @@ DupNAS is implemented in PyTorch and developed on a server with an Intel Xeon E5
 
 
 ---
-## 📌 Directory/File Structure
+## 📌 File Structure
 
 Below is a brief description of the main directories and files in this repository.
 
@@ -109,20 +109,21 @@ For more information, please refer to [Tflm-engine/README.md](Inference/Tflm-eng
 <!-- sudo docker run --rm -it -v $(pwd):/workdir -w /workdir ghcr.io/pinto0309/onnx2tf:1.28.5   -->
 
 ---
-## 🧩 Results
+## 🧩 Evaluate
+
 For more detailed data, please see [DupNAS_paper_data](/assets/)
 
 ### Accuracy
 
 | Model | TS Mode | VM = 96 KB | VM = 128 KB | VM = 256 KB |
 |---|---|---:|---:|---:|
-| MobileNet   | DupNAS  | 58.40% | 62.08% | 62.64% |
+| MobileNetV2   | DupNAS  | 58.40% | 62.08% | 62.64% |
 |             | TinyTS  | 52.88% | 56.88% | 61.76% |
 |             | PatchTS | 51.36% | 56.48% | 62.64% |
-| ShuffleNet  | DupNAS  | 61.36% | 62.96% | 65.76% |
+| ShuffleNetV2  | DupNAS  | 61.36% | 62.96% | 65.76% |
 |             | TinyTS  | 56.8% | 59.76% | 64.96% |
 |             | PatchTS | 54.24% | 58.72% | 60.48% |
-| InceptionNet | DupNAS  | 61.84% | 64.16% | 68.24% |
+| InceptionV3 | DupNAS  | 61.84% | 64.16% | 68.24% |
 |             | TinyTS  | 45.68% | 57.84% | 64.88% |
 |             | PatchTS | 54.00% | 58.64% | 67.36% |
 
