@@ -1,12 +1,12 @@
-# 🚀 DupNAS: Splitting Bottlenecks: Memory-Aware Neural Architecture Search for Multi-Branch TinyML
+# 🚀 TS: Splitting Bottlenecks: Memory-Aware Neural Architecture Search for Multi-Branch TinyML
 
 ---
 ## 📝 Overview
 
-This project develops DupNAS, a framework that integrates neural architecture search and multi-branch tensor splitting to find high-accuracy networks that are deployable on severely memory-constrained tiny MCU-class devices. To enable this integration, DupNAS shrinks the vast splitting configuration space of multi-branch networks into a smaller set of memory-optimized configurations and explores them in a lightweight manner to resolve memory bottlenecks.
+This project develops TS, a framework that integrates neural architecture search and multi-branch tensor splitting to find high-accuracy networks that are deployable on severely memory-constrained tiny MCU-class devices. To enable this integration, TS shrinks the vast splitting configuration space of multi-branch networks into a smaller set of memory-optimized configurations and explores them in a lightweight manner to resolve memory bottlenecks.
 
 
-DupNAS is implemented in PyTorch on top of the popular [TinyNAS](https://github.com/mit-han-lab/mcunet) framework for MCUs, with extensions to support multi-branch networks and integration with our splitting strategy. The resulting network solutions are deployed on an [STM32F746](https://www.st.com/en/evaluation-tools/32f746gdiscovery.html) microcontroller (ARM Cortex-M7 CPU, 216 MHz, 320 KB VM, and 1 MB NVM) running the TensorFlow Lite Micro (TFLite-Micro) inference engine. We evaluate DupNAS on three vision-based TinyML network families, namely MobileNetV2, ShuffleNetV2, and InceptionV3, under different memory constraints. All networks are trained on the ImageNet-100 dataset. DupNAS is compared against two existing splitting strategies, TinyTS and PatchTS.
+TS is implemented in PyTorch on top of the popular [TinyNAS](https://github.com/mit-han-lab/mcunet) framework for MCUs, with extensions to support multi-branch networks and integration with our splitting strategy. The resulting network solutions are deployed on an [STM32F746](https://www.st.com/en/evaluation-tools/32f746gdiscovery.html) microcontroller (ARM Cortex-M7 CPU, 216 MHz, 320 KB VM, and 1 MB NVM) running the TensorFlow Lite Micro (TFLite-Micro) inference engine. We evaluate TS on three vision-based TinyML network families, namely MobileNetV2, ShuffleNetV2, and InceptionV3, under different memory constraints. All networks are trained on the ImageNet-100 dataset. TS is compared against two existing splitting strategies, TinyTS and PatchTS.
 
 
 
@@ -14,9 +14,9 @@ DupNAS is implemented in PyTorch on top of the popular [TinyNAS](https://github.
   <img src="assets/figures/NAS_with_TS.svg" alt="NAS_with_TS" width="500">
 </p>
 <p align="center">
-  <em>Overview of the DupNAS framework</em>
+  <em>Overview of the TS framework</em>
 </p>
-<!-- This repository contains the full artifact for reproducing the NAS, model splitting, fine-tuning, ONNX export, and MCU deployment workflow used in DupNAS. -->
+<!-- This repository contains the full artifact for reproducing the NAS, model splitting, fine-tuning, ONNX export, and MCU deployment workflow used in TS. -->
 
 
 
@@ -24,15 +24,15 @@ DupNAS is implemented in PyTorch on top of the popular [TinyNAS](https://github.
 
 Below is a brief description of the main directories and files in this repository.
 
-- `/DupNAS/NASBase/duplication` implements the DupNAS splitting configuration exploration algorithm, which is invoked during the NAS process.
-- `/DupNAS/NASBase/ss_optimization` contains the NAS architecture space optimization component, adapted from TinyNAS.
-- `/DupNAS/NASBase/evo_search` contains the NAS evolutionary search component, adapted from TinyNAS.
-- `/DupNAS/NASBase/model` defines the architecture search space, including supernet and subnet architecture definitions.
-- `/DupNAS/settings` provides the evaluation settings for different datasets and baselines.
-- `/DupNAS/settings.py` defines the global NAS settings.
+- `/TS/NASBase/duplication` implements the TS splitting configuration exploration algorithm, which is invoked during the NAS process.
+- `/TS/NASBase/ss_optimization` contains the NAS architecture space optimization component, adapted from TinyNAS.
+- `/TS/NASBase/evo_search` contains the NAS evolutionary search component, adapted from TinyNAS.
+- `/TS/NASBase/model` defines the architecture search space, including supernet and subnet architecture definitions.
+- `/TS/settings` provides the evaluation settings for different datasets and baselines.
+- `/TS/settings.py` defines the global NAS settings.
 - `/Inference/Model-converter/` provides the model converter, which applies the splitting configuration to a network solution to generate a split network that can be deployed on TFLite-Micro.  
 - `/Inference/Tflm-engine/` provides the build process for TFLite-Micro.
-- `/assets/DupNAS_paper_data.xlsx` contains the experimental results presented in the paper.
+- `/assets/TS_paper_data.xlsx` contains the experimental results presented in the paper.
 
 ---
 ## 🧭 Getting Started
@@ -44,17 +44,17 @@ Below is a brief description of the main directories and files in this repositor
 - Install the required Python packages listed in `requirements.txt` with:
   `python3.9 -m pip install -r requirements.txt`
 - [Anaconda](https://www.anaconda.com/docs/getting-started/anaconda/install/overview) (recommended for managing Python environments).
-- [ImageNet-100](https://www.kaggle.com/datasets/ambityga/imagenet100/data) dataset. Load the dataset using: `/DupNAS/NASBase/load_image100.py`.
+- [ImageNet-100](https://www.kaggle.com/datasets/ambityga/imagenet100/data) dataset. Load the dataset using: `/TS/NASBase/load_image100.py`.
 - [STM32F746NG MCU](https://www.st.com/en/evaluation-tools/32f746gdiscovery.html) deployment device.
 - [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) development tools for the STM32.
 - [TensorFlow Lite Micro](https://github.com/tensorflow/tflite-micro) inference engine.
 
-### 🔧 Setup and running DupNAS
+### 🔧 Setup and running TS
 
 1. Download or clone this repository.
 2. Create and activate a Python environment, then install the required dependencies.
 3. Prepare the ImageNet-100 dataset and update the dataset paths.
-4. Invoke DupNAS as follows:
+4. Invoke TS as follows:
   ```python
   python3.9 -m NASBase.run_nas --stages <stage> --arc <arc> --dataset IMAGE100 --mode <mode> --vmsize <vmsize> --suffix <suffix> --no-rlogger
   ```
@@ -65,19 +65,19 @@ Below is a brief description of the main directories and files in this repositor
   | `--stages` | Number of NAS stages: ssopt, training, evosearch, fine-tuning | `1`, `2`, `3`, `4` |
   | `--arc` | network architecture family | `mbv2`, `shuffle`, `incept` |
   | `--dataset` | Dataset used for search | `IMAGE100` |
-  | `--mode` | splitting strategy  | `dupnas`, `tinyts`, `patchts`, `nots` | 
+  | `--mode` | splitting strategy  | `TS`, `tinyts`, `patchts`, `nots` | 
   | `--vmsize` | VM constraint in KB | `96`, `128`, `256` |
   | `--suffix` | Experiment suffix for naming outputs | user-defined string |
   
 5. Extract the network solution from `best_solution,json` and use it to fill in `spec_model.txt`
-6. Generate the ONNX models for the selected solution using `/DupNAS/NASBase/spec_onnx_gen.py`. The outputs will be saved in `/DupNAS/genonnx/`.
-7. Go to `/DupNAS/genonnx/`, then run `python3.9 -m DupNAS_SA.py --onnx <onnx_name> --mode <mode> --vmsize <vmsize> --export_file` to generate the TS configuration. Alternatively, you can run `run_all_onnx.sh` to automatically generate TS configurations for all ONNX models in the directory.
+6. Generate the ONNX models for the selected solution using `/TS/NASBase/spec_onnx_gen.py`. The outputs will be saved in `/TS/genonnx/`.
+7. Go to `/TS/genonnx/`, then run `python3.9 -m TS_SA.py --onnx <onnx_name> --mode <mode> --vmsize <vmsize> --export_file` to generate the TS configuration. Alternatively, you can run `run_all_onnx.sh` to automatically generate TS configurations for all ONNX models in the directory.
 8. Run `gen_ts_cfg.py` to collect the `split-configuration JSON file` for the model converter
 
 
 ### ✂️ Setup and running the model converter
 
-1. Copy the ONNX model and its corresponding split-configuration JSON file from `/DupNAS/genonnx/` to `/Inference/Model-converter/`
+1. Copy the ONNX model and its corresponding split-configuration JSON file from `/TS/genonnx/` to `/Inference/Model-converter/`
 2. Split the model by following [ONNX Tensor Splitter](Inference/Model-converter/README.md).
 3. Convert the ONNX models to TFLite with [onnx2tf](https://github.com/PINTO0309/onnx2tf). We recomment using the official Docker image:
    ```bash
@@ -100,11 +100,29 @@ For more information, please refer to [Tflm-engine/README.md](Inference/Tflm-eng
 ---
 ## 🧩 Evaluation
 
-Below are the networks found by DupNAS, TinyTS, and PatchTS.
-For detailed evaluation results, please see [DupNAS_paper_data](/assets/)
+Below are the networks found by TS, TinyTS, and PatchTS.
+For detailed evaluation results, please see [TS_paper_data](/assets/)
+
+## 🧩 Evaluation
+
+Below are the networks found by TS, TinyTS, and PatchTS.  
+For detailed evaluation results, please see [TS_paper_data](/assets/)
+
+| Model | VM | DupNAS | TinyTS | PatchTS |  Architecture | 
+|---|---|---:|---:|---:|---|
+| MobileNetV2 | VM 96 KB | 58.40% | 52.88% | 51.36% | [Ori.](/assets/models/onnx_original/mbv2-vm96) / [TS](/assets/models/onnx_withTS/mbv2-vm96) |
+|             | VM 128 KB | 62.08% | 56.88% | 56.48% | [Ori.](/assets/models/onnx_original/mbv2-vm128) / [TS](/assets/models/onnx_withTS/mbv2-vm128) |
+|             | VM 256 KB | 62.64% | 61.76% | 62.64% | [Ori.](/assets/models/onnx_original/mbv2-v256) / [TS](/assets/models/onnx_withTS/mbv2-v256) |
+| ShuffleNetV2 | VM 96 KB | 61.36% | 56.8% | 54.24% | [Ori.](/assets/models/onnx_original/shuffle-vm96) / [TS](/assets/models/onnx_withTS/shuffle-vm96) |
+|             | VM 128 KB | 62.96% | 59.76% | 58.72% | [Ori.](/assets/models/onnx_original/shuffle-vm128) / [TS](/assets/models/onnx_withTS/shuffle-vm128) |
+|             | VM 256 KB | 65.76% | 64.96% | 60.48% | [Ori.](/assets/models/onnx_original/shuffle-v256) / [TS](/assets/models/onnx_withTS/shuffle-v256) |
+| InceptionV3 | VM 96 KB | 61.84% | 45.68% | 54.00% | [Ori.](/assets/models/onnx_original/incept-vm96) / [TS](/assets/models/onnx_withTS/incept-vm96) |
+|             | VM 128 KB | 64.16% | 57.84% | 58.64% | [Ori.](/assets/models/onnx_original/incept-vm128) / [TS](/assets/models/onnx_withTS/incept-vm128) |
+|             | VM 256 KB | 68.24% | 64.88% | 67.36% | [Ori.](/assets/models/onnx_original/incept-v256) / [TS](/assets/models/onnx_withTS/incept-v256) |
 
 
-| Model | TS Mode | VM = 96 KB | VM = 128 KB | VM = 256 KB |
+
+<!-- | Model | TS Mode | VM = 96 KB | VM = 128 KB | VM = 256 KB |
 |---|---|---:|---:|---:|
 | MobileNetV2   | DupNAS  | 58.40% | 62.08% | 62.64% |
 |             | TinyTS  | 52.88% | 56.88% | 61.76% |
@@ -115,14 +133,14 @@ For detailed evaluation results, please see [DupNAS_paper_data](/assets/)
 | InceptionV3 | DupNAS  | 61.84% | 64.16% | 68.24% |
 |             | TinyTS  | 45.68% | 57.84% | 64.88% |
 |             | PatchTS | 54.00% | 58.64% | 67.36% |
-
+ -->
 
 
 <!-- ---
 ### Included in this repository
 
 #### 🔍 NAS-related
-- Full DupNAS source code
+- Full TS source code
 - Exact dependency list (`requirements.txt`)
 - Architecture search space parameters and value ranges
 - Trained supernet checkpoints (`.pth`)
