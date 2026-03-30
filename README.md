@@ -110,15 +110,15 @@ For detailed evaluation results, please see [TS_paper_data](/assets/)
 
 | Model | VM | DupNAS | TinyTS | PatchTS |  Architecture | 
 |---|---|---:|---:|---:|---|
-| MobileNetV2 | VM 96 KB | 58.40% | 52.88% | 51.36% | [Ori.](/assets/models/onnx_original/mbv2-vm96) / [TS](/assets/models/onnx_withTS/mbv2-vm96) |
-|             | VM 128 KB | 62.08% | 56.88% | 56.48% | [Ori.](/assets/models/onnx_original/mbv2-vm128) / [TS](/assets/models/onnx_withTS/mbv2-vm128) |
-|             | VM 256 KB | 62.64% | 61.76% | 62.64% | [Ori.](/assets/models/onnx_original/mbv2-v256) / [TS](/assets/models/onnx_withTS/mbv2-v256) |
-| ShuffleNetV2 | VM 96 KB | 61.36% | 56.8% | 54.24% | [Ori.](/assets/models/onnx_original/shuffle-vm96) / [TS](/assets/models/onnx_withTS/shuffle-vm96) |
-|             | VM 128 KB | 62.96% | 59.76% | 58.72% | [Ori.](/assets/models/onnx_original/shuffle-vm128) / [TS](/assets/models/onnx_withTS/shuffle-vm128) |
-|             | VM 256 KB | 65.76% | 64.96% | 60.48% | [Ori.](/assets/models/onnx_original/shuffle-v256) / [TS](/assets/models/onnx_withTS/shuffle-v256) |
-| InceptionV3 | VM 96 KB | 61.84% | 45.68% | 54.00% | [Ori.](/assets/models/onnx_original/incept-vm96) / [TS](/assets/models/onnx_withTS/incept-vm96) |
-|             | VM 128 KB | 64.16% | 57.84% | 58.64% | [Ori.](/assets/models/onnx_original/incept-vm128) / [TS](/assets/models/onnx_withTS/incept-vm128) |
-|             | VM 256 KB | 68.24% | 64.88% | 67.36% | [Ori.](/assets/models/onnx_original/incept-v256) / [TS](/assets/models/onnx_withTS/incept-v256) |
+| MobileNetV2 | 96 KB | 58.40% | 52.88% | 51.36% | [Ori.](/assets/models/onnx_original/mbv2-vm96) / [TS](/assets/models/onnx_withTS/mbv2-vm96) |
+|             | 128 KB | 62.08% | 56.88% | 56.48% | [Ori.](/assets/models/onnx_original/mbv2-vm128) / [TS](/assets/models/onnx_withTS/mbv2-vm128) |
+|             | 256 KB | 62.64% | 61.76% | 62.64% | [Ori.](/assets/models/onnx_original/mbv2-v256) / [TS](/assets/models/onnx_withTS/mbv2-v256) |
+| ShuffleNetV2 | 96 KB | 61.36% | 56.8% | 54.24% | [Ori.](/assets/models/onnx_original/shuffle-vm96) / [TS](/assets/models/onnx_withTS/shuffle-vm96) |
+|             | 128 KB | 62.96% | 59.76% | 58.72% | [Ori.](/assets/models/onnx_original/shuffle-vm128) / [TS](/assets/models/onnx_withTS/shuffle-vm128) |
+|             | 256 KB | 65.76% | 64.96% | 60.48% | [Ori.](/assets/models/onnx_original/shuffle-v256) / [TS](/assets/models/onnx_withTS/shuffle-v256) |
+| InceptionV3 | 96 KB | 61.84% | 45.68% | 54.00% | [Ori.](/assets/models/onnx_original/incept-vm96) / [TS](/assets/models/onnx_withTS/incept-vm96) |
+|             | 128 KB | 64.16% | 57.84% | 58.64% | [Ori.](/assets/models/onnx_original/incept-vm128) / [TS](/assets/models/onnx_withTS/incept-vm128) |
+|             | 256 KB | 68.24% | 64.88% | 67.36% | [Ori.](/assets/models/onnx_original/incept-v256) / [TS](/assets/models/onnx_withTS/incept-v256) |
 
 
 
