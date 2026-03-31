@@ -104,8 +104,8 @@ For more information, please refer to [Tflm-engine/README.md](Inference/Tflm-eng
 
 ### Search Space Configuration
 
-| Level | Option | MobileNetV2 | ShuffleNetV2 | InceptionV3 |
 |:---:|:---:|:---:|:---:|:---:|
+| Level | Option | MobileNetV2 | ShuffleNetV2 | InceptionV3 |
 | Backbone | Branches | 1 | 2 | 4 |
 | Backbone | Blocks | 4 | 3 | 3 |
 | Supernet | Input resolution | 32, 64, 96, 128 | 32, 64, 96, 128 | 32, 64, 96, 128 |
@@ -118,8 +118,8 @@ For more information, please refer to [Tflm-engine/README.md](Inference/Tflm-eng
 ### Accuracy
 Below are the networks found by DupNAS, TinyTS, and PatchTS.
 
-| Model | VM | DupNAS | TinyTS | PatchTS |  
 |:---:|:---:|---:|:---:|:---:|
+| Model | VM | DupNAS | TinyTS | PatchTS |  
 | MobileNetV2 | 96 KB | 58.40% | 52.88% | 51.36% | 
 |             | 128 KB | 62.08% | 56.88% | 56.48% | 
 |             | 256 KB | 62.64% | 61.76% | 62.64% | 
