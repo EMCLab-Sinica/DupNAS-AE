@@ -4,7 +4,8 @@ cd DupNAS/sample_onnx
 python3.9 analyze_all_output_dupnasa.py --output_dir <output_dir> --model <model> --vm <vm_setting>
 
 ==========================
-<Figure 6> Use these in actions:
+Figure 6 
+Use these in actions:
 
 options: shufflenet-vm96
 cd DupNAS/sample_onnx/shufflenet
@@ -61,26 +62,13 @@ cd DupNAS/sample_onnx
 python3.9 analyze_all_output_dupnasa.py --output_dir ./outputs --model inception --vm 256
 
 
-
 ==========================
 
+/// Output files ///
+all results (can download to check): sample_onnx/outputs/<model>_<vm_setting>_detail.csv
+summary results (shown in console): sample_onnx/outputs/<model>_<vm_setting>_summary.csv
 
 
-
-cd sample_onnx/shufflenet
-bash run_allsamples_vm96.sh ../outputs python3.9
-
-all outputs are saved in: sample_onnx/outputs/shufflenet/vm96/
-
---- 
-
-cd sample_onnx
-python3.9 analyze_all_output_dupnasa.py --output_dir ./outputs --model shufflenet --vm 96
-
-
-all outputs are saved in:
-sample_onnx/outputs/<model>_<vm_setting>_summary.csv
-sample_onnx/outputs/<model>_<vm_setting>_detail.csv
 
 
 
