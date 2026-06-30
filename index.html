@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Artifact Evaluation Control Panel</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <main class="container py-5">
+    <div class="col-lg-6 mx-auto">
+      <h1 class="mb-4">Artifact Evaluation Control Panel</h1>
+
+      <div>
+        <label for="token" class="form-label">Please enter the secret token provided in your AE instructions:</label>
+        <input id="token" type="password" class="form-control" placeholder="github_pat_XXXX..." autocomplete="off">
+      </div>
+
+      <section id="run-workflow-section" class="border-top mt-4 pt-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <h2 class="h5 mb-0">Run workflow</h2>
+          <a id="workflow-runs-link" class="btn btn-sm btn-outline-secondary" href="#" target="_blank" rel="noopener noreferrer">
+            View workflow runs
+          </a>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="task" class="form-label">Choose the workflow task to trigger:</label>
+            <select id="task" class="form-select"></select>
+          </div>
+          <div class="col-md-6">
+            <label for="option" class="form-label">Choose the task-specific option:</label>
+            <select id="option" class="form-select"></select>
+          </div>
+        </div>
+        <button id="start-task" type="button" class="btn btn-primary mt-3">Start selected task</button>
+        <p id="run-status" class="mt-3 mb-0 text-break" role="status"></p>
+      </section>
+
+      <section id="cancel-run-section" class="border-top mt-4 pt-4">
+        <h2 class="h5 mb-3">Cancel a running workflow</h2>
+        <div>
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+            <label for="run" class="form-label mb-0">Choose the workflow run to cancel:</label>
+            <button id="refresh-runs" type="button" class="btn btn-sm btn-outline-secondary">Refresh runs</button>
+          </div>
+          <select id="run" class="form-select">
+            <option value="">No running workflow runs loaded</option>
+          </select>
+        </div>
+        <button id="cancel-run" type="button" class="btn btn-danger mt-3">Cancel selected run</button>
+        <p id="cancel-status" class="mt-3 mb-0 text-break" role="status"></p>
+      </section>
+    </div>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="tasks.js"></script>
+  <script>
+    const config = window.workflowConfig;
+    const repoPath = `${config.owner}/${config.repo}`;
+    const workflowFile = config.workflowFile;
+    const githubBaseUrl = `https://github.com/${repoPath}`;
+    const apiBaseUrl = `https://api.github.com/repos/${repoPath}`;
+
+    const tokenInput = document.getElementById("token");
+
+    const workflowRunsLink = document.getElementById("workflow-runs-link");
+    const taskSelect = document.getElementById("task");
+    const optionSelect = document.getElementById("option");
+    const startTaskButton = document.getElementById("start-task");
+    const runStatus = document.getElementById("run-status");
+    workflowRunsLink.href = `${githubBaseUrl}/actions/workflows/${workflowFile}`;
+    const setRunStatus = (message) => (runStatus.textContent = message);
+
+    const refreshRunsButton = document.getElementById("refresh-runs");
+    const runSelect = document.getElementById("run");
+    const cancelRunButton = document.getElementById("cancel-run");
+    const cancelStatus = document.getElementById("cancel-status");
+    const cancellableStatuses = ["in_progress", "queued", "requested", "waiting", "pending"];
+    const setCancelStatus = (message) => (cancelStatus.textContent = message);
+
+    const populateTaskOptions = () => {
+      taskSelect.replaceChildren();
+      for (const [taskValue, task] of Object.entries(window.workflowTasks)) {
+        taskSelect.append(new Option(task.label, taskValue));
+      }
+    };
+
+    const populateWorkflowOptions = () => {
+      const selectedTask = window.workflowTasks[taskSelect.value];
+      optionSelect.replaceChildren();
+      for (const option of selectedTask.option) {
+        optionSelect.append(new Option(option.label, option.value));
+      }
+    };
+
+    taskSelect.addEventListener("change", () => {
+      populateWorkflowOptions();
+      startTaskButton.disabled = false;
+      setRunStatus("");
+    });
+
+    optionSelect.addEventListener("change", () => {
+      startTaskButton.disabled = false;
+      setRunStatus("");
+    });
+
+    populateTaskOptions();
+    populateWorkflowOptions();
+
+    startTaskButton.addEventListener("click", async () => {
+      const token = tokenInput.value.trim();
+      if (!token) return setRunStatus("Please enter a token.");
+
+      const task = taskSelect.value;
+      const option = optionSelect.value;
+      const optionDisplayName = optionSelect.selectedOptions[0].textContent;
+      if (!task) return setRunStatus("Please choose a task.");
+      if (!option) return setRunStatus("Please choose an option.");
+
+      startTaskButton.disabled = true;
+      setRunStatus("Starting workflow...");
+
+      try {
+        const response = await fetch(`${apiBaseUrl}/actions/workflows/${workflowFile}/dispatches`, {
+          method: "POST",
+          headers: {
+            Accept: "application/vnd.github+json",
+            Authorization: `Bearer ${token}`,
+            "X-GitHub-Api-Version": "2026-03-10"
+          },
+          body: JSON.stringify({
+            ref: config.ref,
+            inputs: { task, option, optionDisplayName }
+          })
+        });
+
+        if (response.ok) {
+          const { html_url: runUrl } = await response.json();
+          runStatus.textContent = `${task} / ${optionDisplayName} was started successfully. View the run:`;
+          runStatus.append(" ", Object.assign(document.createElement("a"), {
+            href: runUrl,
+            textContent: runUrl,
+            target: "_blank",
+            rel: "noopener noreferrer"
+          }));
+          return;
+        }
+
+        const message = await response.text();
+        setRunStatus(`Failed to start workflow: ${message}`);
+        startTaskButton.disabled = false;
+      } catch (error) {
+        setRunStatus(`Failed to start workflow: ${error.message}`);
+        startTaskButton.disabled = false;
+      }
+    });
+
+    const setRunOptions = (runs) => {
+      runSelect.replaceChildren();
+      if (!runs.length) {
+        runSelect.append(new Option("No cancellable workflow runs found", ""));
+        return;
+      }
+      for (const run of runs) {
+        const runLabel = `${run.name} #${run.run_number}`;
+        const option = new Option(`${runLabel} (${run.status})`, run.id);
+        runSelect.append(option);
+      }
+    };
+
+    refreshRunsButton.addEventListener("click", async () => {
+      const token = tokenInput.value.trim();
+      if (!token) return setCancelStatus("Please enter a token.");
+
+      refreshRunsButton.disabled = true;
+      setCancelStatus("Loading workflow runs...");
+
+      try {
+        const response = await fetch(`${apiBaseUrl}/actions/workflows/${workflowFile}/runs?per_page=100&_=${Date.now()}`, {
+          headers: {
+            Accept: "application/vnd.github+json",
+            Authorization: `Bearer ${token}`,
+            "X-GitHub-Api-Version": "2026-03-10"
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const runs = data.workflow_runs.filter((run) => cancellableStatuses.includes(run.status));
+          setRunOptions(runs);
+          setCancelStatus(`${runs.length} cancellable workflow run(s) loaded.`);
+          return;
+        }
+
+        const message = await response.text();
+        setCancelStatus(`Failed to load runs: ${message}`);
+      } catch (error) {
+        setCancelStatus(`Failed to load runs: ${error.message}`);
+      } finally {
+        refreshRunsButton.disabled = false;
+      }
+    });
+
+    cancelRunButton.addEventListener("click", async () => {
+      const token = tokenInput.value.trim();
+      if (!token) return setCancelStatus("Please enter a token.");
+
+      const runId = runSelect.value;
+      if (!runId) return setCancelStatus("Please choose a workflow run.");
+
+      cancelRunButton.disabled = true;
+      setCancelStatus("Canceling workflow run...");
+
+      try {
+        const response = await fetch(`${apiBaseUrl}/actions/runs/${runId}/cancel`, {
+          method: "POST",
+          headers: {
+            Accept: "application/vnd.github+json",
+            Authorization: `Bearer ${token}`,
+            "X-GitHub-Api-Version": "2026-03-10"
+          }
+        });
+
+        if (response.ok) {
+          const selectedRunLabel = runSelect.selectedOptions[0].textContent;
+          setCancelStatus(`${selectedRunLabel} was canceled successfully.`);
+          runSelect.querySelector(`option[value="${runId}"]`).remove();
+          if (!runSelect.options.length) setRunOptions([]);
+          return;
+        }
+
+        const message = await response.text();
+        setCancelStatus(`Cancel failed: ${message}`);
+      } catch (error) {
+        setCancelStatus(`Cancel failed: ${error.message}`);
+      } finally {
+        cancelRunButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
