@@ -8,6 +8,7 @@ on:
         required: true
         options:
           - test
+          - fig6
           - fig11
       option:
         type: string
