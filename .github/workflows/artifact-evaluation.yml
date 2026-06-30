@@ -28,6 +28,15 @@ jobs:
       - uses: actions/checkout@v6
       - name: Run test
         run: bash test.sh "$OPTION"
+  fig6:
+    if: ${{ inputs.task == 'fig6' }}
+    runs-on: [self-hosted, ae-server]
+    env:
+      OPTION: ${{ inputs.option }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Run fig6
+        run: bash scripts/fig6.sh "$OPTION"
   fig11:
     if: ${{ inputs.task == 'fig11' }}
     runs-on: [self-hosted, ae-machine]
