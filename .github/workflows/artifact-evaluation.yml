@@ -30,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Run test
-        run: bash test.sh "$OPTION"
+        run: bash scripts/test.sh "$OPTION"
   fig6:
     if: ${{ inputs.task == 'fig6' }}
     runs-on: [self-hosted, ae-server]
@@ -87,7 +87,7 @@ jobs:
         if: ${{ contains(inputs.option, 'tflm') }}
         run: bash utils/gather_tflm_mem.sh
       - name: Run fig11
-        run: bash fig11.sh "$OPTION"
+        run: bash scripts/fig11/fig11.sh "$OPTION"
       - name: Upload results
         uses: actions/upload-artifact@v7
         with:
