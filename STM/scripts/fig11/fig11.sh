@@ -7,4 +7,4 @@ BOARD="${BASH_REMATCH[2]}"
 
 echo "Running engine: $ENGINE, board: $BOARD..."
 
-bash "utils/run_${ENGINE}_${BOARD}.sh" "scripts/fig11/${ENGINE}.txt" ram,latency
+bash "scripts/run_${ENGINE}_${BOARD}.sh" "scripts/fig11/${ENGINE}.txt" ram,latency
