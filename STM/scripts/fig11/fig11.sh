@@ -1,20 +1,10 @@
 set -euo pipefail
 
-case "$1" in
-    tflm_f7)
-        bash utils/run_tflm_f7.sh scripts/fig11/tflite.txt ram,latency
-        ;;
-    tflm_h7)
-        bash utils/run_tflm_h7.sh scripts/fig11/tflite.txt ram,latency
-        ;;
-    cubeai_f7)
-        bash utils/run_cubeai_f7.sh scripts/fig11/onnx.txt ram,latency
-        ;;
-    cubeai_h7)
-        bash utils/run_cubeai_h7.sh scripts/fig11/onnx.txt ram,latency
-        ;;
-    *)
-        echo "unknown target: $1"
-        exit 1
-        ;;
-esac
+[[ "$OPTION" =~ ^(tflm|cubeai)-(f7|h7)$ ]] || { echo "Error: Invalid OPTION"; exit 1; }
+
+ENGINE="${BASH_REMATCH[1]}"
+BOARD="${BASH_REMATCH[2]}"
+
+echo "Running engine: $ENGINE, board: $BOARD..."
+
+bash "utils/run_${ENGINE}_${BOARD}.sh" "scripts/fig11/${ENGINE}.txt" ram,latency
