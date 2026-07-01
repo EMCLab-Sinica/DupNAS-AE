@@ -1,7 +1,7 @@
 set -euo pipefail
 
-if [ -z "$1" ]; then
-    echo "usage: $0 MODELS_TXT"
+if [ $# -lt 2 ]; then
+    echo "usage: $0 MODELS_TXT flash,ram,latency"
     exit 1
 fi
 
@@ -19,6 +19,7 @@ SERIAL_NUMBER="0021002A3133510837363734"
 TTY_DEVICE="/dev/ttyACM1"
 
 MODELS_TXT="$1"
+METRICS="$2"
 ONNX_MODELS_DIR="onnx_models"
 TFLM_MODELS_DIR="tflm-template/src/models"
 RESULTS_DIR="$PWD/results/cubeai_h7"
@@ -33,7 +34,7 @@ TARGET="stm32h7"
 
 rm -rf "$RESULTS_DIR"
 mkdir -p "$RESULTS_DIR"
-echo "model_name,flash,ram,latency" > "$RESULTS_CSV"
+echo "model_name,$METRICS" > "$RESULTS_CSV"
 
 run_model() {
     local MODEL_FILE="$1"
@@ -106,17 +107,26 @@ while IFS= read -r MODEL || [ -n "$MODEL" ]; do
 
     kill "$RECORD_PID"
 
-    FLASH=$(grep "weights (ro)" "$HOST_LOG" | awk '{print $4}' | tr -d ",")
+    FLASH=$(grep "weights (ro)" "$HOST_LOG" | awk '{print $4}' | tr -d "," || true)
     FLASH=${FLASH:-NA}
 
-    RAM=$(grep "activations (rw)" $HOST_LOG | awk '{print $4}' | tr -d ",")
+    RAM=$(grep "activations (rw)" "$HOST_LOG" | awk '{print $4}' | tr -d "," || true)
     RAM=${RAM:-NA}
 
-    LATENCY=$(grep "duration DWT" $BOARD_LOG | awk '{print $5}')
+    LATENCY=$(grep "duration DWT" "$BOARD_LOG" | awk '{print $5}' || true)
     LATENCY=${LATENCY:-NA}
 
-    echo "flash: $FLASH, ram: $RAM, latency: $LATENCY"
-    echo "$MODEL_NAME,$FLASH,$RAM,$LATENCY" >> "$RESULTS_CSV"
+    ROW="$MODEL_NAME"
+    SUMMARY=""
+    for METRIC in ${METRICS//,/ }; do
+        VAR="${METRIC^^}"
+        VALUE="${!VAR}"
+        ROW="$ROW,$VALUE"
+        SUMMARY="${SUMMARY:+$SUMMARY, }$METRIC: $VALUE"
+    done
+
+    echo "$SUMMARY"
+    echo "$ROW" >> "$RESULTS_CSV"
 done < "$MODELS_TXT"
 
 echo "All jobs finished."
