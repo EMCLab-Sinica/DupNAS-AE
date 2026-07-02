@@ -29,7 +29,7 @@ jobs:
       - name: Link models
         run: bash scripts/link_models.sh
       - name: Run fig6
-        run: bash scripts/fig6.sh "$OPTION"
+        run: bash scripts/fig6.sh
   fig8:
     if: ${{ inputs.task == 'fig8' }}
     runs-on: [self-hosted, ae-machine]
@@ -45,7 +45,7 @@ jobs:
       - name: Patch repository root
         run: bash scripts/patch_repo_root.sh
       - name: Run fig8
-        run: bash scripts/fig8/fig8.sh "$OPTION"
+        run: bash scripts/fig8/fig8.sh
       - name: Upload results
         uses: actions/upload-artifact@v7
         with:
@@ -61,7 +61,7 @@ jobs:
       - name: Link models
         run: bash scripts/link_models.sh
       - name: Run fig9
-        run: bash scripts/fig9.sh "$OPTION"
+        run: bash scripts/fig9.sh
   fig10:
     if: ${{ inputs.task == 'fig10' }}
     runs-on: [self-hosted, ae-server]
@@ -72,7 +72,7 @@ jobs:
       - name: Link models
         run: bash scripts/link_models.sh
       - name: Run fig10
-        run: bash scripts/fig10.sh "$OPTION"
+        run: bash scripts/fig10.sh
       - name: Upload results
         uses: actions/upload-artifact@v7
         with:
@@ -96,7 +96,7 @@ jobs:
         if: ${{ contains(inputs.option, 'tflm') }}
         run: bash scripts/gather_tflm_mem.sh
       - name: Run fig11
-        run: bash scripts/fig11/fig11.sh "$OPTION"
+        run: bash scripts/fig11/fig11.sh
       - name: Upload results
         uses: actions/upload-artifact@v7
         with:
