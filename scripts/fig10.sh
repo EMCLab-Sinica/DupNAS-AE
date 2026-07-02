@@ -8,6 +8,6 @@ VM="${BASH_REMATCH[3]}"
 
 echo "Executing exgrule: $EXGRULE, model: $MODEL, VM: $VM..."
 
-cd HEtest
+cd DupNAS/HEtest
 bash "run_${MODEL}_exgrule.sh" "$EXGRULE" "$VM"
 python3.9 collect_allseed_report.py --exgrule "$EXGRULE" --model "$MODEL" --vm_setting "$VM"
