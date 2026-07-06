@@ -37,7 +37,26 @@ def _ensure_toposorted(nodes):
                 assert producer_index < node_index, "graph nodes are not topologically sorted"
 
 
-def rewrite_model(model, groups):
+def _normalize_ts_method(ts_method):
+    method = (ts_method or "").lower()
+    if "dupnas" in method:
+        return "dupnas"
+    if "tinyts" in method:
+        return "tinyts"
+    if "patchts" in method:
+        return "patchts"
+    if "nots" in method:
+        return "nots"
+    return method or "unknown"
+
+
+def rewrite_model(model, groups, ts_method="unknown"):
+    ts_method = _normalize_ts_method(ts_method)
+    # Keep the old strict check for DupNAS. TinyTS/PatchTS may create groups
+    # where a non-sink output also feeds an outside consumer, so those outputs
+    # are reconstructed with Concat and rewired for external users.
+    allow_external_non_sink_outputs = ts_method in {"tinyts", "patchts"}
+
     model = onnx.version_converter.convert_version(model, _TARGET_OPSET)
     model = onnx.shape_inference.infer_shapes(model)
     graph = gs.import_onnx(model)
@@ -49,10 +68,20 @@ def rewrite_model(model, groups):
     orig_nodes = list(graph.nodes)
     _ensure_toposorted(orig_nodes)
 
+    print(
+        f"[TS] method={ts_method}, "
+        f"allow_external_non_sink_outputs={allow_external_non_sink_outputs}"
+    )
+
     for group_cfg in groups:
-        group_info = _analyze_group(orig_nodes, group_cfg, graph.outputs)
-        new_nodes, stitched_exit = _build_group(group_info)
-        _apply_group(graph, orig_nodes, group_info, new_nodes, stitched_exit)
+        group_info = _analyze_group(
+            orig_nodes,
+            group_cfg,
+            graph.outputs,
+            allow_external_non_sink_outputs=allow_external_non_sink_outputs,
+        )
+        new_nodes, stitched_outputs = _build_group(group_info)
+        _apply_group(graph, orig_nodes, group_info, new_nodes, stitched_outputs)
 
     _ensure_toposorted(graph.nodes)
     out_model = gs.export_onnx(graph)

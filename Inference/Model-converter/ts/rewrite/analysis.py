@@ -24,6 +24,9 @@ _GroupInfo = namedtuple(
         "entry_tensor",
         "exit_tensor",
         "node_specs",
+        # Non-sink nodes whose full output tensor is still needed outside
+        # the split group. Enabled only for tinyts/patchts style groups.
+        "external_output_local_indices",
     ],
 )
 
@@ -79,6 +82,11 @@ def _validate_group_topology(node_specs, in_edges, out_edges):
 
 
 def _validate_non_sink_outputs(group_nodes, sink_local_index, graph_outputs):
+    """Original strict check used by dupnas.
+
+    DupNAS groups are expected to include all consumers inside the same group.
+    Therefore, a non-sink node must not feed an external consumer or graph output.
+    """
     group_node_ids = {id(node) for node in group_nodes}
     graph_output_ids = {id(tensor) for tensor in graph_outputs}
 
@@ -101,7 +109,35 @@ def _validate_non_sink_outputs(group_nodes, sink_local_index, graph_outputs):
         )
 
 
-def _collect_node_specs(group_nodes, graph_outputs):
+def _collect_external_output_local_indices(group_nodes, sink_local_index, graph_outputs):
+    """Return non-sink local indices whose full outputs are needed outside.
+
+    This is used only for tinyts/patchts style groups. For fan-out tensors,
+    a non-sink node can feed both an in-group consumer and an outside consumer.
+    The tiled path uses split tensors, while outside consumers receive a
+    reconstructed full tensor formed by concatenating all split outputs.
+    """
+    group_node_ids = {id(node) for node in group_nodes}
+    graph_output_ids = {id(tensor) for tensor in graph_outputs}
+    external_output_local_indices = []
+
+    for local_index, node in enumerate(group_nodes):
+        if local_index == sink_local_index:
+            continue
+
+        output_tensor = node.outputs[0]
+        external_consumers = [
+            consumer for consumer in output_tensor.outputs if id(consumer) not in group_node_ids
+        ]
+        feeds_graph_output = id(output_tensor) in graph_output_ids
+
+        if external_consumers or feeds_graph_output:
+            external_output_local_indices.append(local_index)
+
+    return external_output_local_indices
+
+
+def _collect_node_specs(group_nodes, graph_outputs, allow_external_non_sink_outputs=False):
     local_index_by_id = {id(node): local_index for local_index, node in enumerate(group_nodes)}
 
     entry_tensor = None
@@ -154,17 +190,28 @@ def _collect_node_specs(group_nodes, graph_outputs):
 
     in_edges, out_edges = _build_adjacency(len(group_nodes), internal_edges)
     sink_local_index = _validate_group_topology(node_specs, in_edges, out_edges)
-    _validate_non_sink_outputs(group_nodes, sink_local_index, graph_outputs)
 
-    return entry_tensor, node_specs
+    if allow_external_non_sink_outputs:
+        external_output_local_indices = _collect_external_output_local_indices(
+            group_nodes, sink_local_index, graph_outputs
+        )
+    else:
+        _validate_non_sink_outputs(group_nodes, sink_local_index, graph_outputs)
+        external_output_local_indices = []
+
+    return entry_tensor, node_specs, external_output_local_indices
 
 
-def _analyze_group(orig_nodes, group_cfg, graph_outputs):
+def _analyze_group(orig_nodes, group_cfg, graph_outputs, allow_external_non_sink_outputs=False):
     start, end = group_cfg.node_range
     assert 0 <= start <= end < len(orig_nodes), f"invalid node_range {group_cfg.node_range}"
 
     group_nodes = orig_nodes[start : end + 1]
-    entry_tensor, node_specs = _collect_node_specs(group_nodes, graph_outputs)
+    entry_tensor, node_specs, external_output_local_indices = _collect_node_specs(
+        group_nodes,
+        graph_outputs,
+        allow_external_non_sink_outputs=allow_external_non_sink_outputs,
+    )
     exit_tensor = group_nodes[-1].outputs[0]
 
     return _GroupInfo(
@@ -175,4 +222,5 @@ def _analyze_group(orig_nodes, group_cfg, graph_outputs):
         entry_tensor=entry_tensor,
         exit_tensor=exit_tensor,
         node_specs=node_specs,
+        external_output_local_indices=external_output_local_indices,
     )
