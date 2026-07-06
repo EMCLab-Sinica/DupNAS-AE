@@ -70,18 +70,29 @@ Below is a brief description of the main directories and files in this repositor
   | `--vmsize` | VM constraint in KB | `96`, `128`, `256` |
   | `--suffix` | Experiment suffix for naming outputs | user-defined string |
   
-5. Extract the network solution from `best_solution,json` and use it to fill in `spec_model.txt`
-6. Generate the ONNX models for the selected solution using 
-  `python3.9 -m NASBase.spec_onnx_gen --arc <arc>`. The outputs will be saved in `/DupNAS/genonnx/`.
-7. Go to `/DupNAS/genonnx/`, then run `python3.9 -m DupNAS_SA.py --onnx <onnx_name> --mode <mode> --vmsize <vmsize> --export_file` to generate the TS configuration. Alternatively, you can run `run_all_onnx.sh` to automatically generate TS configurations for all ONNX models in the directory.
-8. Run `gen_ts_cfg.py` to collect the `split-configuration JSON file` for the model converter
+5. Extract the selected network solution from `<suffix>_best_solution.json`, and use it to fill in: `/DupNAS/NASBase/spec_model_<arc>.txt`.
+6. For easier use, ONNX generation and TS conversion are integrated into the model-converter flow. Please continue with Step 2 in the next section.
+
+<!-- 6. Generate the ONNX models for the selected solution using  -->
+  <!-- `python3.9 -m NASBase.spec_onnx_gen --arc <arc>`. The outputs will be saved in `/DupNAS/genonnx/`. -->
+<!-- 7. Go to `/DupNAS/genonnx/`, then run `python3.9 -m DupNAS_SA.py --onnx <onnx_name> --mode <mode> --vmsize <vmsize> --export_file` to generate the TS configuration. Alternatively, you can run `run_all_onnx.sh` to automatically generate TS configurations for all ONNX models in the directory.
+8. Run `gen_ts_cfg.py` to collect the `split-configuration JSON file` for the model converter -->
 
 
 ### ✂️ Setup and running the model converter
 
-1. Copy the ONNX model and its corresponding split-configuration JSON file from `/DupNAS/genonnx/` to `/Inference/Model-converter/`
-2. Split the model by following [ONNX Tensor Splitter](Inference/Model-converter/README.md).
-3. Convert the ONNX models to TFLite with [onnx2tf](https://github.com/PINTO0309/onnx2tf). We recommend using the official Docker image:
+<!-- 1. Copy the ONNX model and its corresponding split-configuration JSON file from `/DupNAS/genonnx/` to `/Inference/Model-converter/` -->
+<!-- 2. Split the model by following [ONNX Tensor Splitter](Inference/Model-converter/README.md). -->
+1. Make sure `/DupNAS/NASBase/spec_model_<arc>.txt` has been completed.
+2. Go to `/DupNAS/`, then run the corresponding script to generate the selected ONNX models: 
+  ```bash
+  bash gen_selected_shuffle.sh
+  bash gen_selected_mbv2.sh
+  bash gen_selected_incept.sh
+  ```
+3. The original selected ONNX models are saved under: `/DupNAS/genonnx/<arc>/`. 
+   The split ONNX models are saved under:  `/Inference/Model-converter/ts_converted/<arc>/`.
+4. Convert the ONNX models to TFLite with [onnx2tf](https://github.com/PINTO0309/onnx2tf). We recommend using the official Docker image:
    ```bash
    run --rm -it -v $(pwd):/workdir -w /workdir ghcr.io/pinto0309/onnx2tf:1.28.5  
    onnx2tf -i ONNX_MODEL -oiqt
