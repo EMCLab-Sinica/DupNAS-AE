@@ -183,8 +183,17 @@ echo "================== DONE =================="
 echo "Outputs (export_file) saved under: $OUTDIR"
 echo "CSV     : $CSV"
 echo "=========================================="
+
+
+echo "========== Generate TS config =========="
+"$PY" "$SCRIPT_DIR/gen_ts_cfg.py" || {
+    echo "[ERROR] gen_ts_cfg.py failed"
+    exit 1
+}
+
+echo "========== run_all_onnx.sh DONE =========="
 echo -e "\a"
 
-echo
-echo "Press ENTER to exit..."
-read -r
+# echo
+# echo "Press ENTER to exit..."
+# read -r
