@@ -1,6 +1,7 @@
 import sys
 import os.path
 import itertools
+import copy
 from pprint import pprint
 #from .train_supernet import run_supernet_train
 import statistics
@@ -47,6 +48,28 @@ from collections import defaultdict
 
 #SPEC_FILE = os.path.join(os.path.dirname(__file__), "spec_models_.txt")
 SPEC_FILE = os.path.join(os.path.dirname(__file__), "spec_models_"+Settings.NAS_SETTINGS_GENERAL['ARC']+".txt")
+
+
+def build_finetuned_subnet_from_supernet(supernet, subnet_config):
+    """
+    Build the requested subnet architecture, then replace its trainable modules
+    with the matching fine-tuned modules from the loaded supernet.
+    """
+    subnet = MNASSubNet(**subnet_config)
+
+    subnet.stem = copy.deepcopy(supernet.stem)
+    subnet.classifier = copy.deepcopy(supernet.classifier)
+
+    for bix, block_choice in enumerate(subnet.choice_per_block):
+        try:
+            choice_idx = supernet.blk_choices.index(list(block_choice))
+        except ValueError as exc:
+            raise ValueError(
+                f"Block {bix} choice {block_choice} is not in the supernet search space"
+            ) from exc
+        subnet.choice_blocks[bix] = copy.deepcopy(supernet.choice_blocks[bix][choice_idx])
+
+    return subnet
 
 def parse_spec_file(path: str):
     """
@@ -138,13 +161,15 @@ else:
                 ckptname = f"{name}_supernet_{Settings.NAS_SETTINGS_GENERAL['ARC']}_best-fine-tuned.pth"
                 print(f"[INFO] Loading subnet-specific supernet: {ckptname}")
 
+                ckpt_file = os.path.join(ckpt_path, ckptname)
                 supernet = get_supernet(
                     global_settings=Settings,
                     dataset=dataset,
                     load_state=True,
-                    supernet_train_chkpnt_fname=ckpt_path+ckptname,
+                    supernet_train_chkpnt_fname=ckpt_file,
                     width_multiplier=width_multiplier
                 )
+                supernet.eval()
 
                 # only generate config for this subnet
                 subcfg_iter = sample_subnet_configs_from_file(
@@ -167,10 +192,11 @@ else:
                     continue
 
                 each_subnet_config = subcfgs[0]
-                each_subnet = MNASSubNet(**each_subnet_config)
+                each_subnet = build_finetuned_subnet_from_supernet(supernet, each_subnet_config)
+                each_subnet.eval()
                 subnet_name = getattr(each_subnet, "name", name)
 
-                print(f"[INFO] Exporting: wm={width_multiplier}, ir={input_resolution}, name={subnet_name}")
+                print(f"[INFO] Exporting fine-tuned subnet: wm={width_multiplier}, ir={input_resolution}, name={subnet_name}")
 
                 subnet_dims = get_network_dimension(each_subnet, input_tensor=net_input)
                 subnet_obj = get_network_obj(subnet_dims)
@@ -197,6 +223,10 @@ else:
                     export_params=True,
                     opset_version=11,
                     do_constant_folding=True,
+                    # dynamic_axes={
+                    #     "input": {0: "batch_size"},
+                    #     "output": {0: "batch_size"},
+                    # },
                 )
 
                 if not os.path.exists(onnx_file) or os.path.getsize(onnx_file) < 10_000:

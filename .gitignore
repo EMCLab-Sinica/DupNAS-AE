@@ -25,3 +25,5 @@ DupNAS/TStime/mobilenet/
 DupNAS/TStime/inception/
 
 DupNAS/HEtest/outputs/
+
+DupNAS/genonnx/old_onnx/
