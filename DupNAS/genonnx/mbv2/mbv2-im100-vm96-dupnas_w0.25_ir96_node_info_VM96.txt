@@ -1,7 +1,7 @@
 --- Node 0 ---
 Name: Conv_0
 Type: Conv
-Inputs: ['input', 'onnx::Conv_452', 'onnx::Conv_453']
+Inputs: ['input', 'onnx::Conv_398', 'onnx::Conv_399']
 Outputs: ['input.4']
 Input Shapes: [[1, 3, 96, 96], None, None]
 Output Shapes: [[1, 16, 96, 96]]
@@ -13,7 +13,7 @@ Branch Label: None
 --- Node 1 ---
 Name: Conv_1
 Type: Conv
-Inputs: ['input.4', 'onnx::Conv_455', 'onnx::Conv_456']
+Inputs: ['input.4', 'onnx::Conv_401', 'onnx::Conv_402']
 Outputs: ['input.12']
 Input Shapes: [[1, 16, 96, 96], None, None]
 Output Shapes: [[1, 16, 48, 48]]
@@ -37,7 +37,7 @@ Branch Label: None
 --- Node 3 ---
 Name: Conv_3
 Type: Conv
-Inputs: ['input.16', 'onnx::Conv_458', 'onnx::Conv_459']
+Inputs: ['input.16', 'onnx::Conv_404', 'onnx::Conv_405']
 Outputs: ['input.24']
 Input Shapes: [[1, 16, 48, 48], None, None]
 Output Shapes: [[1, 6, 48, 48]]
@@ -61,10 +61,10 @@ Branch Label: set_0_share_input
 --- Node 5 ---
 Name: Conv_5
 Type: Conv
-Inputs: ['input.28', 'onnx::Conv_461', 'onnx::Conv_462']
+Inputs: ['input.28', 'onnx::Conv_407', 'onnx::Conv_408']
 Outputs: ['input.36']
 Input Shapes: [[1, 6, 48, 48], None, None]
-Output Shapes: [[1, 64, 48, 48]]
+Output Shapes: [[1, 96, 48, 48]]
 Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
 Data In Index: [5]
 Data Out Index: [6]
@@ -75,8 +75,8 @@ Name: Relu_6
 Type: Relu
 Inputs: ['input.36']
 Outputs: ['input.40']
-Input Shapes: [[1, 64, 48, 48]]
-Output Shapes: [[1, 64, 48, 48]]
+Input Shapes: [[1, 96, 48, 48]]
+Output Shapes: [[1, 96, 48, 48]]
 Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
 Data In Index: [6]
 Data Out Index: [7]
@@ -85,10 +85,10 @@ Branch Label: set_0_br_1_mid
 --- Node 7 ---
 Name: Conv_7
 Type: Conv
-Inputs: ['input.40', 'onnx::Conv_464', 'onnx::Conv_465']
+Inputs: ['input.40', 'onnx::Conv_410', 'onnx::Conv_411']
 Outputs: ['input.48']
-Input Shapes: [[1, 64, 48, 48], None, None]
-Output Shapes: [[1, 64, 48, 48]]
+Input Shapes: [[1, 96, 48, 48], None, None]
+Output Shapes: [[1, 96, 48, 48]]
 Attributes: {'stride': [1, 1], 'pads': [1, 1, 1, 1], 'kernel_shape': [3, 3]}
 Data In Index: [7]
 Data Out Index: [8]
@@ -99,8 +99,8 @@ Name: Relu_8
 Type: Relu
 Inputs: ['input.48']
 Outputs: ['input.52']
-Input Shapes: [[1, 64, 48, 48]]
-Output Shapes: [[1, 64, 48, 48]]
+Input Shapes: [[1, 96, 48, 48]]
+Output Shapes: [[1, 96, 48, 48]]
 Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
 Data In Index: [8]
 Data Out Index: [9]
@@ -109,9 +109,9 @@ Branch Label: set_0_br_1_mid
 --- Node 9 ---
 Name: Conv_9
 Type: Conv
-Inputs: ['input.52', 'onnx::Conv_467', 'onnx::Conv_468']
-Outputs: ['onnx::Add_466']
-Input Shapes: [[1, 64, 48, 48], None, None]
+Inputs: ['input.52', 'onnx::Conv_413', 'onnx::Conv_414']
+Outputs: ['onnx::Add_412']
+Input Shapes: [[1, 96, 48, 48], None, None]
 Output Shapes: [[1, 6, 48, 48]]
 Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
 Data In Index: [9]
@@ -121,7 +121,7 @@ Branch Label: set_0_br_1_end
 --- Node 10 ---
 Name: Add_10
 Type: Add
-Inputs: ['input.28', 'onnx::Add_466']
+Inputs: ['input.28', 'onnx::Add_412']
 Outputs: ['input.60']
 Input Shapes: [[1, 6, 48, 48], [1, 6, 48, 48]]
 Output Shapes: [[1, 6, 48, 48]]
@@ -133,7 +133,7 @@ Branch Label: set_0_merge_output
 --- Node 11 ---
 Name: Conv_11
 Type: Conv
-Inputs: ['input.60', 'onnx::Conv_470', 'onnx::Conv_471']
+Inputs: ['input.60', 'onnx::Conv_416', 'onnx::Conv_417']
 Outputs: ['input.68']
 Input Shapes: [[1, 6, 48, 48], None, None]
 Output Shapes: [[1, 12, 48, 48]]
@@ -157,7 +157,7 @@ Branch Label: None
 --- Node 13 ---
 Name: Conv_13
 Type: Conv
-Inputs: ['input.72', 'onnx::Conv_473', 'onnx::Conv_474']
+Inputs: ['input.72', 'onnx::Conv_419', 'onnx::Conv_420']
 Outputs: ['input.80']
 Input Shapes: [[1, 12, 48, 48], None, None]
 Output Shapes: [[1, 12, 24, 24]]
@@ -181,7 +181,7 @@ Branch Label: None
 --- Node 15 ---
 Name: Conv_15
 Type: Conv
-Inputs: ['input.84', 'onnx::Conv_476', 'onnx::Conv_477']
+Inputs: ['input.84', 'onnx::Conv_422', 'onnx::Conv_423']
 Outputs: ['input.92']
 Input Shapes: [[1, 12, 24, 24], None, None]
 Output Shapes: [[1, 12, 24, 24]]
@@ -205,7 +205,7 @@ Branch Label: set_1_share_input
 --- Node 17 ---
 Name: Conv_17
 Type: Conv
-Inputs: ['input.96', 'onnx::Conv_479', 'onnx::Conv_480']
+Inputs: ['input.96', 'onnx::Conv_425', 'onnx::Conv_426']
 Outputs: ['input.104']
 Input Shapes: [[1, 12, 24, 24], None, None]
 Output Shapes: [[1, 72, 24, 24]]
@@ -229,7 +229,7 @@ Branch Label: set_1_br_1_mid
 --- Node 19 ---
 Name: Conv_19
 Type: Conv
-Inputs: ['input.108', 'onnx::Conv_482', 'onnx::Conv_483']
+Inputs: ['input.108', 'onnx::Conv_428', 'onnx::Conv_429']
 Outputs: ['input.116']
 Input Shapes: [[1, 72, 24, 24], None, None]
 Output Shapes: [[1, 72, 24, 24]]
@@ -253,8 +253,8 @@ Branch Label: set_1_br_1_mid
 --- Node 21 ---
 Name: Conv_21
 Type: Conv
-Inputs: ['input.120', 'onnx::Conv_485', 'onnx::Conv_486']
-Outputs: ['onnx::Add_484']
+Inputs: ['input.120', 'onnx::Conv_431', 'onnx::Conv_432']
+Outputs: ['onnx::Add_430']
 Input Shapes: [[1, 72, 24, 24], None, None]
 Output Shapes: [[1, 12, 24, 24]]
 Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
@@ -265,7 +265,7 @@ Branch Label: set_1_br_1_end
 --- Node 22 ---
 Name: Add_22
 Type: Add
-Inputs: ['input.96', 'onnx::Add_484']
+Inputs: ['input.96', 'onnx::Add_430']
 Outputs: ['input.128']
 Input Shapes: [[1, 12, 24, 24], [1, 12, 24, 24]]
 Output Shapes: [[1, 12, 24, 24]]
@@ -277,7 +277,7 @@ Branch Label: set_1_merge_output
 --- Node 23 ---
 Name: Conv_23
 Type: Conv
-Inputs: ['input.128', 'onnx::Conv_488', 'onnx::Conv_489']
+Inputs: ['input.128', 'onnx::Conv_434', 'onnx::Conv_435']
 Outputs: ['input.136']
 Input Shapes: [[1, 12, 24, 24], None, None]
 Output Shapes: [[1, 24, 24, 24]]
@@ -301,7 +301,7 @@ Branch Label: None
 --- Node 25 ---
 Name: Conv_25
 Type: Conv
-Inputs: ['input.140', 'onnx::Conv_491', 'onnx::Conv_492']
+Inputs: ['input.140', 'onnx::Conv_437', 'onnx::Conv_438']
 Outputs: ['input.148']
 Input Shapes: [[1, 24, 24, 24], None, None]
 Output Shapes: [[1, 24, 24, 24]]
@@ -325,7 +325,7 @@ Branch Label: None
 --- Node 27 ---
 Name: Conv_27
 Type: Conv
-Inputs: ['input.152', 'onnx::Conv_494', 'onnx::Conv_495']
+Inputs: ['input.152', 'onnx::Conv_440', 'onnx::Conv_441']
 Outputs: ['input.160']
 Input Shapes: [[1, 24, 24, 24], None, None]
 Output Shapes: [[1, 12, 24, 24]]
@@ -349,7 +349,7 @@ Branch Label: set_2_share_input
 --- Node 29 ---
 Name: Conv_29
 Type: Conv
-Inputs: ['input.164', 'onnx::Conv_497', 'onnx::Conv_498']
+Inputs: ['input.164', 'onnx::Conv_443', 'onnx::Conv_444']
 Outputs: ['input.172']
 Input Shapes: [[1, 12, 24, 24], None, None]
 Output Shapes: [[1, 144, 24, 24]]
@@ -373,7 +373,7 @@ Branch Label: set_2_br_1_mid
 --- Node 31 ---
 Name: Conv_31
 Type: Conv
-Inputs: ['input.176', 'onnx::Conv_500', 'onnx::Conv_501']
+Inputs: ['input.176', 'onnx::Conv_446', 'onnx::Conv_447']
 Outputs: ['input.184']
 Input Shapes: [[1, 144, 24, 24], None, None]
 Output Shapes: [[1, 144, 24, 24]]
@@ -397,8 +397,8 @@ Branch Label: set_2_br_1_mid
 --- Node 33 ---
 Name: Conv_33
 Type: Conv
-Inputs: ['input.188', 'onnx::Conv_503', 'onnx::Conv_504']
-Outputs: ['onnx::Add_502']
+Inputs: ['input.188', 'onnx::Conv_449', 'onnx::Conv_450']
+Outputs: ['onnx::Add_448']
 Input Shapes: [[1, 144, 24, 24], None, None]
 Output Shapes: [[1, 12, 24, 24]]
 Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
@@ -409,7 +409,7 @@ Branch Label: set_2_br_1_end
 --- Node 34 ---
 Name: Add_34
 Type: Add
-Inputs: ['input.164', 'onnx::Add_502']
+Inputs: ['input.164', 'onnx::Add_448']
 Outputs: ['input.196']
 Input Shapes: [[1, 12, 24, 24], [1, 12, 24, 24]]
 Output Shapes: [[1, 12, 24, 24]]
@@ -421,7 +421,7 @@ Branch Label: set_2_merge_output
 --- Node 35 ---
 Name: Conv_35
 Type: Conv
-Inputs: ['input.196', 'onnx::Conv_506', 'onnx::Conv_507']
+Inputs: ['input.196', 'onnx::Conv_452', 'onnx::Conv_453']
 Outputs: ['input.204']
 Input Shapes: [[1, 12, 24, 24], None, None]
 Output Shapes: [[1, 24, 24, 24]]
@@ -445,11 +445,11 @@ Branch Label: None
 --- Node 37 ---
 Name: Conv_37
 Type: Conv
-Inputs: ['input.208', 'onnx::Conv_509', 'onnx::Conv_510']
+Inputs: ['input.208', 'onnx::Conv_455', 'onnx::Conv_456']
 Outputs: ['input.216']
 Input Shapes: [[1, 24, 24, 24], None, None]
 Output Shapes: [[1, 24, 12, 12]]
-Attributes: {'stride': [2, 2], 'pads': [1, 1, 1, 1], 'kernel_shape': [3, 3]}
+Attributes: {'stride': [2, 2], 'pads': [2, 2, 2, 2], 'kernel_shape': [5, 5]}
 Data In Index: [37]
 Data Out Index: [38]
 Branch Label: None
@@ -469,7 +469,7 @@ Branch Label: None
 --- Node 39 ---
 Name: Conv_39
 Type: Conv
-Inputs: ['input.220', 'onnx::Conv_512', 'onnx::Conv_513']
+Inputs: ['input.220', 'onnx::Conv_458', 'onnx::Conv_459']
 Outputs: ['input.228']
 Input Shapes: [[1, 24, 12, 12], None, None]
 Output Shapes: [[1, 24, 12, 12]]
@@ -493,7 +493,7 @@ Branch Label: set_3_share_input
 --- Node 41 ---
 Name: Conv_41
 Type: Conv
-Inputs: ['input.232', 'onnx::Conv_515', 'onnx::Conv_516']
+Inputs: ['input.232', 'onnx::Conv_461', 'onnx::Conv_462']
 Outputs: ['input.240']
 Input Shapes: [[1, 24, 12, 12], None, None]
 Output Shapes: [[1, 96, 12, 12]]
@@ -517,11 +517,11 @@ Branch Label: set_3_br_1_mid
 --- Node 43 ---
 Name: Conv_43
 Type: Conv
-Inputs: ['input.244', 'onnx::Conv_518', 'onnx::Conv_519']
+Inputs: ['input.244', 'onnx::Conv_464', 'onnx::Conv_465']
 Outputs: ['input.252']
 Input Shapes: [[1, 96, 12, 12], None, None]
 Output Shapes: [[1, 96, 12, 12]]
-Attributes: {'stride': [1, 1], 'pads': [1, 1, 1, 1], 'kernel_shape': [3, 3]}
+Attributes: {'stride': [1, 1], 'pads': [2, 2, 2, 2], 'kernel_shape': [5, 5]}
 Data In Index: [43]
 Data Out Index: [44]
 Branch Label: set_3_br_1_mid
@@ -541,8 +541,8 @@ Branch Label: set_3_br_1_mid
 --- Node 45 ---
 Name: Conv_45
 Type: Conv
-Inputs: ['input.256', 'onnx::Conv_521', 'onnx::Conv_522']
-Outputs: ['onnx::Add_520']
+Inputs: ['input.256', 'onnx::Conv_467', 'onnx::Conv_468']
+Outputs: ['onnx::Add_466']
 Input Shapes: [[1, 96, 12, 12], None, None]
 Output Shapes: [[1, 24, 12, 12]]
 Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
@@ -553,7 +553,7 @@ Branch Label: set_3_br_1_end
 --- Node 46 ---
 Name: Add_46
 Type: Add
-Inputs: ['input.232', 'onnx::Add_520']
+Inputs: ['input.232', 'onnx::Add_466']
 Outputs: ['input.264']
 Input Shapes: [[1, 24, 12, 12], [1, 24, 12, 12]]
 Output Shapes: [[1, 24, 12, 12]]
@@ -565,7 +565,7 @@ Branch Label: set_3_merge_output
 --- Node 47 ---
 Name: Conv_47
 Type: Conv
-Inputs: ['input.264', 'onnx::Conv_524', 'onnx::Conv_525']
+Inputs: ['input.264', 'onnx::Conv_470', 'onnx::Conv_471']
 Outputs: ['input.272']
 Input Shapes: [[1, 24, 12, 12], None, None]
 Output Shapes: [[1, 48, 12, 12]]
@@ -589,11 +589,11 @@ Branch Label: None
 --- Node 49 ---
 Name: Conv_49
 Type: Conv
-Inputs: ['input.276', 'onnx::Conv_527', 'onnx::Conv_528']
+Inputs: ['input.276', 'onnx::Conv_473', 'onnx::Conv_474']
 Outputs: ['input.284']
 Input Shapes: [[1, 48, 12, 12], None, None]
 Output Shapes: [[1, 48, 12, 12]]
-Attributes: {'stride': [1, 1], 'pads': [1, 1, 1, 1], 'kernel_shape': [3, 3]}
+Attributes: {'stride': [1, 1], 'pads': [2, 2, 2, 2], 'kernel_shape': [5, 5]}
 Data In Index: [49]
 Data Out Index: [50]
 Branch Label: None
@@ -613,7 +613,7 @@ Branch Label: None
 --- Node 51 ---
 Name: Conv_51
 Type: Conv
-Inputs: ['input.288', 'onnx::Conv_530', 'onnx::Conv_531']
+Inputs: ['input.288', 'onnx::Conv_476', 'onnx::Conv_477']
 Outputs: ['input.296']
 Input Shapes: [[1, 48, 12, 12], None, None]
 Output Shapes: [[1, 24, 12, 12]]
@@ -637,7 +637,7 @@ Branch Label: set_4_share_input
 --- Node 53 ---
 Name: Conv_53
 Type: Conv
-Inputs: ['input.300', 'onnx::Conv_533', 'onnx::Conv_534']
+Inputs: ['input.300', 'onnx::Conv_479', 'onnx::Conv_480']
 Outputs: ['input.308']
 Input Shapes: [[1, 24, 12, 12], None, None]
 Output Shapes: [[1, 192, 12, 12]]
@@ -661,11 +661,11 @@ Branch Label: set_4_br_1_mid
 --- Node 55 ---
 Name: Conv_55
 Type: Conv
-Inputs: ['input.312', 'onnx::Conv_536', 'onnx::Conv_537']
+Inputs: ['input.312', 'onnx::Conv_482', 'onnx::Conv_483']
 Outputs: ['input.320']
 Input Shapes: [[1, 192, 12, 12], None, None]
 Output Shapes: [[1, 192, 12, 12]]
-Attributes: {'stride': [1, 1], 'pads': [1, 1, 1, 1], 'kernel_shape': [3, 3]}
+Attributes: {'stride': [1, 1], 'pads': [2, 2, 2, 2], 'kernel_shape': [5, 5]}
 Data In Index: [55]
 Data Out Index: [56]
 Branch Label: set_4_br_1_mid
@@ -685,8 +685,8 @@ Branch Label: set_4_br_1_mid
 --- Node 57 ---
 Name: Conv_57
 Type: Conv
-Inputs: ['input.324', 'onnx::Conv_539', 'onnx::Conv_540']
-Outputs: ['onnx::Add_538']
+Inputs: ['input.324', 'onnx::Conv_485', 'onnx::Conv_486']
+Outputs: ['onnx::Add_484']
 Input Shapes: [[1, 192, 12, 12], None, None]
 Output Shapes: [[1, 24, 12, 12]]
 Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
@@ -697,7 +697,7 @@ Branch Label: set_4_br_1_end
 --- Node 58 ---
 Name: Add_58
 Type: Add
-Inputs: ['input.300', 'onnx::Add_538']
+Inputs: ['input.300', 'onnx::Add_484']
 Outputs: ['input.332']
 Input Shapes: [[1, 24, 12, 12], [1, 24, 12, 12]]
 Output Shapes: [[1, 24, 12, 12]]
@@ -709,7 +709,7 @@ Branch Label: set_4_merge_output
 --- Node 59 ---
 Name: Conv_59
 Type: Conv
-Inputs: ['input.332', 'onnx::Conv_542', 'onnx::Conv_543']
+Inputs: ['input.332', 'onnx::Conv_488', 'onnx::Conv_489']
 Outputs: ['input.340']
 Input Shapes: [[1, 24, 12, 12], None, None]
 Output Shapes: [[1, 48, 12, 12]]
@@ -733,7 +733,7 @@ Branch Label: None
 --- Node 61 ---
 Name: Conv_61
 Type: Conv
-Inputs: ['input.344', 'onnx::Conv_545', 'onnx::Conv_546']
+Inputs: ['input.344', 'onnx::Conv_491', 'onnx::Conv_492']
 Outputs: ['input.352']
 Input Shapes: [[1, 48, 12, 12], None, None]
 Output Shapes: [[1, 48, 6, 6]]
@@ -757,7 +757,7 @@ Branch Label: None
 --- Node 63 ---
 Name: Conv_63
 Type: Conv
-Inputs: ['input.356', 'onnx::Conv_548', 'onnx::Conv_549']
+Inputs: ['input.356', 'onnx::Conv_494', 'onnx::Conv_495']
 Outputs: ['input.364']
 Input Shapes: [[1, 48, 6, 6], None, None]
 Output Shapes: [[1, 48, 6, 6]]
@@ -781,10 +781,10 @@ Branch Label: set_5_share_input
 --- Node 65 ---
 Name: Conv_65
 Type: Conv
-Inputs: ['input.368', 'onnx::Conv_551', 'onnx::Conv_552']
+Inputs: ['input.368', 'onnx::Conv_497', 'onnx::Conv_498']
 Outputs: ['input.376']
 Input Shapes: [[1, 48, 6, 6], None, None]
-Output Shapes: [[1, 288, 6, 6]]
+Output Shapes: [[1, 144, 6, 6]]
 Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
 Data In Index: [65]
 Data Out Index: [66]
@@ -795,8 +795,8 @@ Name: Relu_66
 Type: Relu
 Inputs: ['input.376']
 Outputs: ['input.380']
-Input Shapes: [[1, 288, 6, 6]]
-Output Shapes: [[1, 288, 6, 6]]
+Input Shapes: [[1, 144, 6, 6]]
+Output Shapes: [[1, 144, 6, 6]]
 Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
 Data In Index: [66]
 Data Out Index: [67]
@@ -805,10 +805,10 @@ Branch Label: set_5_br_1_mid
 --- Node 67 ---
 Name: Conv_67
 Type: Conv
-Inputs: ['input.380', 'onnx::Conv_554', 'onnx::Conv_555']
+Inputs: ['input.380', 'onnx::Conv_500', 'onnx::Conv_501']
 Outputs: ['input.388']
-Input Shapes: [[1, 288, 6, 6], None, None]
-Output Shapes: [[1, 288, 6, 6]]
+Input Shapes: [[1, 144, 6, 6], None, None]
+Output Shapes: [[1, 144, 6, 6]]
 Attributes: {'stride': [1, 1], 'pads': [1, 1, 1, 1], 'kernel_shape': [3, 3]}
 Data In Index: [67]
 Data Out Index: [68]
@@ -819,8 +819,8 @@ Name: Relu_68
 Type: Relu
 Inputs: ['input.388']
 Outputs: ['input.392']
-Input Shapes: [[1, 288, 6, 6]]
-Output Shapes: [[1, 288, 6, 6]]
+Input Shapes: [[1, 144, 6, 6]]
+Output Shapes: [[1, 144, 6, 6]]
 Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
 Data In Index: [68]
 Data Out Index: [69]
@@ -829,9 +829,9 @@ Branch Label: set_5_br_1_mid
 --- Node 69 ---
 Name: Conv_69
 Type: Conv
-Inputs: ['input.392', 'onnx::Conv_557', 'onnx::Conv_558']
-Outputs: ['onnx::Add_556']
-Input Shapes: [[1, 288, 6, 6], None, None]
+Inputs: ['input.392', 'onnx::Conv_503', 'onnx::Conv_504']
+Outputs: ['onnx::Add_502']
+Input Shapes: [[1, 144, 6, 6], None, None]
 Output Shapes: [[1, 48, 6, 6]]
 Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
 Data In Index: [69]
@@ -841,7 +841,7 @@ Branch Label: set_5_br_1_end
 --- Node 70 ---
 Name: Add_70
 Type: Add
-Inputs: ['input.368', 'onnx::Add_556']
+Inputs: ['input.368', 'onnx::Add_502']
 Outputs: ['input.400']
 Input Shapes: [[1, 48, 6, 6], [1, 48, 6, 6]]
 Output Shapes: [[1, 48, 6, 6]]
@@ -853,7 +853,7 @@ Branch Label: set_5_merge_output
 --- Node 71 ---
 Name: Conv_71
 Type: Conv
-Inputs: ['input.400', 'onnx::Conv_560', 'onnx::Conv_561']
+Inputs: ['input.400', 'onnx::Conv_506', 'onnx::Conv_507']
 Outputs: ['input.408']
 Input Shapes: [[1, 48, 6, 6], None, None]
 Output Shapes: [[1, 96, 6, 6]]
@@ -877,7 +877,7 @@ Branch Label: None
 --- Node 73 ---
 Name: Conv_73
 Type: Conv
-Inputs: ['input.412', 'onnx::Conv_563', 'onnx::Conv_564']
+Inputs: ['input.412', 'onnx::Conv_509', 'onnx::Conv_510']
 Outputs: ['input.420']
 Input Shapes: [[1, 96, 6, 6], None, None]
 Output Shapes: [[1, 96, 6, 6]]
@@ -901,7 +901,7 @@ Branch Label: None
 --- Node 75 ---
 Name: Conv_75
 Type: Conv
-Inputs: ['input.424', 'onnx::Conv_566', 'onnx::Conv_567']
+Inputs: ['input.424', 'onnx::Conv_512', 'onnx::Conv_513']
 Outputs: ['input.432']
 Input Shapes: [[1, 96, 6, 6], None, None]
 Output Shapes: [[1, 48, 6, 6]]
@@ -925,10 +925,10 @@ Branch Label: set_6_share_input
 --- Node 77 ---
 Name: Conv_77
 Type: Conv
-Inputs: ['input.436', 'onnx::Conv_569', 'onnx::Conv_570']
+Inputs: ['input.436', 'onnx::Conv_515', 'onnx::Conv_516']
 Outputs: ['input.444']
 Input Shapes: [[1, 48, 6, 6], None, None]
-Output Shapes: [[1, 576, 6, 6]]
+Output Shapes: [[1, 288, 6, 6]]
 Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
 Data In Index: [77]
 Data Out Index: [78]
@@ -939,8 +939,8 @@ Name: Relu_78
 Type: Relu
 Inputs: ['input.444']
 Outputs: ['input.448']
-Input Shapes: [[1, 576, 6, 6]]
-Output Shapes: [[1, 576, 6, 6]]
+Input Shapes: [[1, 288, 6, 6]]
+Output Shapes: [[1, 288, 6, 6]]
 Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
 Data In Index: [78]
 Data Out Index: [79]
@@ -949,10 +949,10 @@ Branch Label: set_6_br_1_mid
 --- Node 79 ---
 Name: Conv_79
 Type: Conv
-Inputs: ['input.448', 'onnx::Conv_572', 'onnx::Conv_573']
+Inputs: ['input.448', 'onnx::Conv_518', 'onnx::Conv_519']
 Outputs: ['input.456']
-Input Shapes: [[1, 576, 6, 6], None, None]
-Output Shapes: [[1, 576, 6, 6]]
+Input Shapes: [[1, 288, 6, 6], None, None]
+Output Shapes: [[1, 288, 6, 6]]
 Attributes: {'stride': [1, 1], 'pads': [1, 1, 1, 1], 'kernel_shape': [3, 3]}
 Data In Index: [79]
 Data Out Index: [80]
@@ -963,8 +963,8 @@ Name: Relu_80
 Type: Relu
 Inputs: ['input.456']
 Outputs: ['input.460']
-Input Shapes: [[1, 576, 6, 6]]
-Output Shapes: [[1, 576, 6, 6]]
+Input Shapes: [[1, 288, 6, 6]]
+Output Shapes: [[1, 288, 6, 6]]
 Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
 Data In Index: [80]
 Data Out Index: [81]
@@ -973,9 +973,9 @@ Branch Label: set_6_br_1_mid
 --- Node 81 ---
 Name: Conv_81
 Type: Conv
-Inputs: ['input.460', 'onnx::Conv_575', 'onnx::Conv_576']
-Outputs: ['onnx::Add_574']
-Input Shapes: [[1, 576, 6, 6], None, None]
+Inputs: ['input.460', 'onnx::Conv_521', 'onnx::Conv_522']
+Outputs: ['onnx::Add_520']
+Input Shapes: [[1, 288, 6, 6], None, None]
 Output Shapes: [[1, 48, 6, 6]]
 Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
 Data In Index: [81]
@@ -985,7 +985,7 @@ Branch Label: set_6_br_1_end
 --- Node 82 ---
 Name: Add_82
 Type: Add
-Inputs: ['input.436', 'onnx::Add_574']
+Inputs: ['input.436', 'onnx::Add_520']
 Outputs: ['input.468']
 Input Shapes: [[1, 48, 6, 6], [1, 48, 6, 6]]
 Output Shapes: [[1, 48, 6, 6]]
@@ -997,7 +997,7 @@ Branch Label: set_6_merge_output
 --- Node 83 ---
 Name: Conv_83
 Type: Conv
-Inputs: ['input.468', 'onnx::Conv_578', 'onnx::Conv_579']
+Inputs: ['input.468', 'onnx::Conv_524', 'onnx::Conv_525']
 Outputs: ['input.476']
 Input Shapes: [[1, 48, 6, 6], None, None]
 Output Shapes: [[1, 96, 6, 6]]
@@ -1019,182 +1019,38 @@ Data Out Index: [85]
 Branch Label: None
 
 --- Node 85 ---
-Name: Conv_85
-Type: Conv
-Inputs: ['input.480', 'onnx::Conv_581', 'onnx::Conv_582']
-Outputs: ['input.488']
-Input Shapes: [[1, 96, 6, 6], None, None]
-Output Shapes: [[1, 96, 6, 6]]
-Attributes: {'stride': [1, 1], 'pads': [1, 1, 1, 1], 'kernel_shape': [3, 3]}
+Name: GlobalAveragePool_85
+Type: GlobalAveragePool
+Inputs: ['input.480']
+Outputs: ['onnx::Reshape_389']
+Input Shapes: [[1, 96, 6, 6]]
+Output Shapes: [[1, 96, 1, 1]]
+Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
 Data In Index: [85]
 Data Out Index: [86]
 Branch Label: None
 
 --- Node 86 ---
-Name: Relu_86
-Type: Relu
-Inputs: ['input.488']
-Outputs: ['input.492']
-Input Shapes: [[1, 96, 6, 6]]
-Output Shapes: [[1, 96, 6, 6]]
+Name: Reshape_86
+Type: Reshape
+Inputs: ['onnx::Reshape_389', 'onnx::Reshape_528']
+Outputs: ['onnx::Gemm_395']
+Input Shapes: [[1, 96, 1, 1], None]
+Output Shapes: [[1, 96]]
 Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
 Data In Index: [86]
 Data Out Index: [87]
 Branch Label: None
 
 --- Node 87 ---
-Name: Conv_87
-Type: Conv
-Inputs: ['input.492', 'onnx::Conv_584', 'onnx::Conv_585']
-Outputs: ['input.500']
-Input Shapes: [[1, 96, 6, 6], None, None]
-Output Shapes: [[1, 48, 6, 6]]
-Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
-Data In Index: [87]
-Data Out Index: [88]
-Branch Label: None
-
---- Node 88 ---
-Name: Relu_88
-Type: Relu
-Inputs: ['input.500']
-Outputs: ['input.504']
-Input Shapes: [[1, 48, 6, 6]]
-Output Shapes: [[1, 48, 6, 6]]
-Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
-Data In Index: [88]
-Data Out Index: [89]
-Branch Label: set_7_share_input
-
---- Node 89 ---
-Name: Conv_89
-Type: Conv
-Inputs: ['input.504', 'onnx::Conv_587', 'onnx::Conv_588']
-Outputs: ['input.512']
-Input Shapes: [[1, 48, 6, 6], None, None]
-Output Shapes: [[1, 576, 6, 6]]
-Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
-Data In Index: [89]
-Data Out Index: [90]
-Branch Label: set_7_br_1_start
-
---- Node 90 ---
-Name: Relu_90
-Type: Relu
-Inputs: ['input.512']
-Outputs: ['input.516']
-Input Shapes: [[1, 576, 6, 6]]
-Output Shapes: [[1, 576, 6, 6]]
-Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
-Data In Index: [90]
-Data Out Index: [91]
-Branch Label: set_7_br_1_mid
-
---- Node 91 ---
-Name: Conv_91
-Type: Conv
-Inputs: ['input.516', 'onnx::Conv_590', 'onnx::Conv_591']
-Outputs: ['input.524']
-Input Shapes: [[1, 576, 6, 6], None, None]
-Output Shapes: [[1, 576, 6, 6]]
-Attributes: {'stride': [1, 1], 'pads': [1, 1, 1, 1], 'kernel_shape': [3, 3]}
-Data In Index: [91]
-Data Out Index: [92]
-Branch Label: set_7_br_1_mid
-
---- Node 92 ---
-Name: Relu_92
-Type: Relu
-Inputs: ['input.524']
-Outputs: ['input.528']
-Input Shapes: [[1, 576, 6, 6]]
-Output Shapes: [[1, 576, 6, 6]]
-Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
-Data In Index: [92]
-Data Out Index: [93]
-Branch Label: set_7_br_1_mid
-
---- Node 93 ---
-Name: Conv_93
-Type: Conv
-Inputs: ['input.528', 'onnx::Conv_593', 'onnx::Conv_594']
-Outputs: ['onnx::Add_592']
-Input Shapes: [[1, 576, 6, 6], None, None]
-Output Shapes: [[1, 48, 6, 6]]
-Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
-Data In Index: [93]
-Data Out Index: [94]
-Branch Label: set_7_br_1_end
-
---- Node 94 ---
-Name: Add_94
-Type: Add
-Inputs: ['input.504', 'onnx::Add_592']
-Outputs: ['input.536']
-Input Shapes: [[1, 48, 6, 6], [1, 48, 6, 6]]
-Output Shapes: [[1, 48, 6, 6]]
-Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
-Data In Index: [89, 94]
-Data Out Index: [95]
-Branch Label: set_7_merge_output
-
---- Node 95 ---
-Name: Conv_95
-Type: Conv
-Inputs: ['input.536', 'onnx::Conv_596', 'onnx::Conv_597']
-Outputs: ['input.544']
-Input Shapes: [[1, 48, 6, 6], None, None]
-Output Shapes: [[1, 96, 6, 6]]
-Attributes: {'stride': [1, 1], 'pads': [0, 0, 0, 0], 'kernel_shape': [1, 1]}
-Data In Index: [95]
-Data Out Index: [96]
-Branch Label: None
-
---- Node 96 ---
-Name: Relu_96
-Type: Relu
-Inputs: ['input.544']
-Outputs: ['input.548']
-Input Shapes: [[1, 96, 6, 6]]
-Output Shapes: [[1, 96, 6, 6]]
-Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
-Data In Index: [96]
-Data Out Index: [97]
-Branch Label: None
-
---- Node 97 ---
-Name: GlobalAveragePool_97
-Type: GlobalAveragePool
-Inputs: ['input.548']
-Outputs: ['onnx::Reshape_443']
-Input Shapes: [[1, 96, 6, 6]]
-Output Shapes: [[1, 96, 1, 1]]
-Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
-Data In Index: [97]
-Data Out Index: [98]
-Branch Label: None
-
---- Node 98 ---
-Name: Reshape_98
-Type: Reshape
-Inputs: ['onnx::Reshape_443', 'onnx::Reshape_600']
-Outputs: ['onnx::Gemm_449']
-Input Shapes: [[1, 96, 1, 1], None]
-Output Shapes: [[1, 96]]
-Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
-Data In Index: [98]
-Data Out Index: [99]
-Branch Label: None
-
---- Node 99 ---
-Name: Gemm_99
+Name: Gemm_87
 Type: Gemm
-Inputs: ['onnx::Gemm_449', 'classifier.weight', 'classifier.bias']
+Inputs: ['onnx::Gemm_395', 'classifier.weight', 'classifier.bias']
 Outputs: ['output']
 Input Shapes: [[1, 96], None, None]
 Output Shapes: [[1, 100]]
 Attributes: {'stride': None, 'pads': None, 'kernel_shape': None}
-Data In Index: [99]
-Data Out Index: [100]
+Data In Index: [87]
+Data Out Index: [88]
 Branch Label: None
 

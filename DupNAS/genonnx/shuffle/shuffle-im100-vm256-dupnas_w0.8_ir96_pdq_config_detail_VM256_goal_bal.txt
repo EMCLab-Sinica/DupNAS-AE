@@ -1,13 +1,13 @@
 under_mem:True
 peak node list:[36]
-Full_duration:1.5642328262329102(s)
+Full_duration:2.5741310119628906(s)
 Peak memory for all: : 177408 bytes (173 KB)
 Peak memory under dup: : 131328 bytes (128 KB)
-ori MAC: 330461568
-ori weight access: 345880
+ori MAC: 410308992
+ori weight access: 415192
 
-Total MAC increased: 5614272
-Total weight access increased: 60648
+Total MAC increased: 31190400
+Total weight access increased: 153064
 
 The useful subgraphs idx: [0]
 remaining_peaks: []

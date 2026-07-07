@@ -425,7 +425,7 @@ Inputs: ['input.120', 'onnx::Conv_522', 'onnx::Conv_523']
 Outputs: ['input.128']
 Input Shapes: [[1, 38, 48, 48], None, None]
 Output Shapes: [[1, 38, 48, 48]]
-Attributes: {'stride': [1, 1], 'pads': [1, 1, 1, 1], 'kernel_shape': [3, 3]}
+Attributes: {'stride': [1, 1], 'pads': [2, 2, 2, 2], 'kernel_shape': [5, 5]}
 Data In Index: [35]
 Data Out Index: [36]
 Branch Label: set_3_br_1_start
@@ -497,7 +497,7 @@ Inputs: ['onnx::Conv_321', 'onnx::Conv_531', 'onnx::Conv_532']
 Outputs: ['input.152']
 Input Shapes: [[1, 38, 24, 24], None, None]
 Output Shapes: [[1, 38, 24, 24]]
-Attributes: {'stride': [1, 1], 'pads': [1, 1, 1, 1], 'kernel_shape': [3, 3]}
+Attributes: {'stride': [1, 1], 'pads': [2, 2, 2, 2], 'kernel_shape': [5, 5]}
 Data In Index: [41]
 Data Out Index: [42]
 Branch Label: set_3_br_2_mid
@@ -629,7 +629,7 @@ Inputs: ['onnx::Conv_353', 'onnx::Conv_543', 'onnx::Conv_544']
 Outputs: ['input.188']
 Input Shapes: [[1, 38, 24, 24], None, None]
 Output Shapes: [[1, 38, 24, 24]]
-Attributes: {'stride': [1, 1], 'pads': [1, 1, 1, 1], 'kernel_shape': [3, 3]}
+Attributes: {'stride': [1, 1], 'pads': [2, 2, 2, 2], 'kernel_shape': [5, 5]}
 Data In Index: [52]
 Data Out Index: [53]
 Branch Label: set_4_br_2_mid

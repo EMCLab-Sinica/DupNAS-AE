@@ -3,11 +3,11 @@ Op 1:  IFM: 147456  OFM: 36864  Buf: 0  Total: 184320
 Op 2:  IFM: 36864  OFM: 36864  Buf: 0  Total: 73728
 Op 3:  IFM: 36864  OFM: 13824  Buf: 0  Total: 50688
 Op 4:  IFM: 13824  OFM: 13824  Buf: 0  Total: 27648
-Op 5:  IFM: 13824  OFM: 147456  Buf: 0  Total: 161280
-Op 6:  IFM: 147456  OFM: 147456  Buf: 13824  Total: 308736
-Op 7:  IFM: 147456  OFM: 147456  Buf: 13824  Total: 308736
-Op 8:  IFM: 147456  OFM: 147456  Buf: 13824  Total: 308736
-Op 9:  IFM: 147456  OFM: 13824  Buf: 13824  Total: 175104
+Op 5:  IFM: 13824  OFM: 221184  Buf: 0  Total: 235008
+Op 6:  IFM: 221184  OFM: 221184  Buf: 13824  Total: 456192
+Op 7:  IFM: 221184  OFM: 221184  Buf: 13824  Total: 456192
+Op 8:  IFM: 221184  OFM: 221184  Buf: 13824  Total: 456192
+Op 9:  IFM: 221184  OFM: 13824  Buf: 13824  Total: 248832
 Op 10:  IFM: 27648  OFM: 13824  Buf: 0  Total: 41472
 Op 11:  IFM: 13824  OFM: 27648  Buf: 0  Total: 41472
 Op 12:  IFM: 27648  OFM: 27648  Buf: 0  Total: 55296
@@ -63,11 +63,11 @@ Op 61:  IFM: 6912  OFM: 1728  Buf: 0  Total: 8640
 Op 62:  IFM: 1728  OFM: 1728  Buf: 0  Total: 3456
 Op 63:  IFM: 1728  OFM: 1728  Buf: 0  Total: 3456
 Op 64:  IFM: 1728  OFM: 1728  Buf: 0  Total: 3456
-Op 65:  IFM: 1728  OFM: 10368  Buf: 0  Total: 12096
-Op 66:  IFM: 10368  OFM: 10368  Buf: 1728  Total: 22464
-Op 67:  IFM: 10368  OFM: 10368  Buf: 1728  Total: 22464
-Op 68:  IFM: 10368  OFM: 10368  Buf: 1728  Total: 22464
-Op 69:  IFM: 10368  OFM: 1728  Buf: 1728  Total: 13824
+Op 65:  IFM: 1728  OFM: 5184  Buf: 0  Total: 6912
+Op 66:  IFM: 5184  OFM: 5184  Buf: 1728  Total: 12096
+Op 67:  IFM: 5184  OFM: 5184  Buf: 1728  Total: 12096
+Op 68:  IFM: 5184  OFM: 5184  Buf: 1728  Total: 12096
+Op 69:  IFM: 5184  OFM: 1728  Buf: 1728  Total: 8640
 Op 70:  IFM: 3456  OFM: 1728  Buf: 0  Total: 5184
 Op 71:  IFM: 1728  OFM: 3456  Buf: 0  Total: 5184
 Op 72:  IFM: 3456  OFM: 3456  Buf: 0  Total: 6912
@@ -75,29 +75,17 @@ Op 73:  IFM: 3456  OFM: 3456  Buf: 0  Total: 6912
 Op 74:  IFM: 3456  OFM: 3456  Buf: 0  Total: 6912
 Op 75:  IFM: 3456  OFM: 1728  Buf: 0  Total: 5184
 Op 76:  IFM: 1728  OFM: 1728  Buf: 0  Total: 3456
-Op 77:  IFM: 1728  OFM: 20736  Buf: 0  Total: 22464
-Op 78:  IFM: 20736  OFM: 20736  Buf: 1728  Total: 43200
-Op 79:  IFM: 20736  OFM: 20736  Buf: 1728  Total: 43200
-Op 80:  IFM: 20736  OFM: 20736  Buf: 1728  Total: 43200
-Op 81:  IFM: 20736  OFM: 1728  Buf: 1728  Total: 24192
+Op 77:  IFM: 1728  OFM: 10368  Buf: 0  Total: 12096
+Op 78:  IFM: 10368  OFM: 10368  Buf: 1728  Total: 22464
+Op 79:  IFM: 10368  OFM: 10368  Buf: 1728  Total: 22464
+Op 80:  IFM: 10368  OFM: 10368  Buf: 1728  Total: 22464
+Op 81:  IFM: 10368  OFM: 1728  Buf: 1728  Total: 13824
 Op 82:  IFM: 3456  OFM: 1728  Buf: 0  Total: 5184
 Op 83:  IFM: 1728  OFM: 3456  Buf: 0  Total: 5184
 Op 84:  IFM: 3456  OFM: 3456  Buf: 0  Total: 6912
-Op 85:  IFM: 3456  OFM: 3456  Buf: 0  Total: 6912
-Op 86:  IFM: 3456  OFM: 3456  Buf: 0  Total: 6912
-Op 87:  IFM: 3456  OFM: 1728  Buf: 0  Total: 5184
-Op 88:  IFM: 1728  OFM: 1728  Buf: 0  Total: 3456
-Op 89:  IFM: 1728  OFM: 20736  Buf: 0  Total: 22464
-Op 90:  IFM: 20736  OFM: 20736  Buf: 1728  Total: 43200
-Op 91:  IFM: 20736  OFM: 20736  Buf: 1728  Total: 43200
-Op 92:  IFM: 20736  OFM: 20736  Buf: 1728  Total: 43200
-Op 93:  IFM: 20736  OFM: 1728  Buf: 1728  Total: 24192
-Op 94:  IFM: 3456  OFM: 1728  Buf: 0  Total: 5184
-Op 95:  IFM: 1728  OFM: 3456  Buf: 0  Total: 5184
-Op 96:  IFM: 3456  OFM: 3456  Buf: 0  Total: 6912
-Op 97:  IFM: 3456  OFM: 96  Buf: 0  Total: 3552
-Op 98:  IFM: 96  OFM: 96  Buf: 0  Total: 192
-Op 99:  IFM: 96  OFM: 100  Buf: 0  Total: 196
-  Peak Memory Usage: Op 6 : 308736
-  Op which_over_mem_cons: [6, 7, 8, 1, 0, 9, 30, 31, 32, 5]
+Op 85:  IFM: 3456  OFM: 96  Buf: 0  Total: 3552
+Op 86:  IFM: 96  OFM: 96  Buf: 0  Total: 192
+Op 87:  IFM: 96  OFM: 100  Buf: 0  Total: 196
+  Peak Memory Usage: Op 6 : 456192
+  Op which_over_mem_cons: [6, 7, 8, 9, 5, 1, 0, 30, 31, 32]
 

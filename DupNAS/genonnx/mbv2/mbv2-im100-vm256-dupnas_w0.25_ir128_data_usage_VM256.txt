@@ -44,32 +44,32 @@ Size (bytes): 24576
 Name: input.36
 From Ops: [5]
 To Ops: [6]
-Shape: [1, 64, 64, 64]
-Size (bytes): 262144
+Shape: [1, 96, 64, 64]
+Size (bytes): 393216
 
 --- Tensor 7 ---
 Name: input.40
 From Ops: [6]
 To Ops: [7]
-Shape: [1, 64, 64, 64]
-Size (bytes): 262144
+Shape: [1, 96, 64, 64]
+Size (bytes): 393216
 
 --- Tensor 8 ---
 Name: input.48
 From Ops: [7]
 To Ops: [8]
-Shape: [1, 64, 64, 64]
-Size (bytes): 262144
+Shape: [1, 96, 64, 64]
+Size (bytes): 393216
 
 --- Tensor 9 ---
 Name: input.52
 From Ops: [8]
 To Ops: [9]
-Shape: [1, 64, 64, 64]
-Size (bytes): 262144
+Shape: [1, 96, 64, 64]
+Size (bytes): 393216
 
 --- Tensor 10 ---
-Name: onnx::Add_574
+Name: onnx::Add_520
 From Ops: [9]
 To Ops: [10]
 Shape: [1, 6, 64, 64]
@@ -128,32 +128,32 @@ Size (bytes): 24576
 Name: input.104
 From Ops: [17]
 To Ops: [18]
-Shape: [1, 48, 64, 64]
-Size (bytes): 196608
+Shape: [1, 72, 64, 64]
+Size (bytes): 294912
 
 --- Tensor 19 ---
 Name: input.108
 From Ops: [18]
 To Ops: [19]
-Shape: [1, 48, 64, 64]
-Size (bytes): 196608
+Shape: [1, 72, 64, 64]
+Size (bytes): 294912
 
 --- Tensor 20 ---
 Name: input.116
 From Ops: [19]
 To Ops: [20]
-Shape: [1, 48, 64, 64]
-Size (bytes): 196608
+Shape: [1, 72, 64, 64]
+Size (bytes): 294912
 
 --- Tensor 21 ---
 Name: input.120
 From Ops: [20]
 To Ops: [21]
-Shape: [1, 48, 64, 64]
-Size (bytes): 196608
+Shape: [1, 72, 64, 64]
+Size (bytes): 294912
 
 --- Tensor 22 ---
-Name: onnx::Add_592
+Name: onnx::Add_538
 From Ops: [21]
 To Ops: [22]
 Shape: [1, 6, 64, 64]
@@ -184,99 +184,99 @@ Size (bytes): 49152
 Name: input.148
 From Ops: [25]
 To Ops: [26]
-Shape: [1, 12, 32, 32]
-Size (bytes): 12288
+Shape: [1, 12, 64, 64]
+Size (bytes): 49152
 
 --- Tensor 27 ---
 Name: input.152
 From Ops: [26]
 To Ops: [27]
-Shape: [1, 12, 32, 32]
-Size (bytes): 12288
+Shape: [1, 12, 64, 64]
+Size (bytes): 49152
 
 --- Tensor 28 ---
 Name: input.160
 From Ops: [27]
 To Ops: [28]
-Shape: [1, 12, 32, 32]
-Size (bytes): 12288
+Shape: [1, 6, 64, 64]
+Size (bytes): 24576
 
 --- Tensor 29 ---
 Name: input.164
 From Ops: [28]
 To Ops: [29, 34]
-Shape: [1, 12, 32, 32]
-Size (bytes): 12288
+Shape: [1, 6, 64, 64]
+Size (bytes): 24576
 
 --- Tensor 30 ---
 Name: input.172
 From Ops: [29]
 To Ops: [30]
-Shape: [1, 48, 32, 32]
-Size (bytes): 49152
+Shape: [1, 72, 64, 64]
+Size (bytes): 294912
 
 --- Tensor 31 ---
 Name: input.176
 From Ops: [30]
 To Ops: [31]
-Shape: [1, 48, 32, 32]
-Size (bytes): 49152
+Shape: [1, 72, 64, 64]
+Size (bytes): 294912
 
 --- Tensor 32 ---
 Name: input.184
 From Ops: [31]
 To Ops: [32]
-Shape: [1, 48, 32, 32]
-Size (bytes): 49152
+Shape: [1, 72, 64, 64]
+Size (bytes): 294912
 
 --- Tensor 33 ---
 Name: input.188
 From Ops: [32]
 To Ops: [33]
-Shape: [1, 48, 32, 32]
-Size (bytes): 49152
+Shape: [1, 72, 64, 64]
+Size (bytes): 294912
 
 --- Tensor 34 ---
-Name: onnx::Add_610
+Name: onnx::Add_556
 From Ops: [33]
 To Ops: [34]
-Shape: [1, 12, 32, 32]
-Size (bytes): 12288
+Shape: [1, 6, 64, 64]
+Size (bytes): 24576
 
 --- Tensor 35 ---
 Name: input.196
 From Ops: [34]
 To Ops: [35]
-Shape: [1, 12, 32, 32]
-Size (bytes): 12288
+Shape: [1, 6, 64, 64]
+Size (bytes): 24576
 
 --- Tensor 36 ---
 Name: input.204
 From Ops: [35]
 To Ops: [36]
-Shape: [1, 24, 32, 32]
-Size (bytes): 24576
+Shape: [1, 12, 64, 64]
+Size (bytes): 49152
 
 --- Tensor 37 ---
 Name: input.208
 From Ops: [36]
 To Ops: [37]
-Shape: [1, 24, 32, 32]
-Size (bytes): 24576
+Shape: [1, 12, 64, 64]
+Size (bytes): 49152
 
 --- Tensor 38 ---
 Name: input.216
 From Ops: [37]
 To Ops: [38]
-Shape: [1, 24, 32, 32]
-Size (bytes): 24576
+Shape: [1, 12, 32, 32]
+Size (bytes): 12288
 
 --- Tensor 39 ---
 Name: input.220
 From Ops: [38]
 To Ops: [39]
-Shape: [1, 24, 32, 32]
-Size (bytes): 24576
+Shape: [1, 12, 32, 32]
+Size (bytes): 12288
 
 --- Tensor 40 ---
 Name: input.228
@@ -296,32 +296,32 @@ Size (bytes): 12288
 Name: input.240
 From Ops: [41]
 To Ops: [42]
-Shape: [1, 96, 32, 32]
-Size (bytes): 98304
+Shape: [1, 48, 32, 32]
+Size (bytes): 49152
 
 --- Tensor 43 ---
 Name: input.244
 From Ops: [42]
 To Ops: [43]
-Shape: [1, 96, 32, 32]
-Size (bytes): 98304
+Shape: [1, 48, 32, 32]
+Size (bytes): 49152
 
 --- Tensor 44 ---
 Name: input.252
 From Ops: [43]
 To Ops: [44]
-Shape: [1, 96, 32, 32]
-Size (bytes): 98304
+Shape: [1, 48, 32, 32]
+Size (bytes): 49152
 
 --- Tensor 45 ---
 Name: input.256
 From Ops: [44]
 To Ops: [45]
-Shape: [1, 96, 32, 32]
-Size (bytes): 98304
+Shape: [1, 48, 32, 32]
+Size (bytes): 49152
 
 --- Tensor 46 ---
-Name: onnx::Add_628
+Name: onnx::Add_574
 From Ops: [45]
 To Ops: [46]
 Shape: [1, 12, 32, 32]
@@ -405,7 +405,7 @@ Shape: [1, 96, 32, 32]
 Size (bytes): 98304
 
 --- Tensor 58 ---
-Name: onnx::Add_646
+Name: onnx::Add_592
 From Ops: [57]
 To Ops: [58]
 Shape: [1, 12, 32, 32]
@@ -464,32 +464,32 @@ Size (bytes): 6144
 Name: input.376
 From Ops: [65]
 To Ops: [66]
-Shape: [1, 144, 16, 16]
-Size (bytes): 36864
+Shape: [1, 72, 16, 16]
+Size (bytes): 18432
 
 --- Tensor 67 ---
 Name: input.380
 From Ops: [66]
 To Ops: [67]
-Shape: [1, 144, 16, 16]
-Size (bytes): 36864
+Shape: [1, 72, 16, 16]
+Size (bytes): 18432
 
 --- Tensor 68 ---
 Name: input.388
 From Ops: [67]
 To Ops: [68]
-Shape: [1, 144, 16, 16]
-Size (bytes): 36864
+Shape: [1, 72, 16, 16]
+Size (bytes): 18432
 
 --- Tensor 69 ---
 Name: input.392
 From Ops: [68]
 To Ops: [69]
-Shape: [1, 144, 16, 16]
-Size (bytes): 36864
+Shape: [1, 72, 16, 16]
+Size (bytes): 18432
 
 --- Tensor 70 ---
-Name: onnx::Add_664
+Name: onnx::Add_610
 From Ops: [69]
 To Ops: [70]
 Shape: [1, 24, 16, 16]
@@ -548,32 +548,32 @@ Size (bytes): 6144
 Name: input.444
 From Ops: [77]
 To Ops: [78]
-Shape: [1, 288, 16, 16]
-Size (bytes): 73728
+Shape: [1, 144, 16, 16]
+Size (bytes): 36864
 
 --- Tensor 79 ---
 Name: input.448
 From Ops: [78]
 To Ops: [79]
-Shape: [1, 288, 16, 16]
-Size (bytes): 73728
+Shape: [1, 144, 16, 16]
+Size (bytes): 36864
 
 --- Tensor 80 ---
 Name: input.456
 From Ops: [79]
 To Ops: [80]
-Shape: [1, 288, 16, 16]
-Size (bytes): 73728
+Shape: [1, 144, 16, 16]
+Size (bytes): 36864
 
 --- Tensor 81 ---
 Name: input.460
 From Ops: [80]
 To Ops: [81]
-Shape: [1, 288, 16, 16]
-Size (bytes): 73728
+Shape: [1, 144, 16, 16]
+Size (bytes): 36864
 
 --- Tensor 82 ---
-Name: onnx::Add_682
+Name: onnx::Add_628
 From Ops: [81]
 To Ops: [82]
 Shape: [1, 24, 16, 16]
@@ -632,32 +632,32 @@ Size (bytes): 3072
 Name: input.512
 From Ops: [89]
 To Ops: [90]
-Shape: [1, 192, 8, 8]
-Size (bytes): 12288
+Shape: [1, 288, 8, 8]
+Size (bytes): 18432
 
 --- Tensor 91 ---
 Name: input.516
 From Ops: [90]
 To Ops: [91]
-Shape: [1, 192, 8, 8]
-Size (bytes): 12288
+Shape: [1, 288, 8, 8]
+Size (bytes): 18432
 
 --- Tensor 92 ---
 Name: input.524
 From Ops: [91]
 To Ops: [92]
-Shape: [1, 192, 8, 8]
-Size (bytes): 12288
+Shape: [1, 288, 8, 8]
+Size (bytes): 18432
 
 --- Tensor 93 ---
 Name: input.528
 From Ops: [92]
 To Ops: [93]
-Shape: [1, 192, 8, 8]
-Size (bytes): 12288
+Shape: [1, 288, 8, 8]
+Size (bytes): 18432
 
 --- Tensor 94 ---
-Name: onnx::Add_700
+Name: onnx::Add_646
 From Ops: [93]
 To Ops: [94]
 Shape: [1, 48, 8, 8]
@@ -716,32 +716,32 @@ Size (bytes): 3072
 Name: input.580
 From Ops: [101]
 To Ops: [102]
-Shape: [1, 384, 8, 8]
-Size (bytes): 24576
+Shape: [1, 576, 8, 8]
+Size (bytes): 36864
 
 --- Tensor 103 ---
 Name: input.584
 From Ops: [102]
 To Ops: [103]
-Shape: [1, 384, 8, 8]
-Size (bytes): 24576
+Shape: [1, 576, 8, 8]
+Size (bytes): 36864
 
 --- Tensor 104 ---
 Name: input.592
 From Ops: [103]
 To Ops: [104]
-Shape: [1, 384, 8, 8]
-Size (bytes): 24576
+Shape: [1, 576, 8, 8]
+Size (bytes): 36864
 
 --- Tensor 105 ---
 Name: input.596
 From Ops: [104]
 To Ops: [105]
-Shape: [1, 384, 8, 8]
-Size (bytes): 24576
+Shape: [1, 576, 8, 8]
+Size (bytes): 36864
 
 --- Tensor 106 ---
-Name: onnx::Add_718
+Name: onnx::Add_664
 From Ops: [105]
 To Ops: [106]
 Shape: [1, 48, 8, 8]
@@ -769,106 +769,22 @@ Shape: [1, 96, 8, 8]
 Size (bytes): 6144
 
 --- Tensor 110 ---
-Name: input.624
+Name: onnx::Reshape_497
 From Ops: [109]
 To Ops: [110]
-Shape: [1, 96, 8, 8]
-Size (bytes): 6144
-
---- Tensor 111 ---
-Name: input.628
-From Ops: [110]
-To Ops: [111]
-Shape: [1, 96, 8, 8]
-Size (bytes): 6144
-
---- Tensor 112 ---
-Name: input.636
-From Ops: [111]
-To Ops: [112]
-Shape: [1, 48, 8, 8]
-Size (bytes): 3072
-
---- Tensor 113 ---
-Name: input.640
-From Ops: [112]
-To Ops: [113, 118]
-Shape: [1, 48, 8, 8]
-Size (bytes): 3072
-
---- Tensor 114 ---
-Name: input.648
-From Ops: [113]
-To Ops: [114]
-Shape: [1, 384, 8, 8]
-Size (bytes): 24576
-
---- Tensor 115 ---
-Name: input.652
-From Ops: [114]
-To Ops: [115]
-Shape: [1, 384, 8, 8]
-Size (bytes): 24576
-
---- Tensor 116 ---
-Name: input.660
-From Ops: [115]
-To Ops: [116]
-Shape: [1, 384, 8, 8]
-Size (bytes): 24576
-
---- Tensor 117 ---
-Name: input.664
-From Ops: [116]
-To Ops: [117]
-Shape: [1, 384, 8, 8]
-Size (bytes): 24576
-
---- Tensor 118 ---
-Name: onnx::Add_736
-From Ops: [117]
-To Ops: [118]
-Shape: [1, 48, 8, 8]
-Size (bytes): 3072
-
---- Tensor 119 ---
-Name: input.672
-From Ops: [118]
-To Ops: [119]
-Shape: [1, 48, 8, 8]
-Size (bytes): 3072
-
---- Tensor 120 ---
-Name: input.680
-From Ops: [119]
-To Ops: [120]
-Shape: [1, 96, 8, 8]
-Size (bytes): 6144
-
---- Tensor 121 ---
-Name: input.684
-From Ops: [120]
-To Ops: [121]
-Shape: [1, 96, 8, 8]
-Size (bytes): 6144
-
---- Tensor 122 ---
-Name: onnx::Reshape_551
-From Ops: [121]
-To Ops: [122]
 Shape: [1, 96, 1, 1]
 Size (bytes): 96
 
---- Tensor 123 ---
-Name: onnx::Gemm_557
-From Ops: [122]
-To Ops: [123]
+--- Tensor 111 ---
+Name: onnx::Gemm_503
+From Ops: [110]
+To Ops: [111]
 Shape: [1, 96]
 Size (bytes): 96
 
---- Tensor 124 ---
+--- Tensor 112 ---
 Name: output
-From Ops: [123]
+From Ops: [111]
 To Ops: []
 Shape: [1, 100]
 Size (bytes): 100
