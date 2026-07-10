@@ -25,8 +25,6 @@ KAGGLEHUB_DIR = os.path.expanduser("~/.cache/kagglehub/datasets/ambityga/imagene
 
 def load_image100_dataset(DATASET_DIR=DATASET_DIR):
     KAGGLEHUB_DIR = os.path.expanduser("~/.cache/kagglehub/datasets/ambityga/imagenet100/versions/8")
-
-    #KAGGLEHUB_DIR = os.path.expanduser("/4TB/cyliu901/.cache/kagglehub/datasets/ambityga/imagenet100/versions/8")
     
     #Step 1: Download ImageNet-100 dataset
     if not os.path.exists(KAGGLEHUB_DIR):
