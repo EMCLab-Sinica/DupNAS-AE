@@ -73,6 +73,7 @@ Below is a brief description of the main directories and files in this repositor
    The dataset is downloaded and prepared automatically when DupNAS is run for the first time stage 2.
 4. Copy the configuration file for the target architecture and run DupNAS:
    ```bash
+   cd DupNAS/
    cp settings/settings-<arc>.py settings.py
 
    python3.9 -m NASBase.run_nas \
@@ -86,7 +87,7 @@ Below is a brief description of the main directories and files in this repositor
    ```
   
   📝 Arguments
-  | Option | Description | Candidate Values |
+  | Options | Description | Candidate Values |
   |---|---|---|
   | `--stages` | Number of NAS stages: ssopt, training, evosearch, fine-tuning | `1`, `2`, `3`, `4` |
   | `--arc` | network architecture family | `mbv2`, `shuffle`, `incept` |
@@ -95,13 +96,12 @@ Below is a brief description of the main directories and files in this repositor
   | `--vmsize` | VM constraint in KB | `96`, `128`, `256` |
   | `--suffix` | Experiment suffix for naming outputs. Use the same suffix for all four stages. | user-defined string |
   
-5. After completing Stages 1–4, extract the selected network configuration, `"subnet_choice_per_blk"`, from: `<suffix>_best_solution.json`, and copy the configuration into: `/DupNAS/NASBase/spec_model_<arc>.txt`.
-6. For easier use, ONNX generation and tensor-splitting conversion are integrated into the model-converter workflow. Continue with Step 2 in the next section.
+5. After completing Stages 1–4, extract the selected network configuration, the final solution is saved in `/DupNAS/NASBase/train_log/<suffix>_best_solution.json`
+6. ONNX generation and tensor-splitting conversion are integrated into the model-converter workflow. Continue with Steps in the next section.
 
 
 ### ✂️ Setup and running the model converter
-
-1. Make sure `/DupNAS/NASBase/spec_model_<arc>.txt` has been completed.
+1. Copy the configurations `"supernet config"` and `"subnet_choice_per_blk"` from: `<suffix>_best_solution.json`, into: `/DupNAS/NASBase/spec_model_<arc>.txt`.
 2. Go to `/DupNAS/`, then run the corresponding script to generate the selected ONNX models: 
   ```bash
   bash gen_selected_shuffle.sh
