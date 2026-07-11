@@ -599,9 +599,9 @@ def main():
         "  Feasible configuration sets (%): "
         f"{console_metrics['feasible_configuration_sets_pct']:.4f}%"
     )
-    print("[SUMMARY]")
-    for _, r in aggregate.iterrows():
-        print(f"  {r['metric']}: {r['value']}")
+    # print("[SUMMARY]")
+    # for _, r in aggregate.iterrows():
+    #     print(f"  {r['metric']}: {r['value']}")
 
     return 0
 
