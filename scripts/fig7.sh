@@ -12,6 +12,3 @@ python3.9 verify_by_image100_acc.py \
   --output genonnx/onnx_image100_accuracy_${MODEL}_test.csv \
   --batch-size 1 \
   --provider cpu \
-  --ddp-rank 0 \
-  --ddp-world-size 4
-
