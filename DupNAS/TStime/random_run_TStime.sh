@@ -27,7 +27,7 @@ set -euo pipefail
 #   bash random_run_TStime.sh inception python3.9 0
 
 TIME_LIMIT="${TIME_LIMIT:-180}"
-SAMPLE_N="${SAMPLE_N:-1000}"
+SAMPLE_N="${SAMPLE_N:-100}"
 VMS=(96 128 256)
 
 MODEL_NAME="${1:-}"
@@ -304,7 +304,7 @@ TOTAL_AVG_SEC="$(fmt_sec "$TOTAL_AVG")"
 TOTAL_MAX_SEC="$(fmt_sec "$TOTAL_MAX")"
 
 echo "================== ALL VM DONE =================="
-echo "[Overall TS Runtime among 300 results]"
+echo "[Overall TS Runtime among $TOTAL_OK results]"
 echo "  model      : $MODEL_NAME"
 echo "  ok_count   : $TOTAL_OK"
 echo "  fail_count : $TOTAL_FAIL"
