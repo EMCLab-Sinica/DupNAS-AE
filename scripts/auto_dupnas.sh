@@ -12,17 +12,19 @@ set -euo pipefail
 #   ./run.sh stage4
 #   ./run.sh full
 
-OPTION="${1:-}"
+OPTION="${1:-${OPTION:-}}"
 
 case "${OPTION}" in
   stage1|stage2|stage3|stage4|full-stage)
     ;;
   *)
-    echo "Error: Invalid OPTION"
-    echo "Usage: $0 {stage1|stage2|stage3|stage4|full-stage}"
+    echo "Error: Invalid OPTION: '${OPTION}'"
+    echo "Valid options: stage1, stage2, stage3, stage4, full-stage"
     exit 1
     ;;
 esac
+
+echo "Selected option: ${OPTION}"
 
 # =========================
 # User configuration
