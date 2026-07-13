@@ -1,6 +1,5 @@
 from datetime import datetime
 import platform
-import wandb
 import sys
 
 RLogger = None
@@ -88,6 +87,7 @@ def get_remote_logger_basic_init_params(global_settings, run_name_suffix="", gro
     return init_params
 
 def get_remote_logger_obj(global_settings, rl_init_params=None, run_name_suffix=""):
+    import wandb
     global RLogger
 
     # Already initialized, return the existing one
