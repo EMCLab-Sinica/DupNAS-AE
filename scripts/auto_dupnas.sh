@@ -1,4 +1,4 @@
-```bash
+
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -301,4 +301,4 @@ case "${OPTION}" in
     echo "=============================="
     ;;
 esac
-```
+
