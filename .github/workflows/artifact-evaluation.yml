@@ -135,4 +135,21 @@ jobs:
         with:
           name: results
           path: STM/results/
+  auto_dupnas:
+    if: ${{ inputs.task == 'auto_dupnas' }}
+    runs-on: [self-hosted, ae-server]
+    env:
+      OPTION: ${{ inputs.option }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Link models
+        run: bash scripts/link_models.sh
+      - name: Run auto_dupnas
+        run: bash scripts/auto_dupnas.sh
+      - name: Upload results
+        uses: actions/upload-artifact@v7
+        with:
+          name: results
+          path: |
+            DupNAS/NASBase/train_log/*.json
     
