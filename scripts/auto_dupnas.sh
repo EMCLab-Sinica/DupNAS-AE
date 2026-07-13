@@ -14,6 +14,76 @@ case "${OPTION}" in
 esac
 
 echo "Selected option: ${OPTION}"
+
+PERSIST_TRAIN_LOG="/4TB/aeuser/DupNAS-AE/DupNAS/NASBase/train_log"
+#PERSIST_CKPT_LOG="/4TB/aeuser/DupNAS-AE/DupNAS/NASBase/checkpoints"
+
+LOCAL_TRAIN_LOG="NASBase/train_log"
+LOCAL_CKPT_LOG="NASBase/checkpoints"
+
+copy_required_file() {
+  local src="$1"
+  local dst_dir="$2"
+
+  if [[ ! -f "$src" ]]; then
+    echo "ERROR: Required prerequisite file not found:"
+    echo "  $src"
+    exit 1
+  fi
+
+  mkdir -p "$dst_dir"
+  cp "$src" "$dst_dir/"
+
+  echo "Copied prerequisite:"
+  echo "  $src"
+  echo "  -> $dst_dir/"
+}
+
+restore_stage_files() {
+  case "${OPTION}" in
+    stage1)
+      # No prerequisite files needed
+      ;;
+
+    stage2)
+      copy_required_file \
+        "${PERSIST_TRAIN_LOG}/${SUFFIX}_ssoptlog.json" \
+        "${LOCAL_TRAIN_LOG}"
+      ;;
+
+    stage3)
+      copy_required_file \
+        "${PERSIST_TRAIN_LOG}/${SUFFIX}_ssoptlog.json" \
+        "${LOCAL_TRAIN_LOG}"
+
+      copy_required_file \
+        "${PERSIST_TRAIN_LOG}/${SUFFIX}_trsupnetresults.json" \
+        "${LOCAL_CKPT_LOG}"
+
+      copy_required_file \
+        "${PERSIST_TRAIN_LOG}/${SUFFIX}_supernet_shuffle_best.pth" \
+        "${LOCAL_CKPT_LOG}"
+      ;;
+
+    stage4)
+      copy_required_file \
+        "${PERSIST_TRAIN_LOG}/${SUFFIX}_ssoptlog.json" \
+        "${LOCAL_TRAIN_LOG}"
+
+      copy_required_file \
+        "${PERSIST_TRAIN_LOG}/${SUFFIX}_trsupnetresults.json" \
+        "${LOCAL_CKPT_LOG}"
+
+      copy_required_file \
+        "${PERSIST_TRAIN_LOG}/${SUFFIX}_supernet_shuffle_best.pth" \
+        "${LOCAL_CKPT_LOG}"
+
+      copy_required_file \
+        "${PERSIST_TRAIN_LOG}/${SUFFIX}_evosearchlog.json" \
+        "${LOCAL_TRAIN_LOG}"
+      ;;
+  esac
+}
 # =========================
 # User configuration
 # =========================
@@ -147,19 +217,28 @@ run_stage4() {
 # =========================
 # Run selected option
 # =========================
+
+
 case "${OPTION}" in
   stage1)
     run_stage1
     ;;
+
   stage2)
+    restore_stage_files
     run_stage2
     ;;
+
   stage3)
+    restore_stage_files
     run_stage3
     ;;
+
   stage4)
+    restore_stage_files
     run_stage4
     ;;
+
   full-stage)
     run_stage1
     run_stage2
