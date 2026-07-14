@@ -10,14 +10,10 @@
   M(incept_im100_vm128_DupNAS_MC_0_w0_5_ir128_split_full_integer_quant, "incept-im100-vm128-DupNAS-MC-0_w0.5_ir128_split_full_integer_quant") \
   M(incept_im100_vm128_DupNAS_MC_10_w0_5_ir128_split_full_integer_quant, "incept-im100-vm128-DupNAS-MC-10_w0.5_ir128_split_full_integer_quant") \
   M(incept_im100_vm128_DupNAS_MC_44_w0_5_ir128_split_full_integer_quant, "incept-im100-vm128-DupNAS-MC-44_w0.5_ir128_split_full_integer_quant") \
-  M(incept_im100_vm128_dupnas_w0_5_ir128_split_full_integer_quant, "incept-im100-vm128-dupnas_w0.5_ir128_split_full_integer_quant") \
-  M(incept_im100_vm128_patchts_w0_5_ir128_split_full_integer_quant, "incept-im100-vm128-patchts_w0.5_ir128_split_full_integer_quant") \
-  M(incept_im100_vm128_tinyts_w0_5_ir96_split_full_integer_quant, "incept-im100-vm128-tinyts_w0.5_ir96_split_full_integer_quant") \
+  M(incept_im100_vm128_dupnas_w0_5_ir128_ts_full_integer_quant, "incept-im100-vm128-dupnas_w0.5_ir128_ts_full_integer_quant") \
   M(incept_im100_vm96_DupNAS_MC_2_w0_75_ir96_split_full_integer_quant, "incept-im100-vm96-DupNAS-MC-2_w0.75_ir96_split_full_integer_quant") \
   M(incept_im100_vm96_DupNAS_MC_8_w0_75_ir96_split_full_integer_quant, "incept-im100-vm96-DupNAS-MC-8_w0.75_ir96_split_full_integer_quant") \
-  M(incept_im100_vm96_dupnas_w0_75_ir96_split_full_integer_quant, "incept-im100-vm96-dupnas_w0.75_ir96_split_full_integer_quant") \
-  M(incept_im100_vm96_patchts_w0_25_ir96_split_full_integer_quant, "incept-im100-vm96-patchts_w0.25_ir96_split_full_integer_quant") \
-  M(incept_im100_vm96_tinyts_w0_25_ir64_split_full_integer_quant, "incept-im100-vm96-tinyts_w0.25_ir64_split_full_integer_quant") \
+  M(incept_im100_vm96_dupnas_w0_75_ir96_ts_full_integer_quant, "incept-im100-vm96-dupnas_w0.75_ir96_ts_full_integer_quant") \
   M(incept_vm128_DupNAS_LC3N_w0_5_ir128_split_full_integer_quant, "incept-vm128-DupNAS-LC3N_w0.5_ir128_split_full_integer_quant") \
   M(incept_vm128_DupNAS_LCN_w0_5_ir128_split_full_integer_quant, "incept-vm128-DupNAS-LCN_w0.5_ir128_split_full_integer_quant") \
   M(mbv2_im100_vm128_dupnas_MC_127_w0_25_ir128_split_full_integer_quant, "mbv2-im100-vm128-dupnas-MC-127_w0.25_ir128_split_full_integer_quant") \
@@ -26,28 +22,20 @@
   M(mbv2_im100_vm128_dupnas_MC_50_w0_25_ir128_split_full_integer_quant, "mbv2-im100-vm128-dupnas-MC-50_w0.25_ir128_split_full_integer_quant") \
   M(mbv2_im100_vm128_dupnas_MC_87_w0_25_ir128_split_full_integer_quant, "mbv2-im100-vm128-dupnas-MC-87_w0.25_ir128_split_full_integer_quant") \
   M(mbv2_im100_vm128_dupnas_MC_96_w0_25_ir128_split_full_integer_quant, "mbv2-im100-vm128-dupnas-MC-96_w0.25_ir128_split_full_integer_quant") \
-  M(mbv2_im100_vm128_dupnas_w0_25_ir128_split_full_integer_quant, "mbv2-im100-vm128-dupnas_w0.25_ir128_split_full_integer_quant") \
-  M(mbv2_im100_vm128_patchts_w0_25_ir96_split_full_integer_quant, "mbv2-im100-vm128-patchts_w0.25_ir96_split_full_integer_quant") \
-  M(mbv2_im100_vm128_tinyts_w0_25_ir96_split_full_integer_quant, "mbv2-im100-vm128-tinyts_w0.25_ir96_split_full_integer_quant") \
+  M(mbv2_im100_vm128_dupnas_w0_25_ir128_ts_full_integer_quant, "mbv2-im100-vm128-dupnas_w0.25_ir128_ts_full_integer_quant") \
   M(mbv2_im100_vm96_dupnas_MC_31_w0_25_ir96_split_full_integer_quant, "mbv2-im100-vm96-dupnas-MC-31_w0.25_ir96_split_full_integer_quant") \
   M(mbv2_im100_vm96_dupnas_MC_50_w0_25_ir96_split_full_integer_quant, "mbv2-im100-vm96-dupnas-MC-50_w0.25_ir96_split_full_integer_quant") \
-  M(mbv2_im100_vm96_dupnas_w0_25_ir96_split_full_integer_quant, "mbv2-im100-vm96-dupnas_w0.25_ir96_split_full_integer_quant") \
-  M(mbv2_im100_vm96_patchts_w0_25_ir64_split_full_integer_quant, "mbv2-im100-vm96-patchts_w0.25_ir64_split_full_integer_quant") \
-  M(mbv2_im100_vm96_tinyts_w0_25_ir64_split_full_integer_quant, "mbv2-im100-vm96-tinyts_w0.25_ir64_split_full_integer_quant") \
+  M(mbv2_im100_vm96_dupnas_w0_25_ir96_ts_full_integer_quant, "mbv2-im100-vm96-dupnas_w0.25_ir96_ts_full_integer_quant") \
   M(shuffle_im100_vm128_DupNAS_MC_18_w0_5_ir128_split_full_integer_quant, "shuffle-im100-vm128-DupNAS-MC-18_w0.5_ir128_split_full_integer_quant") \
   M(shuffle_im100_vm128_DupNAS_MC_23_w0_5_ir128_split_full_integer_quant, "shuffle-im100-vm128-DupNAS-MC-23_w0.5_ir128_split_full_integer_quant") \
   M(shuffle_im100_vm128_DupNAS_MC_37_w0_5_ir128_split_full_integer_quant, "shuffle-im100-vm128-DupNAS-MC-37_w0.5_ir128_split_full_integer_quant") \
   M(shuffle_im100_vm128_DupNAS_MC_9_w0_5_ir128_split_full_integer_quant, "shuffle-im100-vm128-DupNAS-MC-9_w0.5_ir128_split_full_integer_quant") \
-  M(shuffle_im100_vm128_dupnas_w0_5_ir128_split_full_integer_quant, "shuffle-im100-vm128-dupnas_w0.5_ir128_split_full_integer_quant") \
-  M(shuffle_im100_vm128_patchts_w0_5_ir96_split_full_integer_quant, "shuffle-im100-vm128-patchts_w0.5_ir96_split_full_integer_quant") \
-  M(shuffle_im100_vm128_tinyts_w0_5_ir96_split_full_integer_quant, "shuffle-im100-vm128-tinyts_w0.5_ir96_split_full_integer_quant") \
+  M(shuffle_im100_vm128_dupnas_w0_5_ir128_ts_full_integer_quant, "shuffle-im100-vm128-dupnas_w0.5_ir128_ts_full_integer_quant") \
   M(shuffle_im100_vm96_DupNAS_MC_13_w0_5_ir128_split_full_integer_quant, "shuffle-im100-vm96-DupNAS-MC-13_w0.5_ir128_split_full_integer_quant") \
   M(shuffle_im100_vm96_DupNAS_MC_14_w0_5_ir128_split_full_integer_quant, "shuffle-im100-vm96-DupNAS-MC-14_w0.5_ir128_split_full_integer_quant") \
   M(shuffle_im100_vm96_DupNAS_MC_6_w0_5_ir128_split_full_integer_quant, "shuffle-im100-vm96-DupNAS-MC-6_w0.5_ir128_split_full_integer_quant") \
   M(shuffle_im100_vm96_DupNAS_MC_8_w0_5_ir128_split_full_integer_quant, "shuffle-im100-vm96-DupNAS-MC-8_w0.5_ir128_split_full_integer_quant") \
-  M(shuffle_im100_vm96_dupnas_w0_5_ir128_split_full_integer_quant, "shuffle-im100-vm96-dupnas_w0.5_ir128_split_full_integer_quant") \
-  M(shuffle_im100_vm96_patchts_w0_5_ir96_split_full_integer_quant, "shuffle-im100-vm96-patchts_w0.5_ir96_split_full_integer_quant") \
-  M(shuffle_im100_vm96_tinyts_w0_5_ir96_split_full_integer_quant, "shuffle-im100-vm96-tinyts_w0.5_ir96_split_full_integer_quant")
+  M(shuffle_im100_vm96_dupnas_w0_5_ir128_ts_full_integer_quant, "shuffle-im100-vm96-dupnas_w0.5_ir128_ts_full_integer_quant")
 
 #define TFLM_DECLARE_MODEL(symbol, display_name) \
   extern const unsigned char g_model_data_##symbol[]; \
@@ -91,7 +79,7 @@ TFLM_FOREACH_MODEL(TFLM_DECLARE_MODEL)
   TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
   TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
 #define TFLM_MODEL_OP_COUNT_incept_im100_vm128_DupNAS_MC_44_w0_5_ir128_split_full_integer_quant 8
-#define TFLM_APPLY_MODEL_OPS_incept_im100_vm128_dupnas_w0_5_ir128_split_full_integer_quant(resolver) \
+#define TFLM_APPLY_MODEL_OPS_incept_im100_vm128_dupnas_w0_5_ir128_ts_full_integer_quant(resolver) \
   TF_LITE_ENSURE_STATUS((resolver).AddAveragePool2D()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
@@ -100,27 +88,7 @@ TFLM_FOREACH_MODEL(TFLM_DECLARE_MODEL)
   TF_LITE_ENSURE_STATUS((resolver).AddMul()); \
   TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
   TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
-#define TFLM_MODEL_OP_COUNT_incept_im100_vm128_dupnas_w0_5_ir128_split_full_integer_quant 8
-#define TFLM_APPLY_MODEL_OPS_incept_im100_vm128_patchts_w0_5_ir128_split_full_integer_quant(resolver) \
-  TF_LITE_ENSURE_STATUS((resolver).AddAveragePool2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddFullyConnected()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMean()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMul()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
-#define TFLM_MODEL_OP_COUNT_incept_im100_vm128_patchts_w0_5_ir128_split_full_integer_quant 8
-#define TFLM_APPLY_MODEL_OPS_incept_im100_vm128_tinyts_w0_5_ir96_split_full_integer_quant(resolver) \
-  TF_LITE_ENSURE_STATUS((resolver).AddAveragePool2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddFullyConnected()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMean()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMul()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
-#define TFLM_MODEL_OP_COUNT_incept_im100_vm128_tinyts_w0_5_ir96_split_full_integer_quant 8
+#define TFLM_MODEL_OP_COUNT_incept_im100_vm128_dupnas_w0_5_ir128_ts_full_integer_quant 8
 #define TFLM_APPLY_MODEL_OPS_incept_im100_vm96_DupNAS_MC_2_w0_75_ir96_split_full_integer_quant(resolver) \
   TF_LITE_ENSURE_STATUS((resolver).AddAveragePool2D()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
@@ -141,7 +109,7 @@ TFLM_FOREACH_MODEL(TFLM_DECLARE_MODEL)
   TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
   TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
 #define TFLM_MODEL_OP_COUNT_incept_im100_vm96_DupNAS_MC_8_w0_75_ir96_split_full_integer_quant 8
-#define TFLM_APPLY_MODEL_OPS_incept_im100_vm96_dupnas_w0_75_ir96_split_full_integer_quant(resolver) \
+#define TFLM_APPLY_MODEL_OPS_incept_im100_vm96_dupnas_w0_75_ir96_ts_full_integer_quant(resolver) \
   TF_LITE_ENSURE_STATUS((resolver).AddAveragePool2D()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
@@ -150,27 +118,7 @@ TFLM_FOREACH_MODEL(TFLM_DECLARE_MODEL)
   TF_LITE_ENSURE_STATUS((resolver).AddMul()); \
   TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
   TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
-#define TFLM_MODEL_OP_COUNT_incept_im100_vm96_dupnas_w0_75_ir96_split_full_integer_quant 8
-#define TFLM_APPLY_MODEL_OPS_incept_im100_vm96_patchts_w0_25_ir96_split_full_integer_quant(resolver) \
-  TF_LITE_ENSURE_STATUS((resolver).AddAveragePool2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddFullyConnected()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMean()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMul()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
-#define TFLM_MODEL_OP_COUNT_incept_im100_vm96_patchts_w0_25_ir96_split_full_integer_quant 8
-#define TFLM_APPLY_MODEL_OPS_incept_im100_vm96_tinyts_w0_25_ir64_split_full_integer_quant(resolver) \
-  TF_LITE_ENSURE_STATUS((resolver).AddAveragePool2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddFullyConnected()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMean()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMul()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
-#define TFLM_MODEL_OP_COUNT_incept_im100_vm96_tinyts_w0_25_ir64_split_full_integer_quant 8
+#define TFLM_MODEL_OP_COUNT_incept_im100_vm96_dupnas_w0_75_ir96_ts_full_integer_quant 8
 #define TFLM_APPLY_MODEL_OPS_incept_vm128_DupNAS_LC3N_w0_5_ir128_split_full_integer_quant(resolver) \
   TF_LITE_ENSURE_STATUS((resolver).AddAveragePool2D()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
@@ -257,7 +205,7 @@ TFLM_FOREACH_MODEL(TFLM_DECLARE_MODEL)
   TF_LITE_ENSURE_STATUS((resolver).AddRelu()); \
   TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
 #define TFLM_MODEL_OP_COUNT_mbv2_im100_vm128_dupnas_MC_96_w0_25_ir128_split_full_integer_quant 9
-#define TFLM_APPLY_MODEL_OPS_mbv2_im100_vm128_dupnas_w0_25_ir128_split_full_integer_quant(resolver) \
+#define TFLM_APPLY_MODEL_OPS_mbv2_im100_vm128_dupnas_w0_25_ir128_ts_full_integer_quant(resolver) \
   TF_LITE_ENSURE_STATUS((resolver).AddAdd()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
@@ -267,28 +215,7 @@ TFLM_FOREACH_MODEL(TFLM_DECLARE_MODEL)
   TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
   TF_LITE_ENSURE_STATUS((resolver).AddRelu()); \
   TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
-#define TFLM_MODEL_OP_COUNT_mbv2_im100_vm128_dupnas_w0_25_ir128_split_full_integer_quant 9
-#define TFLM_APPLY_MODEL_OPS_mbv2_im100_vm128_patchts_w0_25_ir96_split_full_integer_quant(resolver) \
-  TF_LITE_ENSURE_STATUS((resolver).AddAdd()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddDepthwiseConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddFullyConnected()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMean()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
-#define TFLM_MODEL_OP_COUNT_mbv2_im100_vm128_patchts_w0_25_ir96_split_full_integer_quant 8
-#define TFLM_APPLY_MODEL_OPS_mbv2_im100_vm128_tinyts_w0_25_ir96_split_full_integer_quant(resolver) \
-  TF_LITE_ENSURE_STATUS((resolver).AddAdd()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddDepthwiseConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddFullyConnected()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMean()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddRelu()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
-#define TFLM_MODEL_OP_COUNT_mbv2_im100_vm128_tinyts_w0_25_ir96_split_full_integer_quant 9
+#define TFLM_MODEL_OP_COUNT_mbv2_im100_vm128_dupnas_w0_25_ir128_ts_full_integer_quant 9
 #define TFLM_APPLY_MODEL_OPS_mbv2_im100_vm96_dupnas_MC_31_w0_25_ir96_split_full_integer_quant(resolver) \
   TF_LITE_ENSURE_STATUS((resolver).AddAdd()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
@@ -311,7 +238,7 @@ TFLM_FOREACH_MODEL(TFLM_DECLARE_MODEL)
   TF_LITE_ENSURE_STATUS((resolver).AddRelu()); \
   TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
 #define TFLM_MODEL_OP_COUNT_mbv2_im100_vm96_dupnas_MC_50_w0_25_ir96_split_full_integer_quant 9
-#define TFLM_APPLY_MODEL_OPS_mbv2_im100_vm96_dupnas_w0_25_ir96_split_full_integer_quant(resolver) \
+#define TFLM_APPLY_MODEL_OPS_mbv2_im100_vm96_dupnas_w0_25_ir96_ts_full_integer_quant(resolver) \
   TF_LITE_ENSURE_STATUS((resolver).AddAdd()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
@@ -321,28 +248,7 @@ TFLM_FOREACH_MODEL(TFLM_DECLARE_MODEL)
   TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
   TF_LITE_ENSURE_STATUS((resolver).AddRelu()); \
   TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
-#define TFLM_MODEL_OP_COUNT_mbv2_im100_vm96_dupnas_w0_25_ir96_split_full_integer_quant 9
-#define TFLM_APPLY_MODEL_OPS_mbv2_im100_vm96_patchts_w0_25_ir64_split_full_integer_quant(resolver) \
-  TF_LITE_ENSURE_STATUS((resolver).AddAdd()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddDepthwiseConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddFullyConnected()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMean()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
-#define TFLM_MODEL_OP_COUNT_mbv2_im100_vm96_patchts_w0_25_ir64_split_full_integer_quant 8
-#define TFLM_APPLY_MODEL_OPS_mbv2_im100_vm96_tinyts_w0_25_ir64_split_full_integer_quant(resolver) \
-  TF_LITE_ENSURE_STATUS((resolver).AddAdd()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddDepthwiseConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddFullyConnected()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMean()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddRelu()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice());
-#define TFLM_MODEL_OP_COUNT_mbv2_im100_vm96_tinyts_w0_25_ir64_split_full_integer_quant 9
+#define TFLM_MODEL_OP_COUNT_mbv2_im100_vm96_dupnas_w0_25_ir96_ts_full_integer_quant 9
 #define TFLM_APPLY_MODEL_OPS_shuffle_im100_vm128_DupNAS_MC_18_w0_5_ir128_split_full_integer_quant(resolver) \
   TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
@@ -391,7 +297,7 @@ TFLM_FOREACH_MODEL(TFLM_DECLARE_MODEL)
   TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice()); \
   TF_LITE_ENSURE_STATUS((resolver).AddTranspose());
 #define TFLM_MODEL_OP_COUNT_shuffle_im100_vm128_DupNAS_MC_9_w0_5_ir128_split_full_integer_quant 10
-#define TFLM_APPLY_MODEL_OPS_shuffle_im100_vm128_dupnas_w0_5_ir128_split_full_integer_quant(resolver) \
+#define TFLM_APPLY_MODEL_OPS_shuffle_im100_vm128_dupnas_w0_5_ir128_ts_full_integer_quant(resolver) \
   TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
   TF_LITE_ENSURE_STATUS((resolver).AddDepthwiseConv2D()); \
@@ -402,28 +308,7 @@ TFLM_FOREACH_MODEL(TFLM_DECLARE_MODEL)
   TF_LITE_ENSURE_STATUS((resolver).AddReshape()); \
   TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice()); \
   TF_LITE_ENSURE_STATUS((resolver).AddTranspose());
-#define TFLM_MODEL_OP_COUNT_shuffle_im100_vm128_dupnas_w0_5_ir128_split_full_integer_quant 10
-#define TFLM_APPLY_MODEL_OPS_shuffle_im100_vm128_patchts_w0_5_ir96_split_full_integer_quant(resolver) \
-  TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddDepthwiseConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddFullyConnected()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMean()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddReshape()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddTranspose());
-#define TFLM_MODEL_OP_COUNT_shuffle_im100_vm128_patchts_w0_5_ir96_split_full_integer_quant 8
-#define TFLM_APPLY_MODEL_OPS_shuffle_im100_vm128_tinyts_w0_5_ir96_split_full_integer_quant(resolver) \
-  TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddDepthwiseConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddFullyConnected()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMean()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddReshape()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddTranspose());
-#define TFLM_MODEL_OP_COUNT_shuffle_im100_vm128_tinyts_w0_5_ir96_split_full_integer_quant 9
+#define TFLM_MODEL_OP_COUNT_shuffle_im100_vm128_dupnas_w0_5_ir128_ts_full_integer_quant 10
 #define TFLM_APPLY_MODEL_OPS_shuffle_im100_vm96_DupNAS_MC_13_w0_5_ir128_split_full_integer_quant(resolver) \
   TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
@@ -468,7 +353,7 @@ TFLM_FOREACH_MODEL(TFLM_DECLARE_MODEL)
   TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice()); \
   TF_LITE_ENSURE_STATUS((resolver).AddTranspose());
 #define TFLM_MODEL_OP_COUNT_shuffle_im100_vm96_DupNAS_MC_8_w0_5_ir128_split_full_integer_quant 9
-#define TFLM_APPLY_MODEL_OPS_shuffle_im100_vm96_dupnas_w0_5_ir128_split_full_integer_quant(resolver) \
+#define TFLM_APPLY_MODEL_OPS_shuffle_im100_vm96_dupnas_w0_5_ir128_ts_full_integer_quant(resolver) \
   TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
   TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
   TF_LITE_ENSURE_STATUS((resolver).AddDepthwiseConv2D()); \
@@ -478,27 +363,4 @@ TFLM_FOREACH_MODEL(TFLM_DECLARE_MODEL)
   TF_LITE_ENSURE_STATUS((resolver).AddReshape()); \
   TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice()); \
   TF_LITE_ENSURE_STATUS((resolver).AddTranspose());
-#define TFLM_MODEL_OP_COUNT_shuffle_im100_vm96_dupnas_w0_5_ir128_split_full_integer_quant 9
-#define TFLM_APPLY_MODEL_OPS_shuffle_im100_vm96_patchts_w0_5_ir96_split_full_integer_quant(resolver) \
-  TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddDepthwiseConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddFullyConnected()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMean()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddRelu()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddReshape()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddTranspose());
-#define TFLM_MODEL_OP_COUNT_shuffle_im100_vm96_patchts_w0_5_ir96_split_full_integer_quant 10
-#define TFLM_APPLY_MODEL_OPS_shuffle_im100_vm96_tinyts_w0_5_ir96_split_full_integer_quant(resolver) \
-  TF_LITE_ENSURE_STATUS((resolver).AddConcatenation()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddDepthwiseConv2D()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddFullyConnected()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddMean()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddPad()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddReshape()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddStridedSlice()); \
-  TF_LITE_ENSURE_STATUS((resolver).AddTranspose());
-#define TFLM_MODEL_OP_COUNT_shuffle_im100_vm96_tinyts_w0_5_ir96_split_full_integer_quant 9
+#define TFLM_MODEL_OP_COUNT_shuffle_im100_vm96_dupnas_w0_5_ir128_ts_full_integer_quant 9
