@@ -1,5 +1,3 @@
-hello_world_float.tflite
-hello_world_int8.tflite
 incept-im100-vm128-DupNAS-MC-0_w0.5_ir128_split_full_integer_quant.tflite
 incept-im100-vm128-DupNAS-MC-10_w0.5_ir128_split_full_integer_quant.tflite
 incept-im100-vm128-DupNAS-MC-44_w0.5_ir128_split_full_integer_quant.tflite
@@ -29,4 +27,3 @@ shuffle-im100-vm96-DupNAS-MC-14_w0.5_ir128_split_full_integer_quant.tflite
 shuffle-im100-vm96-DupNAS-MC-6_w0.5_ir128_split_full_integer_quant.tflite
 shuffle-im100-vm96-DupNAS-MC-8_w0.5_ir128_split_full_integer_quant.tflite
 shuffle-im100-vm96-dupnas_w0.5_ir128_ts_full_integer_quant.tflite
-tflm.txt
