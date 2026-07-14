@@ -395,7 +395,7 @@ def main():
     fieldnames = [
         "model",
         "top1_accuracy",
-        "top5_accuracy",
+        #"top5_accuracy",
     ]
 
     dataset_cache = {}
@@ -468,7 +468,7 @@ def main():
                 summary_row = {
                     "model": result["model_name"],
                     "top1_accuracy": f"{result['top1_acc']:.2f}%",
-                    "top5_accuracy": f"{result['top5_acc']:.2f}%",
+                    #"top5_accuracy": f"{result['top5_acc']:.2f}%",
                 }
                 writer.writerow(summary_row)
                 f.flush()
@@ -493,14 +493,19 @@ def main():
                 f.flush()
 
     if summary_rows:
-        print("Accuracy summary:")
-        print(f"{'model':<60} {'Top-1 accuracy':>15}" ) # {'Top-5 accuracy':>15}")
+        print("\n" + "=" * 80)
+        print("Fig. 7 Results: ImageNet-100 Model Accuracy")
+        print("=" * 80)
+        print(f"{'Model':<60} {'Top-1 Accuracy':>16}")
+        print("-" * 80)
+
         for row in summary_rows:
             print(
                 f"{row['model_name']:<60} "
-                f"{row['top1_acc']:>14.2f}% "
-                # f"{row['top5_acc']:>14.2f}%"
+                f"{row['top1_acc']:>15.2f}%"
             )
+
+        print("=" * 80)
 
     print(f"[DONE] Saved accuracy results to: {args.output}")
 

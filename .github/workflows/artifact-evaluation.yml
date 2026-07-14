@@ -52,8 +52,9 @@ jobs:
         run: bash scripts/fig7.sh
       - name: Show experiment results
         run: |
+          echo " "
           echo "============ Fig. 7 (model accuracy ) Results ==========="
-          cat DupNAS/genonnx/onnx_image100_accuracy_${{ inputs.option }}_test.csv
+          column -s, -t < DupNAS/genonnx/onnx_image100_accuracy_${{ inputs.option }}_test.csv
           echo "========================================================="
       - name: Upload results
         uses: actions/upload-artifact@v7
