@@ -28,7 +28,7 @@ mkdir -p "$RESULTS_DIR"
 echo "model_name,$METRICS" > "$RESULTS_CSV"
 
 scale_metric() {
-    [ "$1" = "NA" ] && echo "NA" || awk -v value="$1" 'BEGIN {printf "%.3f\n", value / 1000}'
+    [ "$1" = "NA" ] && echo "NA" || awk -v value="$1" 'BEGIN {printf "%.2f\n", value / 1000}'
 }
 
 metric_unit() {
