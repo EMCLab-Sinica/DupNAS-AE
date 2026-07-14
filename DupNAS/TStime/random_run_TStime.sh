@@ -276,6 +276,8 @@ else
   TOTAL_MAX=-1
 fi
 
+TOTAL_SAMPLES=$((SAMPLE_N * ${#VMS[@]}))
+
 OVERALL_SUMMARY="$SCRIPT_DIR/${MODEL_NAME}_total${TOTAL_SAMPLES}runs_summary.csv"
 {
   echo "metric,value"
@@ -302,7 +304,6 @@ fmt_sec() {
 TOTAL_MIN_SEC="$(fmt_sec "$TOTAL_MIN")"
 TOTAL_AVG_SEC="$(fmt_sec "$TOTAL_AVG")"
 TOTAL_MAX_SEC="$(fmt_sec "$TOTAL_MAX")"
-TOTAL_SAMPLES=$((SAMPLE_N * ${#VMS[@]}))
 
 echo "================== ALL VM DONE =================="
 echo "[Overall TS Runtime among $TOTAL_SAMPLES results]"
