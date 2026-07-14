@@ -31,7 +31,7 @@ def main(argv):
         raise SystemExit(f"Usage: {argv[0]} RESULTS_CSV")
 
     results_csv = Path(argv[1])
-    log_path = results_csv.parent / "fig11_result.log"
+    log_path = Path("results/fig11_result.log")
 
     values = {
         "ram": [],

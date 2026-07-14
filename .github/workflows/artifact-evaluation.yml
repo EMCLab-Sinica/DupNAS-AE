@@ -33,7 +33,7 @@ jobs:
       - name: Run fig6
         run: bash scripts/fig6.sh
       - name: Show experiment results
-        run: cat DupNAS/TStime/fig6_result.log
+        run: cat DupNAS/sample_onnx/fig6_result.log
       - name: Upload results
         uses: actions/upload-artifact@v7
         with:
@@ -144,7 +144,7 @@ jobs:
       - name: Run fig11
         run: bash scripts/fig11/fig11.sh
       - name: Show experiment results
-        run: cat STM/results/fig11_result.log
+        run: cat results/fig11_result.log
       - name: Upload results
         uses: actions/upload-artifact@v7
         with:

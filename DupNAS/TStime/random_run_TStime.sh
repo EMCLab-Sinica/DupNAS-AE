@@ -316,7 +316,7 @@ echo "  selected   : $SELECTED_LIST"
 echo "  summary    : $OVERALL_SUMMARY"
 echo "================================================="
 
-RESULT_LOG="DupNAS/TStime/fig9_result.log"
+RESULT_LOG="fig9_result.log"
 
 {
     echo "================ Fig. 9 Results: TS Runtime ================"

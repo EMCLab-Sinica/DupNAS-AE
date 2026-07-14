@@ -293,7 +293,7 @@ def main() -> None:
         else:
             args.detail_csv = "all_output_dupnasa_detail.csv"
 
-    print_summary_rows(all_summaries, log_path="sample_onnx/outputs/fig6_result.log",)
+    print_summary_rows(all_summaries, log_path="fig6_result.log",)
 
     write_csv(output_root / args.summary_csv, all_summaries)
     write_csv(output_root / args.detail_csv, all_details)
