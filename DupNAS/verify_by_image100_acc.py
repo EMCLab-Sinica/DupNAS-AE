@@ -493,21 +493,33 @@ def main():
                 f.flush()
 
     if summary_rows:
-        print("\n" + "=" * 80)
-        print("Fig. 7 Results: ImageNet-100 Model Accuracy")
-        print("=" * 80)
-        print(f"{'Model':<60} {'Top-1 Accuracy':>16}")
-        print("-" * 80)
+        log_path = args.output.parent / "fig7_result.log"
+
+        lines = [
+            "=" * 80,
+            "Fig. 7 Results: ImageNet-100 Model Accuracy",
+            "=" * 80,
+            f"{'Model':<60} {'Top-1 Accuracy':>16}",
+            "-" * 80,
+        ]
 
         for row in summary_rows:
-            print(
+            lines.append(
                 f"{row['model_name']:<60} "
                 f"{row['top1_acc']:>15.2f}%"
             )
 
-        print("=" * 80)
+        lines.append("=" * 80)
 
-    print(f"[DONE] Saved accuracy results to: {args.output}")
+        summary_text = "\n".join(lines)
+
+        # Print to console
+        print("\n" + summary_text)
+
+        # Save the same summary to log
+        log_path.write_text(summary_text + "\n", encoding="utf-8")
+
+        print(f"[DONE] Saved Fig. 7 result log to: {log_path}")
 
 
 if __name__ == "__main__":

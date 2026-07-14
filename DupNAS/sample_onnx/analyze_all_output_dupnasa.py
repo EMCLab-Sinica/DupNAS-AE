@@ -191,26 +191,46 @@ def process_vm_dir(model: str, vm_kb: int, vm_dir: Path, args: argparse.Namespac
 
 
 
-def print_summary_rows(rows: List[dict]) -> None:
-    """Print the same summary information to console."""
+def print_summary_rows(
+    rows: List[dict],
+    log_path: str = "fig6_result.log",
+) -> None:
+    """Print Fig. 6 summary to console and save the same content to a log file."""
+
+    lines = []
+
+    lines.append("=============== Fig. 6 Results: Feasibility Summary ===============")
+
     for r in rows:
-        print("")
-        print(f"[Summary] {r['model_family']} {r['vm']}")
-        print(f"  model_family: {r['model_family']}")
-        print(f"  vm: {r['vm']}")
-        print(f"  total_onnx: {r['total_onnx']}")
-        print(f"  original_feasible: {r['original_feasible']}")
-        print(f"  original_feasible_ratio: {r['original_feasible_ratio']}")
-        print(f"  dupnas_feasible: {r['dupnas_feasible']}")
-        print(f"  dupnas_feasible_ratio: {r['dupnas_feasible_ratio']}")
-        # print(f"  reduction_1/4_count: {r['reduction_1/4_count']}")
-        # print(f"  reduction_1/4_ratio_in_dupnasa_feasible: {r['reduction_1/4_ratio_in_dupnasa_feasible']}")
-        # print(f"  reduction_2/4_count: {r['reduction_2/4_count']}")
-        # print(f"  reduction_2/4_ratio_in_dupnasa_feasible: {r['reduction_2/4_ratio_in_dupnasa_feasible']}")
-        # print(f"  reduction_3/4_count: {r['reduction_3/4_count']}")
-        # print(f"  reduction_3/4_ratio_in_dupnasa_feasible: {r['reduction_3/4_ratio_in_dupnasa_feasible']}")
-        # print(f"  reduction_4/4_count: {r['reduction_4/4_count']}")
-        # print(f"  reduction_4/4_ratio_in_dupnasa_feasible: {r['reduction_4/4_ratio_in_dupnasa_feasible']}")
+        lines.append("")
+        lines.append(f"[{r['model_family']} / VM={r['vm']}]")
+        lines.append(f"  Total ONNX models          : {r['total_onnx']}")
+        lines.append(
+            f"  Original feasible          : "
+            f"{r['original_feasible']} "
+            f"({r['original_feasible_ratio']})"
+        )
+        lines.append(
+            f"  DupNAS feasible            : "
+            f"{r['dupnas_feasible']} "
+            f"({r['dupnas_feasible_ratio']})"
+        )
+
+    lines.append("")
+    lines.append("====================================================================")
+
+    summary_text = "\n".join(lines)
+
+    # Print to console
+    print(summary_text)
+
+    # Save to log
+    log_file = Path(log_path)
+    log_file.parent.mkdir(parents=True, exist_ok=True)
+    log_file.write_text(summary_text + "\n", encoding="utf-8")
+
+    print(f"[DONE] Saved Fig. 6 result log to: {log_file}")
+
 
 def write_csv(path: Path, rows: List[dict]) -> None:
     if not rows:
@@ -273,7 +293,7 @@ def main() -> None:
         else:
             args.detail_csv = "all_output_dupnasa_detail.csv"
 
-    print_summary_rows(all_summaries)
+    print_summary_rows(all_summaries, log_path="sample_onnx/outputs/fig6_result.log",)
 
     write_csv(output_root / args.summary_csv, all_summaries)
     write_csv(output_root / args.detail_csv, all_details)

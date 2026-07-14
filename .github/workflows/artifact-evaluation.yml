@@ -32,6 +32,8 @@ jobs:
         run: bash scripts/link_models.sh
       - name: Run fig6
         run: bash scripts/fig6.sh
+      - name: Show experiment results
+        run: cat DupNAS/TStime/fig6_result.log
       - name: Upload results
         uses: actions/upload-artifact@v7
         with:
@@ -51,11 +53,7 @@ jobs:
       - name: Run fig7
         run: bash scripts/fig7.sh
       - name: Show experiment results
-        run: |
-          echo " "
-          echo "============ Fig. 7 (model accuracy ) Results ==========="
-          column -s, -t < DupNAS/genonnx/onnx_image100_accuracy_${{ inputs.option }}_test.csv
-          echo "========================================================="
+        run: cat DupNAS/genonnx/fig7_result.log
       - name: Upload results
         uses: actions/upload-artifact@v7
         with:
@@ -77,6 +75,11 @@ jobs:
         run: bash scripts/patch_repo_root.sh
       - name: Run fig8
         run: bash scripts/fig8/fig8.sh
+      - name: Show experiment results
+        run: |
+          echo "================ Fig. 8 Results: STM32F746 Deployment ================"
+          column -s, -t < results/tflm_f7/results.csv
+          echo "========================================================================"
       - name: Upload results
         uses: actions/upload-artifact@v7
         with:
@@ -93,6 +96,8 @@ jobs:
         run: bash scripts/link_models.sh
       - name: Run fig9
         run: bash scripts/fig9.sh
+      - name: Show experiment results
+        run: cat DupNAS/TStime/fig9_result.log
       - name: Upload results
         uses: actions/upload-artifact@v7
         with:
@@ -112,6 +117,8 @@ jobs:
         run: bash scripts/link_models.sh
       - name: Run fig10
         run: bash scripts/fig10.sh
+      - name: Show experiment results
+        run: cat DupNAS/HEtest/fig10_result.log
       - name: Upload results
         uses: actions/upload-artifact@v7
         with:
@@ -136,6 +143,8 @@ jobs:
         run: bash scripts/gather_tflm_mem.sh
       - name: Run fig11
         run: bash scripts/fig11/fig11.sh
+      - name: Show experiment results
+        run: cat STM/results/fig11_result.log
       - name: Upload results
         uses: actions/upload-artifact@v7
         with:

@@ -351,3 +351,17 @@ echo "  selected   : $SELECTED_LIST"
 echo "  summary    : $OVERALL_SUMMARY"
 echo "================================================="
 
+RESULT_LOG="DupNAS/TStime/fig9_result.log"
+
+{
+    echo "================ Fig. 9 Results: TS Runtime ================"
+    echo "Overall TS runtime among ${TOTAL_SAMPLES} results"
+    echo
+    echo "  Model       : $MODEL_NAME"
+    echo "  Minimum     : ${TOTAL_MIN_SEC} sec (${TOTAL_MIN} ms)"
+    echo "  Average     : ${TOTAL_AVG_SEC} sec (${TOTAL_AVG} ms)"
+    echo "  Maximum     : ${TOTAL_MAX_SEC} sec (${TOTAL_MAX} ms)"
+    echo "  Selected    : $SELECTED_LIST"
+    echo "  Summary CSV : $OVERALL_SUMMARY"
+    echo "============================================================="
+} | tee "$RESULT_LOG"

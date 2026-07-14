@@ -588,20 +588,48 @@ def main():
     print(f"[INPUT] {input_dir}")
     print(f"[SAVE] {out_csv}")
     #print(f"[SAVE] {clean_csv}")
-    print("[CONSOLE SUMMARY]")
-    print(f"  Current setting: exgrule={current_exgrule}, model={current_model}, vm_setting={current_vm}")
-    print(
-        "  DupNAS-excluded feasible network candidates (%): "
+    # print("[CONSOLE SUMMARY]")
+    # print(f"  Current setting: exgrule={current_exgrule}, model={current_model}, vm_setting={current_vm}")
+    # print(
+    #     "  DupNAS-excluded feasible network candidates (%): "
+    #     f"{console_metrics['dupnas_excluded_feasible_network_candidates_pct']:.4f}% "
+    #     f"({console_metrics['dupnas_excluded_feasible_models']}/{console_metrics['total_models']})"
+    # )
+    # print(
+    #     "  Feasible configuration sets (%): "
+    #     f"{console_metrics['feasible_configuration_sets_pct']:.4f}%"
+    # )
+
+    log_path = Path("fig10_result.log")
+
+    lines = [
+        "=" * 80,
+        "Fig. 10 Results: Heuristic Exclusion Analysis",
+        "=" * 80,
+        f"Setting",
+        f"  Exclusion rule                         : {current_exgrule}",
+        f"  Model                                  : {current_model}",
+        f"  VM setting                             : {current_vm}",
+        "",
+        f"DupNAS-excluded feasible candidates     : "
         f"{console_metrics['dupnas_excluded_feasible_network_candidates_pct']:.4f}% "
-        f"({console_metrics['dupnas_excluded_feasible_models']}/{console_metrics['total_models']})"
-    )
-    print(
-        "  Feasible configuration sets (%): "
-        f"{console_metrics['feasible_configuration_sets_pct']:.4f}%"
-    )
-    # print("[SUMMARY]")
-    # for _, r in aggregate.iterrows():
-    #     print(f"  {r['metric']}: {r['value']}")
+        f"({console_metrics['dupnas_excluded_feasible_models']}/"
+        f"{console_metrics['total_models']})",
+        f"Feasible configuration sets             : "
+        f"{console_metrics['feasible_configuration_sets_pct']:.4f}%",
+        "=" * 80,
+    ]
+
+    summary_text = "\n".join(lines)
+
+    # Print to console
+    print("\n" + summary_text)
+
+    # Save the same summary to log
+    log_path.write_text(summary_text + "\n", encoding="utf-8")
+
+    print(f"[DONE] Saved Fig. 10 result log to: {log_path}")
+
 
     return 0
 
