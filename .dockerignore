@@ -5,13 +5,15 @@ __pycache__
 
 data/
 datasets/
-#checkpoints/
+/DupNAS/NASBase/checkpoints/
+
+DupNAS/Inference/Model-converter/ts_converted/
 #outputs/
 #results/
 #genonnx/
 
 # *.onnx
-# *.pth
-# *.pt
+ *.pth
+ *.pt
 *.tar
 *.zip
