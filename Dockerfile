@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
+COPY requirements_base.txt .
 
 # Install the required CUDA 11.5 PyTorch build
 RUN python3.9 -m pip install --no-cache-dir \
