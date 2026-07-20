@@ -3,93 +3,232 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Artifact Evaluation Control Panel</title>
+  <title>Artifact Evaluation Web-based Interface</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <main class="container py-5">
-    <div class="col-lg-6 mx-auto">
-      <h1 class="mb-4">Artifact Evaluation Control Panel</h1>
+  <main class="container-fluid py-2">
+    <h1 class="mb-4 text-center">Artifact Evaluation Web-based Interface</h1>
 
-      <div>
-        <label for="token" class="form-label">Please enter the secret token provided in your AE instructions:</label>
-        <input id="token" type="password" class="form-control" placeholder="github_pat_XXXX..." autocomplete="off">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-6">
+        <section class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="h5 mb-2"><strong>Access experiments</strong></h2>
+
+            <div>
+              <label for="token" class="form-label"><strong>Step 1:</strong> Please enter the secret token provided in your AE instructions</label>
+              <input id="token" type="password" class="form-control" placeholder="github_pat_XXXX..." autocomplete="off">
+            </div>
+
+            <div class="mt-2">
+              <label for="identifier" class="form-label"><strong>Step 2:</strong> Enter an identifier for your experiments. </label>
+              <input id="identifier" type="text" class="form-control" placeholder="e.g. reviewer-a" autocomplete="off" maxlength="30">
+              <div class="form-text">
+                * Use the same identifier to check submitted experiments.
+              </div>
+
+            </div>
+
+
+            <div class="d-flex align-items-center gap-3 mt-2">
+              <button id="check-identifier-status" type="button" class="btn btn-primary flex-shrink-0">
+                <strong>Step 3:</strong> Check experiment status
+              </button>
+
+              <p id="identifier-status-message" class="mb-0 text-break" role="status"></p>
+            </div>
+
+            <div id="identifier-status-box" class="border rounded bg-light p-3 mt-3 d-none">
+              <h3 class="h6 mb-3">experiments for this identifier</h3>
+
+              <div class="mb-3">
+                <div class="fw-semibold">Running / queued</div>
+                <ul id="identifier-active-runs" class="mb-0 ps-3">
+                  <li>No experiment loaded.</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="fw-semibold">Finished</div>
+                <ul id="identifier-finished-runs" class="mb-0 ps-3">
+                  <li>No experiment loaded.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
-      <section id="run-workflow-section" class="border-top mt-4 pt-4">
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
-          <h2 class="h5 mb-0">Run workflow</h2>
-          <a id="workflow-runs-link" class="btn btn-sm btn-outline-secondary" href="#" target="_blank" rel="noopener noreferrer">
-            View workflow runs
-          </a>
-        </div>
-        <div class="row g-3">
-          <div class="col-md-6">
-            <label for="task" class="form-label">Choose the workflow task to trigger:</label>
-            <select id="task" class="form-select"></select>
-          </div>
-          <div class="col-md-6">
-            <label for="option" class="form-label">Choose the task-specific option:</label>
-            <select id="option" class="form-select"></select>
-          </div>
-        </div>
-        <button id="start-task" type="button" class="btn btn-primary mt-3">Start selected task</button>
-        <p id="run-status" class="mt-3 mb-0 text-break" role="status"></p>
-      </section>
+      <div class="col-lg-6">
+        <section id="run-workflow-section" class="card shadow-sm">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 ">
+              <h2 class="h5 mb-2"><strong>Run new experiment</strong></h2>
+              <a id="workflow-runs-link" class="btn btn-sm btn-outline-secondary" href="#" target="_blank" rel="noopener noreferrer">
+                View all experiments
+              </a>
+            </div>
 
-      <section id="cancel-run-section" class="border-top mt-4 pt-4">
-        <h2 class="h5 mb-3">Cancel a running workflow</h2>
-        <div>
-          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
-            <label for="run" class="form-label mb-0">Choose the workflow run to cancel:</label>
-            <button id="refresh-runs" type="button" class="btn btn-sm btn-outline-secondary">Refresh runs</button>
+            <div>
+              <label for="task" class="form-label"><strong>Step 4:</strong> Choose the experiment to trigger</label>
+              <select id="task" class="form-select"></select>
+            </div>
+
+            <div class="mt-2">
+              <label for="option" class="form-label"><strong>Step 5:</strong> Choose the experiment-specific option</label>
+              <select id="option" class="form-select"></select>
+            </div>
+
+            <div class="d-flex align-items-center gap-3 mt-2">
+              <button id="start-task" type="button" class="btn btn-primary flex-shrink-0">
+                <strong>Step 6:</strong> Start an experiment
+              </button>
+
+              <p id="run-status" class="mb-0 text-break" role="status"></p>
+            </div>
+            <p id="livestream-link-box" class="mt-2 mb-0 d-none">
+              <a
+                id="livestream-link"
+                class="btn btn-sm btn-outline-secondary"
+                href="https://youtube.com/live/Unti4hjnBzw"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                📹 View live STM32 deployment
+              </a>
+            </p>
           </div>
-          <select id="run" class="form-select">
-            <option value="">No running workflow runs loaded</option>
-          </select>
-        </div>
-        <button id="cancel-run" type="button" class="btn btn-danger mt-3">Cancel selected run</button>
-        <p id="cancel-status" class="mt-3 mb-0 text-break" role="status"></p>
-      </section>
+        </section>
+
+        <section id="monitor-cancel-section" class="card shadow-sm mt-2">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+              <h2 class="h5 mb-2"><strong>Monitor and cancel experiments</strong></h2>
+              <button id="refresh-runs" type="button" class="btn btn-sm btn-outline-secondary mb-2">Refresh</button>
+            </div>
+
+            <div class="border rounded bg-light px-3 py-2 mb-2 lh-sm">
+              <div>
+                Active identifiers:
+                <strong id="active-identifier-count" class="text-primary">-</strong>
+              </div>
+              <div>
+                Action runner 1 (server-side, max 8):
+                <strong id="runner1-count" class="text-primary">-</strong> / 8
+              </div>
+              <div>
+                Action runner 2 (device-side, max 1):
+                <strong id="runner2-count" class="text-primary">-</strong>
+              </div>
+            </div>
+
+            <div>
+              <label for="run" class="form-label">Running / queued experiments for the current identifier</label>
+              <select id="run" class="form-select">
+                <option value="">No running experiments</option>
+              </select>
+            </div>
+
+            <div class="d-flex align-items-center gap-3 mt-3">
+              <button id="cancel-run" type="button" class="btn btn-danger flex-shrink-0">
+                Cancel selected run
+              </button>
+
+              <p id="cancel-status" class="mb-0 text-break" role="status"></p>
+            </div>
+
+          </div>
+        </section>
+      </div>
     </div>
   </main>
 
   <script src="config.js"></script>
   <script src="tasks.js"></script>
   <script>
-    const config = window.workflowConfig;
-    const repoPath = `${config.owner}/${config.repo}`;
-    const workflowFile = config.workflowFile;
-    const githubBaseUrl = `https://github.com/${repoPath}`;
-    const apiBaseUrl = `https://api.github.com/repos/${repoPath}`;
+    // Keep the task/option dropdowns usable even if config.js is missing or fails to load.
+    const config = window.workflowConfig || {};
+    const hasWorkflowConfig = Boolean(
+      config.owner && config.repo && config.workflowFile && config.ref
+    );
+    const repoPath = hasWorkflowConfig ? `${config.owner}/${config.repo}` : "";
+    const workflowFile = config.workflowFile || "";
+    const githubBaseUrl = hasWorkflowConfig ? `https://github.com/${repoPath}` : "";
+    const apiBaseUrl = hasWorkflowConfig ? `https://api.github.com/repos/${repoPath}` : "";
 
     const tokenInput = document.getElementById("token");
+    const getToken = () => tokenInput.value.replace(/\s+/g, "");
 
     const workflowRunsLink = document.getElementById("workflow-runs-link");
     const taskSelect = document.getElementById("task");
     const optionSelect = document.getElementById("option");
+    const identifierInput = document.getElementById("identifier");
     const startTaskButton = document.getElementById("start-task");
     const runStatus = document.getElementById("run-status");
-    workflowRunsLink.href = `${githubBaseUrl}/actions/workflows/${workflowFile}`;
+    if (hasWorkflowConfig) {
+      workflowRunsLink.href = `${githubBaseUrl}/actions/workflows/${workflowFile}`;
+    } else {
+      workflowRunsLink.href = "#";
+      workflowRunsLink.classList.add("disabled");
+      workflowRunsLink.setAttribute("aria-disabled", "true");
+    }
     const setRunStatus = (message) => (runStatus.textContent = message);
+    const livestreamLinkBox = document.getElementById("livestream-link-box");
+    const livestreamLink = document.getElementById("livestream-link");
+
+    const updateLivestreamVisibility = () => {
+      const task = taskSelect.value;
+      const shouldShow = task === "fig8" || task === "fig11";
+      livestreamLinkBox.classList.toggle("d-none", !shouldShow);
+    };
 
     const refreshRunsButton = document.getElementById("refresh-runs");
     const runSelect = document.getElementById("run");
     const cancelRunButton = document.getElementById("cancel-run");
     const cancelStatus = document.getElementById("cancel-status");
+    const activeIdentifierCount = document.getElementById("active-identifier-count");
+    const runner1Count = document.getElementById("runner1-count");
+    const runner2Count = document.getElementById("runner2-count");
     const cancellableStatuses = ["in_progress", "queued", "requested", "waiting", "pending"];
     const setCancelStatus = (message) => (cancelStatus.textContent = message);
 
+    const checkIdentifierStatusButton = document.getElementById("check-identifier-status");
+    const identifierStatusMessage = document.getElementById("identifier-status-message");
+    const identifierStatusBox = document.getElementById("identifier-status-box");
+    const identifierActiveRuns = document.getElementById("identifier-active-runs");
+    const identifierFinishedRuns = document.getElementById("identifier-finished-runs");
+    const setIdentifierStatusMessage = (message, className = "") => {
+      identifierStatusMessage.className = `mt-3 mb-0 text-break ${className}`.trim();
+      identifierStatusMessage.textContent = message;
+    };
+
     const populateTaskOptions = () => {
       taskSelect.replaceChildren();
+
+      if (!window.workflowTasks || typeof window.workflowTasks !== "object") {
+        taskSelect.append(new Option("Unable to load tasks.js", ""));
+        optionSelect.replaceChildren(new Option("Unable to load task options", ""));
+        startTaskButton.disabled = true;
+        setRunStatus('Task definitions were not loaded. Make sure the file is named "tasks.js" and is in the same directory as this HTML file.');
+        return false;
+      }
+
       for (const [taskValue, task] of Object.entries(window.workflowTasks)) {
         taskSelect.append(new Option(task.label, taskValue));
       }
+      return taskSelect.options.length > 0;
     };
 
     const populateWorkflowOptions = () => {
-      const selectedTask = window.workflowTasks[taskSelect.value];
       optionSelect.replaceChildren();
+      const selectedTask = window.workflowTasks?.[taskSelect.value];
+
+      if (!selectedTask || !Array.isArray(selectedTask.option)) {
+        optionSelect.append(new Option("No options available", ""));
+        return;
+      }
+
       for (const option of selectedTask.option) {
         optionSelect.append(new Option(option.label, option.value));
       }
@@ -97,6 +236,7 @@
 
     taskSelect.addEventListener("change", () => {
       populateWorkflowOptions();
+      updateLivestreamVisibility();
       startTaskButton.disabled = false;
       setRunStatus("");
     });
@@ -106,23 +246,281 @@
       setRunStatus("");
     });
 
+    identifierInput.addEventListener("input", () => {
+      startTaskButton.disabled = false;
+      setRunStatus("");
+      setIdentifierStatusMessage("");
+    });
+
     populateTaskOptions();
     populateWorkflowOptions();
+    updateLivestreamVisibility();
+
+    const sanitizeFileName = (name) => name.replace(/[^a-zA-Z0-9._-]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+
+    const downloadRunArtifact = async (run, button) => {
+      const token = getToken();
+      if (!token) {
+        setIdentifierStatusMessage("Please enter a token before downloading results.");
+        return;
+      }
+
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = "Preparing download...";
+      setIdentifierStatusMessage(`Loading results for task run #${run.run_number}...`);
+
+      try {
+        const artifactResponse = await fetch(`${apiBaseUrl}/actions/runs/${run.id}/artifacts?per_page=100&_=${Date.now()}`, {
+          headers: {
+            Accept: "application/vnd.github+json",
+            Authorization: `Bearer ${token}`,
+            "X-GitHub-Api-Version": "2026-03-10"
+          }
+        });
+
+        if (!artifactResponse.ok) {
+          const message = await artifactResponse.text();
+          throw new Error(message);
+        }
+
+        const artifactData = await artifactResponse.json();
+        const artifacts = (artifactData.artifacts || []).filter((artifact) => !artifact.expired);
+        if (!artifacts.length) {
+          setIdentifierStatusMessage(`No downloadable result found for experiment run #${run.run_number}.`);
+          return;
+        }
+
+        const artifact = artifacts.find((item) => item.name === "results") || artifacts[0];
+        const downloadResponse = await fetch(artifact.archive_download_url, {
+          headers: {
+            Accept: "application/vnd.github+json",
+            Authorization: `Bearer ${token}`,
+            "X-GitHub-Api-Version": "2026-03-10"
+          }
+        });
+
+        if (!downloadResponse.ok) {
+          const message = await downloadResponse.text();
+          throw new Error(message);
+        }
+
+        const blob = await downloadResponse.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        const title = sanitizeFileName(run.display_title || run.name || `workflow-run-${run.run_number}`);
+        const artifactName = sanitizeFileName(artifact.name || "artifact");
+        a.href = url;
+        a.download = `${title}-${run.run_number}-${artifactName}.zip`;
+        document.body.append(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        setIdentifierStatusMessage(`Downloaded "${artifact.name}" from experiment run #${run.run_number}.`);
+      } catch (error) {
+        setIdentifierStatusMessage(`Result download failed: ${error.message}`);
+      } finally {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    };
+
+    const buildRunListItem = (run) => {
+      const item = document.createElement("li");
+      item.className = "text-break mb-2";
+
+      const title = run.display_title || run.name || `Workflow run #${run.run_number}`;
+      const link = document.createElement("a");
+      link.href = run.html_url;
+      link.textContent = `${title} #${run.run_number}`;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      updateLinkToJobPage(link, run);
+
+      item.append(link, ` — ${run.status}`);
+      if (run.conclusion) item.append(` / ${run.conclusion}`);
+
+      if (run.status === "completed" && run.conclusion === "success") {
+        const downloadButton = document.createElement("button");
+        downloadButton.type = "button";
+        downloadButton.className = "btn btn-sm btn-outline-secondary ms-2 py-0 px-1";
+        downloadButton.style.fontSize = "0.7rem";
+        downloadButton.textContent = "Download";
+        downloadButton.addEventListener("click", () =>
+          downloadRunArtifact(run, downloadButton)
+        );
+        item.append(" ", downloadButton);
+      }
+
+      return item;
+    };
+
+    const appendRunStatusLink = (target, run) => {
+      const title = run.display_title || run.name || `Workflow run #${run.run_number}`;
+      const link = document.createElement("a");
+      link.href = run.html_url;
+      link.textContent = `${title} #${run.run_number}`;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      updateLinkToJobPage(link, run);
+
+      target.append(link, ` — ${run.status}`);
+      if (run.conclusion) target.append(` / ${run.conclusion}`);
+    };
+
+    const runMatchesSelectedTask = (run, expectedTitle) => {
+      const title = (run.display_title || "").trim().toLowerCase();
+      return title === expectedTitle.trim().toLowerCase();
+    };
+
+    const runBlocksRestart = (run) => {
+      const isActive =
+        cancellableStatuses.includes(run.status);
+
+      const isSuccessful =
+        run.status === "completed" &&
+        run.conclusion === "success";
+
+      return isActive || isSuccessful;
+    };
+
+    const setIdentifierRunLists = (activeRuns, finishedRuns) => {
+      identifierActiveRuns.replaceChildren();
+      identifierFinishedRuns.replaceChildren();
+
+      if (!activeRuns.length) {
+        identifierActiveRuns.append(Object.assign(document.createElement("li"), {
+          textContent: "No running or queued experiment found for this identifier."
+        }));
+      } else {
+        activeRuns.forEach((run) => identifierActiveRuns.append(buildRunListItem(run)));
+      }
+
+      if (!finishedRuns.length) {
+        identifierFinishedRuns.append(Object.assign(document.createElement("li"), {
+          textContent: "No finished experiment found for this identifier."
+        }));
+      } else {
+        finishedRuns.forEach((run) => identifierFinishedRuns.append(buildRunListItem(run)));
+      }
+    };
+
+    const normalizeIdentifier = (identifier) =>
+      String(identifier || "").trim().toLowerCase();
+
+    const getRunIdentifier = (run) => {
+      const title = (run.display_title || "").trim();
+      const parts = title.split("/").map((part) => part.trim()).filter(Boolean);
+
+      // Expected run title:
+      // task / option display name / identifier
+      if (parts.length < 3) return null;
+
+      return parts[parts.length - 1];
+    };
+
+    const runMatchesIdentifier = (run, identifier) => {
+      const runIdentifier = getRunIdentifier(run);
+      if (!runIdentifier) return false;
+
+      return normalizeIdentifier(runIdentifier) === normalizeIdentifier(identifier);
+    };
+
+    const loadWorkflowRuns = async (token) => {
+      const response = await fetch(`${apiBaseUrl}/actions/workflows/${workflowFile}/runs?per_page=100&_=${Date.now()}`, {
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: `Bearer ${token}`,
+          "X-GitHub-Api-Version": "2026-03-10"
+        }
+      });
+
+      if (!response.ok) {
+        const message = await response.text();
+        throw new Error(message);
+      }
+
+      const data = await response.json();
+      return data.workflow_runs || [];
+    };
+
+    const loadRunJobs = async (token, runId) => {
+      const response = await fetch(`${apiBaseUrl}/actions/runs/${runId}/jobs?per_page=100&_=${Date.now()}`, {
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: `Bearer ${token}`,
+          "X-GitHub-Api-Version": "2026-03-10"
+        }
+      });
+
+      if (!response.ok) {
+        const message = await response.text();
+        throw new Error(message);
+      }
+
+      const data = await response.json();
+      return data.jobs || [];
+    };
+
+    const updateLinkToJobPage = async (link, run, retryCount = 2) => {
+      const token = getToken();
+      if (!token || !run?.id) return;
+
+      for (let attempt = 0; attempt <= retryCount; attempt += 1) {
+        try {
+          if (attempt > 0) await new Promise((resolve) => setTimeout(resolve, 1500));
+          const jobs = await loadRunJobs(token, run.id);
+          const job = jobs.find((item) => item.html_url) || jobs[0];
+          if (job?.html_url) {
+            link.href = job.html_url;
+            return;
+          }
+        } catch (error) {
+          if (attempt === retryCount) return;
+        }
+      }
+    };
 
     startTaskButton.addEventListener("click", async () => {
-      const token = tokenInput.value.trim();
+      if (!hasWorkflowConfig) {
+        return setRunStatus('config.js was not loaded correctly. Check that window.workflowConfig is defined.');
+      }
+
+      const token = getToken();
       if (!token) return setRunStatus("Please enter a token.");
 
       const task = taskSelect.value;
       const option = optionSelect.value;
-      const optionDisplayName = optionSelect.selectedOptions[0].textContent;
-      if (!task) return setRunStatus("Please choose a task.");
+const selectedOptionDisplayName = optionSelect.selectedOptions[0].textContent;
+      const identifier = identifierInput.value.trim();
+      const optionDisplayName = identifier ? `${selectedOptionDisplayName} / ${identifier}` : selectedOptionDisplayName;
+      if (!task) return setRunStatus("Please choose a experiment.");
       if (!option) return setRunStatus("Please choose an option.");
 
+      const expectedTitle = `${task} / ${optionDisplayName}`;
       startTaskButton.disabled = true;
-      setRunStatus("Starting workflow...");
+      setRunStatus("Checking existing experiment runs...");
 
       try {
+        const existingRuns = await loadWorkflowRuns(token);
+
+        const existingRun = existingRuns.find(
+          (run) =>
+            runMatchesSelectedTask(run, expectedTitle) &&
+            runBlocksRestart(run)
+        );
+
+        if (existingRun) {
+          runStatus.replaceChildren(
+            "This experiment is already active or completed successfully "
+          );
+          appendRunStatusLink(runStatus, existingRun);
+          startTaskButton.disabled = false;
+          return;
+        }
+
+        setRunStatus("Starting experiment...");
+
         const response = await fetch(`${apiBaseUrl}/actions/workflows/${workflowFile}/dispatches`, {
           method: "POST",
           headers: {
@@ -132,35 +530,80 @@
           },
           body: JSON.stringify({
             ref: config.ref,
-            inputs: { task, option, optionDisplayName }
+            inputs: {
+              task, option, optionDisplayName}
           })
         });
 
         if (response.ok) {
-          const { html_url: runUrl } = await response.json();
-          runStatus.textContent = `${task} / ${optionDisplayName} was started successfully. View the run:`;
-          runStatus.append(" ", Object.assign(document.createElement("a"), {
-            href: runUrl,
-            textContent: runUrl,
-            target: "_blank",
-            rel: "noopener noreferrer"
-          }));
+          runStatus.textContent = `${expectedTitle} was started successfully. Loading experiment run link...`;
+
+          try {
+            await new Promise((resolve) => setTimeout(resolve, 2500));
+            const runs = await loadWorkflowRuns(token);
+            const startedRun = runs.find((run) => runMatchesSelectedTask(run, expectedTitle));
+
+            runStatus.replaceChildren();
+            if (startedRun) {
+              appendRunStatusLink(runStatus, startedRun);
+            } else {
+              runStatus.textContent = `${expectedTitle} was started successfully. `;
+              const link = Object.assign(document.createElement("a"), {
+                href: workflowRunsLink.href,
+                textContent: "View experiment runs",
+                target: "_blank",
+                rel: "noopener noreferrer"
+              });
+              runStatus.append(link, ".");
+            }
+          } catch (error) {
+            runStatus.textContent = `${expectedTitle} was started successfully, but the experiment run link could not be loaded: ${error.message}`;
+          }
           return;
         }
 
         const message = await response.text();
-        setRunStatus(`Failed to start workflow: ${message}`);
+        setRunStatus(`Failed to start experiment: ${message}`);
         startTaskButton.disabled = false;
       } catch (error) {
-        setRunStatus(`Failed to start workflow: ${error.message}`);
+        setRunStatus(`Failed to start experiment: ${error.message}`);
         startTaskButton.disabled = false;
+      }
+    });
+
+    checkIdentifierStatusButton.addEventListener("click", async () => {
+      const token = getToken();
+      if (!token) return setIdentifierStatusMessage("Please enter a token.");
+
+      const identifier = identifierInput.value.trim();
+      if (!identifier) return setIdentifierStatusMessage("Please enter an identifier first.");
+
+      checkIdentifierStatusButton.disabled = true;
+      identifierStatusBox.classList.remove("d-none");
+      setIdentifierStatusMessage("Loading experiment status...");
+      setIdentifierRunLists([], []);
+
+      try {
+        const runs = await loadWorkflowRuns(token);
+        const matchedRuns = runs.filter((run) => runMatchesIdentifier(run, identifier));
+        const activeRuns = matchedRuns.filter((run) => cancellableStatuses.includes(run.status));
+        const finishedRuns = matchedRuns.filter((run) => run.status === "completed");
+setIdentifierRunLists(activeRuns, finishedRuns);
+        setIdentifierStatusMessage(
+          `${matchedRuns.length} experiment(s) found for identifier "${identifier}".`,
+          "fw-bold text-primary"
+        );
+      } catch (error) {
+        setIdentifierStatusMessage(`Failed to load experiment status: ${error.message}`);
+      } finally {
+        checkIdentifierStatusButton.disabled = false;
       }
     });
 
     const setRunOptions = (runs) => {
       runSelect.replaceChildren();
       if (!runs.length) {
-        runSelect.append(new Option("No cancellable workflow runs found", ""));
+        runSelect.append(new Option("No cancellable experiment runs found", ""));
         return;
       }
       for (const run of runs) {
@@ -171,63 +614,136 @@
     };
 
     refreshRunsButton.addEventListener("click", async () => {
-      const token = tokenInput.value.trim();
+      const token = getToken();
       if (!token) return setCancelStatus("Please enter a token.");
 
+      const identifier = identifierInput.value.trim();
+      if (!identifier) {
+        return setCancelStatus("Please enter an identifier first.");
+      }
+
       refreshRunsButton.disabled = true;
-      setCancelStatus("Loading workflow runs...");
+      setCancelStatus("Loading experiment workload...");
 
       try {
-        const response = await fetch(`${apiBaseUrl}/actions/workflows/${workflowFile}/runs?per_page=100&_=${Date.now()}`, {
-          headers: {
-            Accept: "application/vnd.github+json",
-            Authorization: `Bearer ${token}`,
-            "X-GitHub-Api-Version": "2026-03-10"
-          }
-        });
+        const runs = await loadWorkflowRuns(token);
 
-        if (response.ok) {
-          const data = await response.json();
-          const runs = data.workflow_runs.filter((run) => cancellableStatuses.includes(run.status));
-          setRunOptions(runs);
-          setCancelStatus(`${runs.length} cancellable workflow run(s) loaded.`);
-          return;
+        // All active workflow runs in the system.
+        const activeRuns = runs.filter((run) =>
+          cancellableStatuses.includes(run.status)
+        );
+
+        // Count unique identifiers among active (running / queued / waiting) runs.
+        const activeIdentifiers = new Set(
+          activeRuns
+            .map(getRunIdentifier)
+            .filter(Boolean)
+        );
+        activeIdentifierCount.textContent = activeIdentifiers.size;
+
+        // Only show cancellable runs belonging to the current identifier.
+        const identifierRuns = activeRuns.filter((run) =>
+          runMatchesIdentifier(run, identifier)
+        );
+        setRunOptions(identifierRuns);
+
+        // Count currently executing jobs on each runner.
+        // Queued jobs usually do not have a runner assigned yet.
+        let runner1Active = 0;
+        let runner2Active = 0;
+
+        const jobsByRun = await Promise.all(
+          activeRuns.map((run) =>
+            loadRunJobs(token, run.id).catch(() => [])
+          )
+        );
+
+        for (const jobs of jobsByRun) {
+          for (const job of jobs) {
+            if (job.status !== "in_progress") continue;
+
+            const labels = (job.labels || []).map(
+              (label) => String(label).toLowerCase()
+            );
+
+            // Server-side jobs use: runs-on: ae-server
+            if (labels.includes("ae-server")) {
+              runner1Active += 1;
+            }
+
+            // Device-side jobs use: runs-on: ae-machine
+            if (labels.includes("ae-machine")) {
+              runner2Active += 1;
+            }
+          }
         }
 
-        const message = await response.text();
-        setCancelStatus(`Failed to load runs: ${message}`);
+        runner1Count.textContent = runner1Active;
+        runner2Count.textContent = runner2Active;
+
+        setCancelStatus(
+          `${identifierRuns.length} cancellable experiment run(s) found for identifier "${identifier}".`
+        );
       } catch (error) {
-        setCancelStatus(`Failed to load runs: ${error.message}`);
+        setCancelStatus(`Failed to load experiment workload: ${error.message}`);
       } finally {
         refreshRunsButton.disabled = false;
       }
     });
 
     cancelRunButton.addEventListener("click", async () => {
-      const token = tokenInput.value.trim();
+      const token = getToken();
       if (!token) return setCancelStatus("Please enter a token.");
 
+      const identifier = identifierInput.value.trim();
+      if (!identifier) {
+        return setCancelStatus("Please enter an identifier first.");
+      }
+
       const runId = runSelect.value;
-      if (!runId) return setCancelStatus("Please choose a workflow run.");
+      if (!runId) return setCancelStatus("Please choose an experiment run.");
 
       cancelRunButton.disabled = true;
-      setCancelStatus("Canceling workflow run...");
+      setCancelStatus("Checking experiment identifier...");
 
       try {
-        const response = await fetch(`${apiBaseUrl}/actions/runs/${runId}/cancel`, {
-          method: "POST",
-          headers: {
-            Accept: "application/vnd.github+json",
-            Authorization: `Bearer ${token}`,
-            "X-GitHub-Api-Version": "2026-03-10"
+        const runs = await loadWorkflowRuns(token);
+        const selectedRun = runs.find((run) => String(run.id) === String(runId));
+
+        if (!selectedRun || !runMatchesIdentifier(selectedRun, identifier)) {
+          throw new Error(
+            `This experiment does not belong to identifier "${identifier}".`
+          );
+        }
+
+        setCancelStatus("Canceling experiment run...");
+
+        const response = await fetch(
+          `${apiBaseUrl}/actions/runs/${runId}/cancel`,
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/vnd.github+json",
+              Authorization: `Bearer ${token}`,
+              "X-GitHub-Api-Version": "2026-03-10"
+            }
           }
-        });
+        );
 
         if (response.ok) {
-          const selectedRunLabel = runSelect.selectedOptions[0].textContent;
-          setCancelStatus(`${selectedRunLabel} was canceled successfully.`);
-          runSelect.querySelector(`option[value="${runId}"]`).remove();
-          if (!runSelect.options.length) setRunOptions([]);
+          const selectedRunLabel =
+            runSelect.selectedOptions[0].textContent;
+
+          setCancelStatus(
+            `${selectedRunLabel} was canceled successfully.`
+          );
+
+          runSelect.querySelector(`option[value="${runId}"]`)?.remove();
+
+          if (!runSelect.options.length) {
+            setRunOptions([]);
+          }
+
           return;
         }
 
