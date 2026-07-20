@@ -1,0 +1,13 @@
+We claim the following badges.
+
+* Available:
+We have placed our artifact in the publicly accessible Zenodo archival repository.
+
+
+* Reviewed:
+Our artifact is complete, documented, and executable. It produces the outputs described in this document and can be evaluated through the web-based interface and preconfigured GitHub Actions workflows or executed locally using the provided Docker environment.
+
+
+* Reproducible:
+Our artifact enables AE reviewers to independently regenerate the principal experimental results reported in the paper using the provided code, configurations, methods, and experimental conditions. The regenerated results can be directly compared with the corresponding results reported in the paper.
+

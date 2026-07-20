@@ -17,7 +17,7 @@ RUN python3.9 -m pip install --no-cache-dir \
     --extra-index-url https://download.pytorch.org/whl/cu115
 
 # Install the remaining dependencies without reinstalling torch
-RUN grep -v '^torch==' requirements.txt > requirements-docker.txt && \
+RUN grep -v '^torch==' requirements_base.txt > requirements-docker.txt && \
     grep -v '^torchvision==' requirements-docker.txt > requirements-docker2.txt && \
     grep -v '^torchaudio==' requirements-docker2.txt > requirements-final.txt && \
     python3.9 -m pip install --no-cache-dir -r requirements-final.txt
