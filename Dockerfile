@@ -7,10 +7,10 @@ RUN apt-get update && \
         git \
         build-essential \
         patchelf \
-        docker.io \
         curl \
         wget \
         unzip \
+        docker.io \
         libusb-1.0-0 \
         libglib2.0-0 \
         usbutils && \
