@@ -7,6 +7,7 @@ RUN apt-get update && \
         git \
         build-essential \
         patchelf \
+        docker.io \
         curl \
         wget \
         unzip \

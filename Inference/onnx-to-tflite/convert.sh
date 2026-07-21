@@ -31,7 +31,7 @@ echo "       -> $(pwd)"
 
 cp -v "${ONNX_FILES[@]}" .
 
-sudo docker run --rm \
+docker run --rm \
     -v "$(pwd)":/workdir \
     -w /workdir \
     ghcr.io/pinto0309/onnx2tf:1.28.5 \
