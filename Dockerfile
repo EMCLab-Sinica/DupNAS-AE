@@ -43,4 +43,8 @@ RUN python3.9 -c "import torch; print('PyTorch version:', torch.__version__)"
 
 COPY . .
 
+RUN find . -type f -name "*.sh" -exec sed -i 's/\r$//' {} + && \
+    find . -type f -name "*.sh" -exec chmod +x {} +
+	
+
 CMD ["bash"]
