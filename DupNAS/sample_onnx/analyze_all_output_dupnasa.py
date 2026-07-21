@@ -204,15 +204,15 @@ def print_summary_rows(
     for r in rows:
         lines.append("")
         lines.append(f"[{r['model_family']} / VM={r['vm']}]")
-        lines.append(f"  Total ONNX models          : {r['total_onnx']}")
+        #lines.append(f"  Total ONNX models          : {r['total_onnx']}")
         lines.append(
             f"  Original feasible          : "
-            f"{r['original_feasible']} "
+            #f"{r['original_feasible']} "
             f"({r['original_feasible_ratio']})"
         )
         lines.append(
             f"  DupNAS feasible            : "
-            f"{r['dupnas_feasible']} "
+            #f"{r['dupnas_feasible']} "
             f"({r['dupnas_feasible_ratio']})"
         )
 
