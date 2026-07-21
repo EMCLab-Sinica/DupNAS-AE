@@ -1,4 +1,7 @@
-# 🚀 DupNAS: Splitting Bottlenecks: Memory-Aware Neural Architecture Search for Multi-Branch TinyML
+# 🚀 Splitting Bottlenecks: Memory-Aware Neural Architecture Search for Multi-Branch TinyML
+
+Author: Chia-Yin~Liu, Hashan~Roshantha~Mendis, Yen-Chieh~Huang, Yi-Jung~Chen, Pi-Cheng~Hsiu
+Affiliation: Academia Sinica, Taiwan
 
 ---
 ## 📝 Overview

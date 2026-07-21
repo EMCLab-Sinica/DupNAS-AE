@@ -1,4 +1,4 @@
-# 🚀 DupNAS: Splitting Bottlenecks: Memory-Aware Neural Architecture Search for Multi-Branch TinyML
+# 🚀 Splitting Bottlenecks: Memory-Aware Neural Architecture Search for Multi-Branch TinyML
 
 ---
 ## 📝 Overview
@@ -46,8 +46,11 @@ Below is a brief description of the main directories and files in this repositor
   `python3.9 -m pip install -r requirements.txt`
 - [Anaconda](https://www.anaconda.com/docs/getting-started/anaconda/install/overview) (recommended for managing Python environments).
 - [ImageNet-100](https://www.kaggle.com/datasets/ambityga/imagenet100/data) dataset. 
-- [STM32F746NG MCU](https://www.st.com/en/evaluation-tools/32f746gdiscovery.html) deployment device.
-- [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) development tools for the STM32.
+- [STM32F746G-DISCO](https://www.st.com/en/evaluation-tools/32f746gdiscovery.html) deployment device.
+- [STM32H747I-DISCO](https://www.st.com/en/evaluation-tools/stm32h747i-disco.html) deployment device.
+- [STM32CubeIDE 2.1.1](https://www.st.com/en/development-tools/stm32cubeide.html) development tools for the STM32.
+- [STM32CubeMX 6.17.0](https://www.st.com/en/development-tools/stm32cubemx.html) development tools for the STM32.
+- [STM32Cube AI Studio 1.2.0](https://www.st.com/en/development-tools/stedgeai-cubeai.html) development tools and inference engine for the STM32.
 - [TensorFlow Lite Micro](https://github.com/tensorflow/tflite-micro) inference engine.
 
 ### 🔧 Setup and running DupNAS
