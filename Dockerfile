@@ -10,10 +10,10 @@ RUN apt-get update && \
         curl \
         wget \
         unzip \
-        docker.io \
         libusb-1.0-0 \
         libglib2.0-0 \
         usbutils && \
+    apt-get install -y docker.io && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements_base.txt .
