@@ -24,8 +24,14 @@ RUN grep -v '^torch==' requirements_base.txt > requirements-docker.txt && \
     grep -v '^torchaudio==' requirements-docker2.txt > requirements-final.txt && \
     python3.9 -m pip install --no-cache-dir -r requirements-final.txt
 
-RUN LIB="$(find /usr/local/lib/python3.9/site-packages/torch -name 'libtorch_cpu.so' -print -quit)" && \
-    patchelf --clear-execstack "${LIB}"
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends patchelf && \
+    LIB="$(find /usr/local/lib/python3.9/site-packages/torch -name 'libtorch_cpu.so' -print -quit)" && \
+    test -n "$LIB" && \
+    echo "Clearing executable-stack flag from: $LIB" && \
+    patchelf --clear-execstack "$LIB" && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY . .
 
