@@ -155,8 +155,8 @@ def stage_train_supernet(global_settings: Settings, dataset, supernet_name, supe
     # overwrite json
 
     stage_train_supernet_logfname_with_timestamp = stage_train_supernet_logfname.replace('.json', str(datetime.datetime.now().strftime('-%Y%m%d-%H%M%S')) + '.json')
-    file_utils.delete_file(stage_train_supernet_logfname_with_timestamp)
-    file_utils.json_dump(stage_train_supernet_logfname_with_timestamp, stage_train_supernet_results)
+    file_utils.delete_file(stage_train_supernet_logfname)
+    file_utils.json_dump(stage_train_supernet_logfname, stage_train_supernet_results)
 
 
 def stage_evo_search(global_settings, dataset, best_supernet, stage_evo_search_logfname):
