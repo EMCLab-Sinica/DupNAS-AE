@@ -19,7 +19,7 @@ echo "Selected option: ${OPTION}"
 # =========================
 # User configuration
 # =========================
-KAGGLE_API_TOKEN="<your-token>"
+# KAGGLE_API_TOKEN="<your-token>"
 
 ARC="shuffle"
 MODE="dupnas"
@@ -38,11 +38,11 @@ LOCAL_CKPT_LOG="NASBase/checkpoints"
 # =========================
 # Configure Kaggle access
 # =========================
-export KAGGLE_API_TOKEN
+# export KAGGLE_API_TOKEN
 
-mkdir -p ~/.kaggle
-echo "${KAGGLE_API_TOKEN}" > ~/.kaggle/access_token
-chmod 600 ~/.kaggle/access_token
+# mkdir -p ~/.kaggle
+# echo "${KAGGLE_API_TOKEN}" > ~/.kaggle/access_token
+# chmod 600 ~/.kaggle/access_token
 
 # =========================
 # Prepare DupNAS
