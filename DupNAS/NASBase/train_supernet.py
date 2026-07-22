@@ -488,13 +488,22 @@ def run_supernet_train(global_settings: Settings, dataset=None, supernet_chkpt_f
         return supernet_chkpt_fname, best_val_acc, best_val_loss
 
     finally:
-        # [ADD] tear down PG so torchrun can exit cleanly
+    # Tear down the process group after training and saving are complete.
+    # Do not add another barrier here because it may hang during shutdown.
         if init_pg and dist.is_initialized():
-            try:
-                dist.barrier()
-            except Exception:
-                pass
+            print(
+                f"[Rank {_rank()}] Destroying distributed process group",
+                flush=True,
+            )
             dist.destroy_process_group()
+    # finally:
+    #     # [ADD] tear down PG so torchrun can exit cleanly
+    #     if init_pg and dist.is_initialized():
+    #         try:
+    #             dist.barrier()
+    #         except Exception:
+    #             pass
+    #         dist.destroy_process_group()
 
 if __name__ == '__main__':
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
