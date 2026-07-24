@@ -87,8 +87,8 @@ window.workflowTasks = {
   auto_dupnas: {
     label: "Auto-run DupNAS stages",
     option: [
-      { value: "stage1+2", label: "Stage 1+2 (search-space optimization + supernet training)" },
-      { value: "stage3+4", label: "Stage 3+4 (evolutionary search + fine-tuning)" },
+      { value: "stage1+2", label: "Stage 1+2: search-space optimization + supernet training (more than 1 day)" },
+      { value: "stage3+4", label: "Stage 3+4: evolutionary search + fine-tuning (more than 8 hrs)" },
       { value: "full-stage", label: "Full run (Stages 1–4 sequentially)" }
     ]
   }
